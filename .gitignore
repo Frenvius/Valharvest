@@ -377,5 +377,5 @@ Environment.props
 
 # Unity files
 *.manifest
-*/Bundles/customfood
-*/Bundles/Bundles
+*/[Bb]undles/customfood
+*/[Bb]undles/Bundles
