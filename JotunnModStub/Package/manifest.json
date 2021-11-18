@@ -1,0 +1,11 @@
+{
+  "name": "Valharvest",
+  "version_number": "1.7.1",
+  "website_url": "https://discord.gg/JyWawnNDMv",
+  "description": "New plants and foods!",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.1100",
+    "ValheimModding-Jotunn-2.3.7",
+    "RockerKitten-BoneAppetit-3.0.2"
+  ]
+}

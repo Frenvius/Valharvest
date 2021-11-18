@@ -1,0 +1,163 @@
+{
+	"garlicP": {
+		"shader": "Custom/Vegetation",
+		"texture": "Garlic_diffuse",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0,
+			"height": 1,
+			"swaySpeed": 30,
+			"swayDistance": 0.23,
+			"rippleSpeed": 100,
+			"pushDistance": 0.1
+		}
+	},
+	"garlicF": {
+		"shader": "Custom/Vegetation",
+		"texture": "Garlic_diffuse",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0,
+			"height": 1,
+			"swaySpeed": 30,
+			"swayDistance": 0.23,
+			"rippleSpeed": 100,
+			"pushDistance": 0
+		}
+	},
+	"pepperP": {
+		"shader": "Custom/Vegetation",
+		"texture": "fruit-plant",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.3,
+			"height": 1,
+			"swaySpeed": 10,
+			"swayDistance": 0.4,
+			"rippleSpeed": 100,
+			"pushDistance": 0.3
+		}		
+	},
+	"pepperF": {
+		"shader": "Custom/Vegetation",
+		"texture": "fruit-plant",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.3,
+			"height": 1,
+			"swaySpeed": 10,
+			"swayDistance": 0.4,
+			"rippleSpeed": 100,
+			"pushDistance": 0.3
+		}
+	},
+	"riceP": {
+		"shader": "Custom/Grass",
+		"texture": "riceTexture",
+		"material": {
+			"glossiness": 0,
+			"cutoff": 0,
+			"fadeDistanceMin": 15,
+			"fadeDistanceMax": 20,
+			"height": 2,
+			"swaySpeed": 30,
+			"swayDistance": 0.5,
+			"rippleSpeed": 100,
+			"pushDistance": 0.5
+		}
+	},
+	"riceF": {
+		"shader": "Custom/Grass",
+		"texture": "riceTexture",
+		"material": {
+			"glossiness": 0,
+			"cutoff": 0,
+			"fadeDistanceMin": 15,
+			"fadeDistanceMax": 20,
+			"height": 2,
+			"swaySpeed": 30,
+			"swayDistance": 0.5,
+			"rippleSpeed": 100,
+			"pushDistance": 0.5
+		}
+	},
+	"tomatoP": {
+		"shader": "Custom/Vegetation",
+		"texture": "tomatoTexture",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.4,
+			"height": 1,
+			"swaySpeed": 10,
+			"swayDistance": 0.4,
+			"rippleSpeed": 100,
+			"pushDistance": 0.3
+		}
+	},
+	"tomatoF": {
+		"shader": "Custom/Vegetation",
+		"texture": "tomatoTexture",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.4,
+			"height": 1,
+			"swaySpeed": 10,
+			"swayDistance": 0.4,
+			"rippleSpeed": 100,
+			"pushDistance": 0.3
+		}
+	},
+	"potatoP": {
+		"shader": "Custom/Vegetation",
+		"texture": "Plant_Potato",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.3,
+			"height": 1,
+			"swaySpeed": 20,
+			"swayDistance": 0.5,
+			"rippleSpeed": 100,
+			"pushDistance": 0.3
+		}
+	},
+	"potatoF": {
+		"shader": "Custom/Vegetation",
+		"texture": "Plant_Potato",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.3,
+			"height": 0.7,
+			"swaySpeed": 20,
+			"swayDistance": 1.8,
+			"rippleSpeed": 100,
+			"pushDistance": 0.3
+		}
+	},
+	"pumpkinP": {
+		"shader": "Custom/Vegetation",
+		"texture": "Plant_Pumpkin",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.3,
+			"height": 0.2,
+			"swaySpeed": 17,
+			"swayDistance": 0.15,
+			"rippleSpeed": 50,
+			"rippleDistance": 0.1,
+			"pushDistance": 0.1
+		}
+	},
+	"pumpkinF": {
+		"shader": "Custom/Vegetation",
+		"texture": "Plant_Pumpkin",
+		"material": {
+			"glossiness": 0.1,
+			"cutoff": 0.3,
+			"height": 0.7,
+			"swaySpeed": 20,
+			"swayDistance": 0.5,
+			"rippleSpeed": 50,
+			"pushDistance": 0.3
+		}
+	}
+}
