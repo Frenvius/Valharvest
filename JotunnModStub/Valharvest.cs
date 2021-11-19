@@ -9,11 +9,12 @@ using Jotunn.Managers;
 using Jotunn.Utils;
 using UnityEngine;
 using static Valharvest.Utils;
+using static Valharvest.WorldGen.Plants;
 using static Valharvest.Scripts.BoneAppetitBalance;
 
 namespace Valharvest {
     [BepInPlugin(ModGuid, ModName, Version)]
-    [BepInDependency(Jotunn.Main.ModGuid, "2.3.7")]
+    [BepInDependency(Jotunn.Main.ModGuid, "2.4.0")]
     [BepInDependency("com.rockerkitten.boneappetit", "3.0.2")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
     public class Main : BaseUnityPlugin {
@@ -33,6 +34,7 @@ namespace Valharvest {
         public static Sprite newEggSprite;
         public static Sprite pizzaSprite;
         public static ConfigEntry<bool> kabobName;
+        public static ConfigEntry<bool> dropEnabled;
 
         public GameObject pepperSeedsFab;
         public GameObject rawPastaFab;
@@ -73,6 +75,12 @@ namespace Valharvest {
         public GameObject pumpkinPlantPiece;
 
         public GameObject pumpkinFab;
+
+        public GameObject greydwarfBruteFab;
+
+        public GameObject draugrEliteFab;
+
+        public GameObject jackopumpkinFab;
         private CustomItem _emptyBottle;
         private Harmony _h;
         private CustomItem _pepperSeeds;
@@ -87,10 +95,12 @@ namespace Valharvest {
             AssetLoad();
             PrefabManager.OnVanillaPrefabsAvailable += LoadFood;
             PrefabManager.OnVanillaPrefabsAvailable += LoadNewFood;
-            PrefabManager.OnVanillaPrefabsAvailable += NewDrops;
             PrefabManager.OnVanillaPrefabsAvailable += LoadSounds;
             ItemManager.OnItemsRegisteredFejd += LoadBalancedFood;
             ItemManager.OnItemsRegisteredFejd += LoadBalance;
+            ZoneManager.OnVanillaLocationsAvailable += AddCustomPlants;
+
+            if (dropEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += NewDrops;
 
             _h = new Harmony("mod.valharvest");
             _h.PatchAll();
@@ -111,6 +121,7 @@ namespace Valharvest {
             // riceChange = Config.Bind("Rice", "Enable", 40, new ConfigDescription("Chance of drop Rice", null, new ConfigurationManagerAttributes {IsAdminOnly = true}));
 
             kabobName = Config.Bind("Kabob", "Enable", true, new ConfigDescription("Change Kabob name to Kebab", null, new ConfigurationManagerAttributes {IsAdminOnly = true}));
+            dropEnabled = Config.Bind("Vegetables Drop", "Enable", false, new ConfigDescription("Keep vegetables in monster drops", null, new ConfigurationManagerAttributes {IsAdminOnly = true}));
         }
         // @formatter:wrap_lines restore
 
@@ -223,7 +234,7 @@ namespace Valharvest {
                 m_levelMultiplier = true,
                 m_onePerPlayer = false
             });
-            
+
             greydwarfBruteFab.GetComponent<CharacterDrop>().m_drops.Add(new CharacterDrop.Drop {
                 m_prefab = potatoFabDrop,
                 m_amountMin = 1,
@@ -232,7 +243,7 @@ namespace Valharvest {
                 m_levelMultiplier = true,
                 m_onePerPlayer = false
             });
-            
+
             draugrEliteFab.GetComponent<CharacterDrop>().m_drops.Add(new CharacterDrop.Drop {
                 m_prefab = pumpkinFabDrop,
                 m_amountMin = 1,
@@ -245,10 +256,6 @@ namespace Valharvest {
             PrefabManager.OnVanillaPrefabsAvailable -= NewDrops;
         }
 
-        public GameObject greydwarfBruteFab;
-
-        public GameObject draugrEliteFab;
-
         public void LoadPlantsFab() {
             cultivator = pieceAssets.LoadAsset<GameObject>("piece_cultivatedGround");
             smallCultivator = pieceAssets.LoadAsset<GameObject>("piece_cultivatedGround_small");
@@ -257,7 +264,7 @@ namespace Valharvest {
 
             wellFab = pieceAssets.LoadAsset<GameObject>("water_well");
             // PrefabManager.Instance.AddPrefab(new CustomPrefab(wellFab, true));
-            
+
             jackopumpkinFab = pieceAssets.LoadAsset<GameObject>("piece_jackopumpkin");
             // PrefabManager.Instance.AddPrefab(new CustomPrefab(jackopumpkinFab, true));
 
@@ -284,7 +291,7 @@ namespace Valharvest {
 
             milkBottle = modAssets.LoadAsset<GameObject>("milk_bottle");
             ItemManager.Instance.AddItem(new CustomItem(milkBottle, true));
-            
+
             pepperPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_Pepper");
             PrefabManager.Instance.AddPrefab(new CustomPrefab(pepperPlantPiece, true));
             ChangePlantShader(pepperPlantPiece, "pepperP");
@@ -329,8 +336,6 @@ namespace Valharvest {
 
             LoadItem();
         }
-
-        public GameObject jackopumpkinFab;
 
         private void LoadItem() {
             var pepperPlant = new CustomPiece(pepperPlantFab, true,
@@ -396,7 +401,7 @@ namespace Valharvest {
             //         Requirements = new[] {new RequirementConfig {Item = "Dandelion", Amount = 1, Recover = true}}
             //     });
             // PieceManager.Instance.AddPiece(well);
-            
+
             var jackopumpkin = new CustomPiece(jackopumpkinFab, true,
                 new PieceConfig {
                     AllowedInDungeons = false,
@@ -409,7 +414,7 @@ namespace Valharvest {
                     }
                 });
             PieceManager.Instance.AddPiece(jackopumpkin);
-            
+
             var cultivatorPiece = new CustomPiece(cultivator, true,
                 new PieceConfig {
                     AllowedInDungeons = false,
@@ -422,7 +427,7 @@ namespace Valharvest {
                     }
                 });
             PieceManager.Instance.AddPiece(cultivatorPiece);
-            
+
             var smallCultivatorPiece = new CustomPiece(smallCultivator, true,
                 new PieceConfig {
                     AllowedInDungeons = false,
@@ -435,16 +440,14 @@ namespace Valharvest {
                     }
                 });
             PieceManager.Instance.AddPiece(smallCultivatorPiece);
-            
+
             var tomatoBoxPiece = new CustomPiece(tomatoBox, true,
                 new PieceConfig {
                     AllowedInDungeons = false,
                     Enabled = true,
                     PieceTable = "_HammerPieceTable",
                     CraftingStation = "piece_workbench",
-                    Requirements = new[] {
-                        new RequirementConfig {Item = "tomato", Amount = 50, Recover = true}
-                    }
+                    Requirements = new[] {new RequirementConfig {Item = "tomato", Amount = 50, Recover = true}}
                 });
             PieceManager.Instance.AddPiece(tomatoBoxPiece);
         }
