@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="Scripts\BoneAppetitBalance.cs" />
     <Compile Include="Scripts\loxMilk.cs" />
+    <Compile Include="Scripts\RaisedBed.cs" />
     <Compile Include="Scripts\saltDrop.cs" />
     <Compile Include="utils.cs" />
     <Compile Include="Valharvest.cs" />
