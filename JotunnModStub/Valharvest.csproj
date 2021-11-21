@@ -161,6 +161,9 @@
     <EmbeddedResource Include="Configs\plantsShaderConfig.json">
       <LogicalName>plantsShaderConfig.resources</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Configs\plantsLocations.json">
+      <LogicalName>plantsLocations.resources</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="JotunnPostBuildTaskWin" Condition="'$(OS)' == 'Windows_NT'">

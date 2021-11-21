@@ -50,8 +50,10 @@ namespace Valharvest {
         public GameObject garlicFab;
         public GameObject riceFab;
         public GameObject garlicPlantPiece;
+        public GameObject garlicPlantPieceWild;
         public GameObject garlicPlantFab;
         public GameObject ricePlantPiece;
+        public GameObject ricePlantPieceWild;
         public GameObject ricePlantFab;
         public GameObject pepperPlantPiece;
         public GameObject wellFab;
@@ -295,6 +297,14 @@ namespace Valharvest {
             pepperPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_Pepper");
             PrefabManager.Instance.AddPrefab(new CustomPrefab(pepperPlantPiece, true));
             ChangePlantShader(pepperPlantPiece, "pepperP");
+            
+            garlicPlantPieceWild = plantAssets.LoadAsset<GameObject>("Pickable_garlic_wild");
+            PrefabManager.Instance.AddPrefab(new CustomPrefab(garlicPlantPieceWild, true));
+            ChangePlantShader(garlicPlantPieceWild, "garlicP");
+            
+            ricePlantPieceWild = plantAssets.LoadAsset<GameObject>("Pickable_Rice_wild");
+            PrefabManager.Instance.AddPrefab(new CustomPrefab(ricePlantPieceWild, true));
+            ChangePlantShader(ricePlantPieceWild, "riceP");
 
             garlicPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_garlic");
             PrefabManager.Instance.AddPrefab(new CustomPrefab(garlicPlantPiece, true));

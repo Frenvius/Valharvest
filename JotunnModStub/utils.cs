@@ -286,6 +286,14 @@ namespace Valharvest {
                     Jotunn.Logger.LogError($"Error while loading {name}: {ex.Message}");
                 }
             }
+            
+            public static string ReadEmbeddedFile(string embeddedName) {
+                using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(embeddedName);
+                if (stream == null) return null;
+                TextReader tr = new StreamReader(stream);
+                var fileContents = tr.ReadToEnd();
+                return fileContents;
+            }
 
             public static void GetRequirements(string requirements) {
                 Jotunn.Logger.LogInfo($"requirements1: {requirements}");
