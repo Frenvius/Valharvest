@@ -1,0 +1,50 @@
+﻿{
+	"apple_tree": {
+		"name": "Apple Tree",
+		"description": null,
+		"materials": {
+			"apple_tree_log": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.4,
+				"height": 5,
+				"swaySpeed": 25,
+				"swayDistance": 5,
+				"rippleSpeed": 100,
+				"rippleDistance": 0,
+				"rippleDeadzoneMin": 0.47,
+				"rippleDeadzoneMax": 2.65,
+				"pushDistance": 0
+			},
+			"apple_tree_leaves": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.4,
+				"height": 5,
+				"swaySpeed": 25,
+				"swayDistance": 5,
+				"rippleSpeed": 200,
+				"rippleDistance": 0.5,
+				"rippleDeadzoneMin": 0.5,
+				"rippleDeadzoneMax": 1,
+				"pushDistance": 0
+			},
+			"apple": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.4,
+				"height": 5,
+				"swaySpeed": 25,
+				"swayDistance": 5,
+				"rippleSpeed": 100,
+				"rippleDistance": 0,
+				"rippleDeadzoneMin": 0.47,
+				"rippleDeadzoneMax": 2.65,
+				"pushDistance": 0
+			}
+		},
+		"requirements": [
+			{"Item": "Dandelion", "Amount": 1}
+		]
+	}
+}

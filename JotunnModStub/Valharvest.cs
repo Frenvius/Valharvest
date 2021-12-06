@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
@@ -10,6 +11,7 @@ using Jotunn.Utils;
 using UnityEngine;
 using static Valharvest.Utils;
 using static Valharvest.WorldGen.Plants;
+using static Valharvest.WorldGen.PlantUtils;
 using static Valharvest.Scripts.BoneAppetitBalance;
 
 namespace Valharvest {
@@ -20,7 +22,7 @@ namespace Valharvest {
     public class Main : BaseUnityPlugin {
         public const string ModGuid = "com.frenvius.Valharvest";
         public const string ModName = "Valharvest";
-        public const string Version = "1.7.1";
+        public const string Version = "2.0.0";
 
         public static AssetBundle modAssets;
         public static AssetBundle foodAssets;
@@ -44,6 +46,7 @@ namespace Valharvest {
         public GameObject goblinFab;
         public GameObject draugrFab;
 
+        public GameObject appleFab;
         public GameObject pepperFab;
         public GameObject tomatoFab;
         public GameObject saltFab;
@@ -95,9 +98,11 @@ namespace Valharvest {
         public void Awake() {
             CreatConfigValues();
             AssetLoad();
+            
             PrefabManager.OnVanillaPrefabsAvailable += LoadFood;
             PrefabManager.OnVanillaPrefabsAvailable += LoadNewFood;
             PrefabManager.OnVanillaPrefabsAvailable += LoadSounds;
+            PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlantsPrefab;
             ItemManager.OnItemsRegisteredFejd += LoadBalancedFood;
             ItemManager.OnItemsRegisteredFejd += LoadBalance;
             ZoneManager.OnVanillaLocationsAvailable += AddCustomPlants;
@@ -107,7 +112,6 @@ namespace Valharvest {
             _h = new Harmony("mod.valharvest");
             _h.PatchAll();
         }
-
 
         private void OnDestroy() {
             Jotunn.Logger.LogInfo("Valharvest: OnDestroy");
@@ -154,6 +158,7 @@ namespace Valharvest {
         }
 
         public void AssetLoad() {
+            LoadEmbeddedAssembly("Assembly.resources");
             modAssets = AssetUtils.LoadAssetBundleFromResources("valharvest", Assembly.GetExecutingAssembly());
             foodAssets = AssetUtils.LoadAssetBundleFromResources("valharvestfoods", Assembly.GetExecutingAssembly());
             plantAssets = AssetUtils.LoadAssetBundleFromResources("valharvestplants", Assembly.GetExecutingAssembly());
@@ -269,6 +274,9 @@ namespace Valharvest {
 
             jackopumpkinFab = pieceAssets.LoadAsset<GameObject>("piece_jackopumpkin");
             // PrefabManager.Instance.AddPrefab(new CustomPrefab(jackopumpkinFab, true));
+            
+            appleFab = modAssets.LoadAsset<GameObject>("apple");
+            ItemManager.Instance.AddItem(new CustomItem(appleFab, true));
 
             saltFab = modAssets.LoadAsset<GameObject>("salt");
             ItemManager.Instance.AddItem(new CustomItem(saltFab, true));
@@ -402,15 +410,15 @@ namespace Valharvest {
                 });
             PieceManager.Instance.AddPiece(pumpkinPlant);
 
-            // var well = new CustomPiece(wellFab, true,
-            //     new PieceConfig {
-            //         AllowedInDungeons = false,
-            //         Enabled = true,
-            //         PieceTable = "_HammerPieceTable",
-            //         CraftingStation = "piece_workbench",
-            //         Requirements = new[] {new RequirementConfig {Item = "Dandelion", Amount = 1, Recover = true}}
-            //     });
-            // PieceManager.Instance.AddPiece(well);
+            var well = new CustomPiece(wellFab, true,
+                new PieceConfig {
+                    AllowedInDungeons = false,
+                    Enabled = true,
+                    PieceTable = "_HammerPieceTable",
+                    CraftingStation = "piece_workbench",
+                    Requirements = new[] {new RequirementConfig {Item = "Dandelion", Amount = 1, Recover = true}}
+                });
+            PieceManager.Instance.AddPiece(well);
 
             var jackopumpkin = new CustomPiece(jackopumpkinFab, true,
                 new PieceConfig {

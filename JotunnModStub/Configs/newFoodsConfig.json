@@ -378,5 +378,26 @@
 			{"Item": "raw_pasta", "Amount": 1},
 			{"Item": "rk_pork", "Amount": 1}
 		]
+	},
+	"apple_honey": {
+		"name": "Spaghetti and Meatballs",
+		"description": null,
+		"weight": 0.6,
+		"variants": null,
+		"food": 65,
+		"foodStamina": 45,
+		"foodBurnTime": 30,
+		"foodRegen": 4,
+		"maxStackSize": 10,
+		"foodColor": "#9a6331",
+		"amount": 1,
+		"consumeStatusEffect": null,
+		"craftingStation": "rk_prep",
+		"requirements": [
+			{"Item": "tomato", "Amount": 1},
+			{"Item": "salt", "Amount": 1},
+			{"Item": "raw_pasta", "Amount": 1},
+			{"Item": "rk_pork", "Amount": 1}
+		]
 	}
 }
