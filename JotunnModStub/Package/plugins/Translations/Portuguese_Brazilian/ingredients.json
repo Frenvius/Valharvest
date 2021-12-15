@@ -1,0 +1,37 @@
+﻿{
+	"apple_name": "Maça",
+	"apple_desc": "Uma fruta comum encontrada em árvores ao redor no Prado",
+
+	"garlic_name": "Alho",
+	"garlic_desc": "ㅤ",
+
+	"milk_bottle_name": "Garrafa de Leite",
+	"milk_bottle_desc": "ㅤ",
+
+	"pepper_name": "Pimenta",
+	"pepper_desc": "ㅤ",
+
+	"PepperSeeds_name": "Semente de Pimenta",
+	"PepperSeeds_desc": "ㅤ",
+
+	"potato_name": "Batata",
+	"potato_desc": "ㅤ",
+
+	"pumpkin_name": "Abóbora",
+	"pumpkin_desc": "ㅤ",
+
+	"raw_pasta_name": "Macarrão Cru",
+	"raw_pasta_desc": "ㅤ",
+
+	"rice_name": "Arroz",
+	"rice_desc": "ㅤ",
+
+	"rice_vinegar_name": "Vinagre de Arroz",
+	"rice_vinegar_desc": "ㅤ",
+
+	"salt_name": "Pedra de Sal",
+	"salt_desc": "ㅤ",
+
+	"tomato_name": "Tomate",
+	"tomato_desc": "ㅤ"
+}

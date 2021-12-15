@@ -1,15 +1,14 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
-using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using UnityEngine;
 using static Valharvest.Utils;
+using static Valharvest.Scripts.Loaders;
 using static Valharvest.WorldGen.Plants;
 using static Valharvest.WorldGen.PlantUtils;
 using static Valharvest.Scripts.BoneAppetitBalance;
@@ -30,7 +29,7 @@ namespace Valharvest {
         public static AssetBundle pieceAssets;
 
         public static EffectList loxMilkSfx;
-        public static EffectList loxPetSfx;
+        public static EffectList boneMealVfx;
         public static Texture2D newEggTexture;
         public static Texture2D pizzaPlateTexture;
         public static Sprite newEggSprite;
@@ -38,68 +37,30 @@ namespace Valharvest {
         public static ConfigEntry<bool> kabobName;
         public static ConfigEntry<bool> dropEnabled;
 
-        public GameObject pepperSeedsFab;
-        public GameObject rawPastaFab;
-
         public GameObject greydwarfFab;
         public GameObject trollFab;
         public GameObject goblinFab;
         public GameObject draugrFab;
 
-        public GameObject appleFab;
-        public GameObject pepperFab;
-        public GameObject tomatoFab;
-        public GameObject saltFab;
-        public GameObject garlicFab;
-        public GameObject riceFab;
-        public GameObject garlicPlantPiece;
-        public GameObject garlicPlantPieceWild;
-        public GameObject garlicPlantFab;
-        public GameObject ricePlantPiece;
-        public GameObject ricePlantPieceWild;
-        public GameObject ricePlantFab;
-        public GameObject pepperPlantPiece;
-        public GameObject wellFab;
-        public GameObject cultivator;
-        public GameObject smallCultivator;
-        public GameObject tomatoBox;
-        public GameObject pepperPlantFab;
-        public GameObject tomatoPlantPiece;
-        public GameObject tomatoPlantFab;
-        public GameObject potatoPlantFab;
-        public GameObject potatoPlantPiece;
-
-        public GameObject milkBottle;
-
-        public GameObject emptyBottleFab;
-
-        public GameObject potatoFab;
-
-        public GameObject pumpkinPlantFab;
-
-        public GameObject pumpkinPlantPiece;
-
-        public GameObject pumpkinFab;
-
         public GameObject greydwarfBruteFab;
 
         public GameObject draugrEliteFab;
+        
+        public static GameObject milkBottleFab;
 
-        public GameObject jackopumpkinFab;
-        private CustomItem _emptyBottle;
         private Harmony _h;
-        private CustomItem _pepperSeeds;
-        private CustomItem _rawPasta;
         public ConfigEntry<int> garlicChange;
 
         public ConfigEntry<int> pepperChance;
         public ConfigEntry<int> riceChange;
 
         public void Awake() {
+            LoadEmbeddedAssembly("CustomScripts.resources");
             CreatConfigValues();
             AssetLoad();
-            
-            PrefabManager.OnVanillaPrefabsAvailable += LoadFood;
+            LoadItems();
+            LoadPieces();
+
             PrefabManager.OnVanillaPrefabsAvailable += LoadNewFood;
             PrefabManager.OnVanillaPrefabsAvailable += LoadSounds;
             PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlantsPrefab;
@@ -130,20 +91,7 @@ namespace Valharvest {
             dropEnabled = Config.Bind("Vegetables Drop", "Enable", false, new ConfigDescription("Keep vegetables in monster drops", null, new ConfigurationManagerAttributes {IsAdminOnly = true}));
         }
         // @formatter:wrap_lines restore
-
-        public void LoadFood() {
-            try {
-                PepperSeeds();
-                RawPasta();
-                EmptyBottle();
-            } catch (Exception ex) {
-                Jotunn.Logger.LogError($"Error while running OnVanillaLoad: {ex.Message}");
-            } finally {
-                Jotunn.Logger.LogInfo("Load Complete.");
-                PrefabManager.OnVanillaPrefabsAvailable -= LoadFood;
-            }
-        }
-
+        
         public void LoadBalance() {
             try {
                 SeagullEgg();
@@ -158,7 +106,6 @@ namespace Valharvest {
         }
 
         public void AssetLoad() {
-            LoadEmbeddedAssembly("Assembly.resources");
             modAssets = AssetUtils.LoadAssetBundleFromResources("valharvest", Assembly.GetExecutingAssembly());
             foodAssets = AssetUtils.LoadAssetBundleFromResources("valharvestfoods", Assembly.GetExecutingAssembly());
             plantAssets = AssetUtils.LoadAssetBundleFromResources("valharvestplants", Assembly.GetExecutingAssembly());
@@ -169,7 +116,6 @@ namespace Valharvest {
             pizzaSprite = modAssets.LoadAsset<Sprite>("pizzaSprite");
 
             Jotunn.Logger.LogInfo("Preparing the plants...");
-            LoadPlantsFab();
         }
 
         public void LoadSounds() {
@@ -179,14 +125,16 @@ namespace Valharvest {
             PrefabManager.Instance.AddPrefab(new CustomPrefab(loxPetMilk, true));
             var loxPet = modAssets.LoadAsset<GameObject>("sfx_lox_pet");
             PrefabManager.Instance.AddPrefab(new CustomPrefab(loxPet, true));
+            var boneMealSpark = modAssets.LoadAsset<GameObject>("vfx_bone_meal");
+            PrefabManager.Instance.AddPrefab(new CustomPrefab(boneMealSpark, true));
             loxMilkSfx = new EffectList {
                 m_effectPrefabs = new[] {
                     new EffectList.EffectData {m_prefab = loxPetMilk, m_enabled = true},
                     new() {m_prefab = poursMilk, m_enabled = true}
                 }
             };
-            loxPetSfx = new EffectList {
-                m_effectPrefabs = new[] {new EffectList.EffectData {m_prefab = loxPet, m_enabled = true}}
+            boneMealVfx = new EffectList {
+                m_effectPrefabs = new[] {new EffectList.EffectData {m_prefab = boneMealSpark, m_enabled = true}}
             };
 
             PrefabManager.OnVanillaPrefabsAvailable -= LoadSounds;
@@ -205,6 +153,7 @@ namespace Valharvest {
             var riceFabDrop = PrefabManager.Instance.GetPrefab("rice");
             var potatoFabDrop = PrefabManager.Instance.GetPrefab("potato");
             var pumpkinFabDrop = PrefabManager.Instance.GetPrefab("pumpkin");
+            milkBottleFab = PrefabManager.Instance.GetPrefab("milk_bottle");
 
             greydwarfFab.GetComponent<CharacterDrop>().m_drops.Add(new CharacterDrop.Drop {
                 m_prefab = pepperFabDrop,
@@ -261,274 +210,6 @@ namespace Valharvest {
             });
 
             PrefabManager.OnVanillaPrefabsAvailable -= NewDrops;
-        }
-
-        public void LoadPlantsFab() {
-            cultivator = pieceAssets.LoadAsset<GameObject>("piece_cultivatedGround");
-            smallCultivator = pieceAssets.LoadAsset<GameObject>("piece_cultivatedGround_small");
-            tomatoBox = pieceAssets.LoadAsset<GameObject>("piece_tomatoBox");
-            // PrefabManager.Instance.AddPrefab(new CustomPrefab(cultivator, true));
-
-            wellFab = pieceAssets.LoadAsset<GameObject>("water_well");
-            // PrefabManager.Instance.AddPrefab(new CustomPrefab(wellFab, true));
-
-            jackopumpkinFab = pieceAssets.LoadAsset<GameObject>("piece_jackopumpkin");
-            // PrefabManager.Instance.AddPrefab(new CustomPrefab(jackopumpkinFab, true));
-            
-            appleFab = modAssets.LoadAsset<GameObject>("apple");
-            ItemManager.Instance.AddItem(new CustomItem(appleFab, true));
-
-            saltFab = modAssets.LoadAsset<GameObject>("salt");
-            ItemManager.Instance.AddItem(new CustomItem(saltFab, true));
-
-            pepperFab = modAssets.LoadAsset<GameObject>("pepper");
-            ItemManager.Instance.AddItem(new CustomItem(pepperFab, true));
-
-            tomatoFab = modAssets.LoadAsset<GameObject>("tomato");
-            ItemManager.Instance.AddItem(new CustomItem(tomatoFab, true));
-
-            potatoFab = modAssets.LoadAsset<GameObject>("potato");
-            ItemManager.Instance.AddItem(new CustomItem(potatoFab, true));
-
-            pumpkinFab = modAssets.LoadAsset<GameObject>("pumpkin");
-            ItemManager.Instance.AddItem(new CustomItem(pumpkinFab, true));
-
-            garlicFab = modAssets.LoadAsset<GameObject>("garlic");
-            ItemManager.Instance.AddItem(new CustomItem(garlicFab, true));
-
-            riceFab = modAssets.LoadAsset<GameObject>("rice");
-            ItemManager.Instance.AddItem(new CustomItem(riceFab, true));
-
-            milkBottle = modAssets.LoadAsset<GameObject>("milk_bottle");
-            ItemManager.Instance.AddItem(new CustomItem(milkBottle, true));
-
-            pepperPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_Pepper");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(pepperPlantPiece, true));
-            ChangePlantShader(pepperPlantPiece, "pepperP");
-            
-            garlicPlantPieceWild = plantAssets.LoadAsset<GameObject>("Pickable_garlic_wild");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(garlicPlantPieceWild, true));
-            ChangePlantShader(garlicPlantPieceWild, "garlicP");
-            
-            ricePlantPieceWild = plantAssets.LoadAsset<GameObject>("Pickable_Rice_wild");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(ricePlantPieceWild, true));
-            ChangePlantShader(ricePlantPieceWild, "riceP");
-
-            garlicPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_garlic");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(garlicPlantPiece, true));
-            ChangePlantShader(garlicPlantPiece, "garlicP");
-
-            pepperPlantFab = plantAssets.LoadAsset<GameObject>("sapling_pepper");
-            ChangePlantShader(pepperPlantFab, "pepperF");
-
-            garlicPlantFab = plantAssets.LoadAsset<GameObject>("sapling_garlic");
-            ChangePlantShader(garlicPlantFab, "garlicF");
-
-            ricePlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_Rice");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(ricePlantPiece, true));
-            ChangePlantShader(ricePlantPiece, "riceP");
-
-            ricePlantFab = plantAssets.LoadAsset<GameObject>("sapling_rice");
-            ChangePlantShader(ricePlantFab, "riceF");
-
-            tomatoPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_Tomato");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(tomatoPlantPiece, true));
-            ChangePlantShader(tomatoPlantPiece, "tomatoP");
-
-            tomatoPlantFab = plantAssets.LoadAsset<GameObject>("sapling_tomato");
-            ChangePlantShader(tomatoPlantFab, "tomatoF");
-
-            potatoPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_Potato");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(potatoPlantPiece, true));
-            ChangePlantShader(potatoPlantPiece, "potatoP");
-
-            potatoPlantFab = plantAssets.LoadAsset<GameObject>("sapling_potato");
-            ChangePlantShader(potatoPlantFab, "potatoF");
-
-            pumpkinPlantPiece = plantAssets.LoadAsset<GameObject>("Pickable_Pumpkin");
-            PrefabManager.Instance.AddPrefab(new CustomPrefab(pumpkinPlantPiece, true));
-            ChangePlantShader(pumpkinPlantPiece, "pumpkinP");
-
-            pumpkinPlantFab = plantAssets.LoadAsset<GameObject>("sapling_pumpkin");
-            ChangePlantShader(pumpkinPlantFab, "pumpkinF");
-
-            LoadItem();
-        }
-
-        private void LoadItem() {
-            var pepperPlant = new CustomPiece(pepperPlantFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_CultivatorPieceTable",
-                    Requirements = new[] {new RequirementConfig {Item = "PepperSeeds", Amount = 1, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(pepperPlant);
-
-            var tomatoPlant = new CustomPiece(tomatoPlantFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_CultivatorPieceTable",
-                    Requirements = new[] {new RequirementConfig {Item = "tomato", Amount = 1, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(tomatoPlant);
-
-            var garlicPlant = new CustomPiece(garlicPlantFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_CultivatorPieceTable",
-                    Requirements = new[] {new RequirementConfig {Item = "garlic", Amount = 1, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(garlicPlant);
-
-            var ricePlant = new CustomPiece(ricePlantFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_CultivatorPieceTable",
-                    Requirements = new[] {new RequirementConfig {Item = "rice", Amount = 1, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(ricePlant);
-
-            var potatoPlant = new CustomPiece(potatoPlantFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_CultivatorPieceTable",
-                    Requirements = new[] {new RequirementConfig {Item = "potato", Amount = 1, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(potatoPlant);
-
-            var pumpkinPlant = new CustomPiece(pumpkinPlantFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_CultivatorPieceTable",
-                    Requirements = new[] {new RequirementConfig {Item = "pumpkin", Amount = 1, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(pumpkinPlant);
-
-            var well = new CustomPiece(wellFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_HammerPieceTable",
-                    CraftingStation = "piece_workbench",
-                    Requirements = new[] {new RequirementConfig {Item = "Dandelion", Amount = 1, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(well);
-
-            var jackopumpkin = new CustomPiece(jackopumpkinFab, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_HammerPieceTable",
-                    CraftingStation = "piece_workbench",
-                    Requirements = new[] {
-                        new RequirementConfig {Item = "pumpkin", Amount = 1, Recover = true},
-                        new RequirementConfig {Item = "Resin", Amount = 2, Recover = true}
-                    }
-                });
-            PieceManager.Instance.AddPiece(jackopumpkin);
-
-            var cultivatorPiece = new CustomPiece(cultivator, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_HammerPieceTable",
-                    CraftingStation = "piece_workbench",
-                    Requirements = new[] {
-                        new RequirementConfig {Item = "Wood", Amount = 10, Recover = true},
-                        new RequirementConfig {Item = "Tar", Amount = 20, Recover = true}
-                    }
-                });
-            PieceManager.Instance.AddPiece(cultivatorPiece);
-
-            var smallCultivatorPiece = new CustomPiece(smallCultivator, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_HammerPieceTable",
-                    CraftingStation = "piece_workbench",
-                    Requirements = new[] {
-                        new RequirementConfig {Item = "Wood", Amount = 5, Recover = true},
-                        new RequirementConfig {Item = "Tar", Amount = 10, Recover = true}
-                    }
-                });
-            PieceManager.Instance.AddPiece(smallCultivatorPiece);
-
-            var tomatoBoxPiece = new CustomPiece(tomatoBox, true,
-                new PieceConfig {
-                    AllowedInDungeons = false,
-                    Enabled = true,
-                    PieceTable = "_HammerPieceTable",
-                    CraftingStation = "piece_workbench",
-                    Requirements = new[] {new RequirementConfig {Item = "tomato", Amount = 50, Recover = true}}
-                });
-            PieceManager.Instance.AddPiece(tomatoBoxPiece);
-        }
-
-        private void PepperSeeds() {
-            try {
-                pepperSeedsFab = modAssets.LoadAsset<GameObject>("PepperSeeds");
-                _pepperSeeds = new CustomItem(pepperSeedsFab, true,
-                    new ItemConfig {
-                        Name = "Spicy Pepper Seeds",
-                        Enabled = true,
-                        Amount = 3,
-                        CraftingStation = "",
-                        Requirements = new[] {new RequirementConfig {Item = "pepper", Amount = 1}}
-                    });
-            } catch (Exception ex) {
-                Jotunn.Logger.LogError($"Error while loading PepperSeeds: {ex.Message}");
-            } finally {
-                Jotunn.Logger.LogInfo("PepperSeeds Loaded.");
-                ItemManager.Instance.AddItem(_pepperSeeds);
-            }
-        }
-
-        private void RawPasta() {
-            try {
-                rawPastaFab = modAssets.LoadAsset<GameObject>("raw_pasta");
-                _rawPasta = new CustomItem(rawPastaFab, true,
-                    new ItemConfig {
-                        Name = "Raw Pasta",
-                        Enabled = true,
-                        Amount = 2,
-                        CraftingStation = "rk_prep",
-                        Requirements = new[] {
-                            new RequirementConfig {Item = "BarleyFlour", Amount = 1},
-                            new RequirementConfig {Item = "salt", Amount = 1},
-                            new RequirementConfig {Item = "rk_egg", Amount = 2}
-                        }
-                    });
-            } catch (Exception ex) {
-                Jotunn.Logger.LogError($"Error while loading RawPasta: {ex.Message}");
-            } finally {
-                Jotunn.Logger.LogInfo("RawPasta Loaded.");
-                ItemManager.Instance.AddItem(_rawPasta);
-            }
-        }
-
-        private void EmptyBottle() {
-            try {
-                emptyBottleFab = pieceAssets.LoadAsset<GameObject>("empty_bottle");
-                _emptyBottle = new CustomItem(emptyBottleFab, true,
-                    new ItemConfig {
-                        Name = "Empty Bottle",
-                        Enabled = true,
-                        Amount = 2,
-                        CraftingStation = "piece_workbench",
-                        Requirements = new[] {new RequirementConfig {Item = "Crystal", Amount = 1}}
-                    });
-            } catch (Exception ex) {
-                Jotunn.Logger.LogError($"Error while loading Empty Bottle: {ex.Message}");
-            } finally {
-                Jotunn.Logger.LogInfo("Empty Bottle Loaded.");
-                ItemManager.Instance.AddItem(_emptyBottle);
-            }
         }
     }
 }

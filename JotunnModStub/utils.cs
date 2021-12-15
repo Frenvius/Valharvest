@@ -5,7 +5,6 @@ using System.Reflection;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
-using Jotunn.Utils;
 using SimpleJson;
 using UnityEngine;
 using static SimpleJson.SimpleJson;
@@ -46,49 +45,10 @@ namespace Valharvest {
         private static readonly int RippleDeadzoneMin = Shader.PropertyToID("_RippleDeadzoneMin");
         private static readonly int RippleDeadzoneMax = Shader.PropertyToID("_RippleDeadzoneMax");
 
-        private static Texture2D _texture;
-
-        public static void ChangePlantShader(GameObject itemPrefab, string configObject) {
-            var typeDict = GetTypeDict();
-            var getMatItem = GetMatItem();
-
-            using var stream = Assembly.GetExecutingAssembly()
-                .GetManifestResourceStream("plantsShaderConfig.resources");
-
-            if (stream != null) ConfigureShader(itemPrefab, configObject, stream, typeDict, getMatItem);
-        }
-
-        private static void ConfigureShader(GameObject itemPrefab, string configObject, Stream stream,
-            Dictionary<Type, int> typeDict,
-            Dictionary<string, int> getMatItem) {
-            var content = GetContent(configObject, stream);
-            var shader = Shader.Find(content["shader"].ToString());
-
-            if (shader != null)
-                foreach (var renderer in ShaderHelper.GetRenderers(itemPrefab))
-                    ConfigureRendererMaterials(renderer, content, shader, typeDict, getMatItem);
-        }
-
-        private static void ConfigureRendererMaterials(Renderer renderer, JsonObject content, Shader shader,
-            Dictionary<Type, int> typeDict,
-            Dictionary<string, int> getMatItem) {
-            if (HasFoodName(renderer)) {
-                SetTexture(renderer, content);
-                var materialConfig = DeserializeObject<JsonObject>(content["material"].ToString());
-
-                foreach (var material in renderer.materials)
-                    ConfigureMaterial(material, shader, materialConfig, typeDict, getMatItem);
-            }
-        }
-
         public static void ConfigureMaterial(Material material, Shader shader, JsonObject content,
             Dictionary<Type, int> typeDict,
             Dictionary<string, int> getMatItem) {
             material.shader = shader;
-
-            if (_texture)
-                if (material.HasProperty(MainTex))
-                    material.SetTexture(MainTex, _texture);
 
             foreach (var materialItem in content) {
                 if (materialItem.Key == "shader") continue;
@@ -112,31 +72,6 @@ namespace Valharvest {
                     material.SetFloat(getMatItem[materialItem.Key], float.Parse(materialItem.Value.ToString()));
                     break;
             }
-        }
-
-        private static void SetTexture(Renderer rend, JsonObject content) {
-            if (rend.name.Contains("unhealthy"))
-                _texture = modAssets.LoadAsset<Texture2D>(content["texture"] + "-unhealthy");
-            else
-                _texture = modAssets.LoadAsset<Texture2D>(content["texture"].ToString());
-        }
-
-        private static bool HasFoodName(Renderer rend) {
-            return (rend.name == "blast") |
-                   (rend.name == "flower") |
-                   (rend.name == "healthy") |
-                   (rend.name == "unhealthy") |
-                   (rend.name == "healthy_grown") |
-                   (rend.name == "unhealthy_grown") |
-                   (rend.name == "healthy_rice") |
-                   (rend.name == "unhealthy_rice");
-        }
-
-        private static JsonObject GetContent(string configObject, Stream stream) {
-            var fileContents = new StreamReader(stream).ReadToEnd();
-            var json = DeserializeObject<JsonObject>(fileContents);
-            var content = DeserializeObject<JsonObject>(json[configObject].ToString());
-            return content;
         }
 
         public static Dictionary<Type, int> GetTypeDict() {
@@ -253,7 +188,7 @@ namespace Valharvest {
             }
         }
 
-        private static void SetItemDropFromContent(JsonObject content, ItemDrop.ItemData.SharedData itemDrop) {
+        public static void SetItemDropFromContent(JsonObject content, ItemDrop.ItemData.SharedData itemDrop) {
             if (content[Name] != null) itemDrop.m_name = content[Name].ToString();
             if (content[Description] != null) itemDrop.m_description = content[Description].ToString();
             if (content[Weight] != null) itemDrop.m_weight = float.Parse(content[Weight].ToString());
@@ -299,14 +234,6 @@ namespace Valharvest {
             return fileContents;
         }
 
-        public static void GetRequirements(string requirements) {
-            Logger.LogInfo($"requirements1: {requirements}");
-            var requirementsArr = DeserializeObject<List<RequirementConfig>>(requirements);
-            Logger.LogInfo($"requirements2: {requirementsArr}");
-            foreach (var req in requirementsArr) Logger.LogInfo($"item: {req}");
-            // var requirements = new RequirementConfig[];
-        }
-
         public static void LoadEmbeddedAssembly(string assemblyName) {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(assemblyName);
             if (stream == null) {
@@ -317,8 +244,7 @@ namespace Valharvest {
             using (stream) {
                 var data = new byte[stream.Length];
                 stream.Read(data, 0, data.Length);
-                var assembly = Assembly.Load(data);
-                Logger.LogMessage(assembly);
+                Assembly.Load(data);
             }
         }
     }

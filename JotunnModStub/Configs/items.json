@@ -1,0 +1,118 @@
+﻿{
+	"apple": {
+		"name": "$apple_name",
+		"description": "$apple_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"garlic": {
+		"name": "$garlic_name",
+		"description": "$garlic_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"milk_bottle": {
+		"name": "$milk_bottle_name",
+		"description": "$milk_bottle_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"pepper": {
+		"name": "$pepper_name",
+		"description": "$pepper_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"pumpkin": {
+		"name": "$pumpkin_name",
+		"description": "$pumpkin_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"salt": {
+		"name": "$salt_name",
+		"description": "$salt_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"tomato": {
+		"name": "$tomato_name",
+		"description": "$tomato_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"potato": {
+		"name": "$potato_name",
+		"description": "$potato_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"rice": {
+		"name": "$rice_name",
+		"description": "$rice_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
+	"bonemeal": {
+		"name": "$bonemeal_name",
+		"description": "$bonemeal_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"amount": 1,
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "BoneFragments", "Amount": 2}
+			]
+		}
+	},
+	"water_bucket": {
+		"name": "$water_bucket_name",
+		"description": "$water_bucket_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": null
+	},
+	"milk_bucket": {
+		"name": "$milk_bucket_name",
+		"description": "$milk_bucket_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": null
+	},
+	"PepperSeeds": {
+		"name": "$PepperSeeds_name",
+		"description": "$PepperSeeds_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"amount": 3,
+			"craftingStation": "",
+			"requirements": [
+				{"Item": "pepper", "Amount": 1}
+			]
+		}
+	},
+	"raw_pasta": {
+		"name": "$raw_pasta_name",
+		"description": "$raw_pasta_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"amount": 2,
+			"craftingStation": "rk_prep",
+			"requirements": [
+				{"Item": "BarleyFlour", "Amount": 1},
+				{"Item": "salt", "Amount": 1},
+				{"Item": "rk_egg", "Amount": 2}
+			]
+		}
+	},
+	"empty_bottle": {
+		"name": "$empty_bottle_name",
+		"description": "$empty_bottle_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"amount": 2,
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Crystal", "Amount": 1}
+			]
+		}
+	}
+}

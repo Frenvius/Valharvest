@@ -1,0 +1,61 @@
+﻿{
+	"meatburrito_name": "Masové Burrito",
+	"meatburrito_desc": "Není problému, který by nevyřešilo masové burrito.",
+
+	"dragomellete_name": "Dračí omeleta",
+	"dragomellete_desc": "ㅤ",
+
+	"riceEgg_name": "Rýže s vajíčkem",
+	"riceEgg_desc": "ㅤ",
+
+	"riceEggMeat_name": "Vaječná rýže s masem",
+	"riceEggMeat_desc": "ㅤ",
+
+	"eggMeat_name": "Vejce s párkem",
+	"eggMeat_desc": "ㅤ",
+
+	"ramen_name": "Ramen",
+	"ramen_desc": "ㅤ",
+
+	"cheese_name": "Sýr",
+	"cheese_desc": "ㅤ",
+
+	"spaghetti_name": "Špagety",
+	"spaghetti_desc": "ㅤ",
+
+	"taco_name": "Taco",
+	"taco_desc": "ㅤ",
+
+	"riceBall_name": "Onigiri",
+	"riceBall_desc": "ㅤ",
+
+	"riceBowl_name": "Miska rýže",
+	"riceBowl_desc": "ㅤ",
+
+	"sushi_name": "Sushi",
+	"sushi_desc": "ㅤ",
+
+	"mashedPotatos_name": "Bramborová kaše",
+	"mashedPotatos_desc": "ㅤ",
+
+	"cheese_sandwich_name": "Sýrový sendvič",
+	"cheese_sandwich_desc": "ㅤ",
+
+	"egg_fried_bread_name": "Chleba ve vajíčku",
+	"egg_fried_bread_desc": "ㅤ",
+
+	"potato_slices_name": "Brambůrky",
+	"potato_slices_desc": "ㅤ",
+
+	"potatoes_boiled_name": "Vařené brambory",
+	"potatoes_boiled_desc": "ㅤ",
+
+	"ramen_tonkotsu_name": "Tonkotsu Ramen",
+	"ramen_tonkotsu_desc": "ㅤ",
+	
+	"spaghetti_meatballs_name": "Špagety s masovou koulí",
+	"spaghetti_meatballs_desc": "ㅤ",
+
+	"apple_honey_name": "Jablko s medem",
+	"apple_honey_desc": "ㅤ"
+}

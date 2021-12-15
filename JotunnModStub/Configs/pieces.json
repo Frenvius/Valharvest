@@ -1,0 +1,72 @@
+﻿{
+	"piece_cultivatedGround": {
+		"name": "$piece_cultivatedGround_name",
+		"description": "$piece_cultivatedGround_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 10, "Recover": true},
+				{"Item": "Tar", "Amount": 20, "Recover": true}
+			]
+		}
+	},
+	"piece_cultivatedGround_small": {
+		"name": "$piece_cultivatedGround_small_name",
+		"description": "$piece_cultivatedGround_small_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 5, "Recover": true},
+				{"Item": "Tar", "Amount": 10, "Recover": true}
+			]
+		}
+	},
+	"piece_tomatoBox": {
+		"name": "$piece_tomatoBox_name",
+		"description": "$piece_tomatoBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "tomato", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"water_well": {
+		"name": "$water_well_name",
+		"description": "$water_well_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 10, "Recover": true},
+				{"Item": "Stone", "Amount": 15, "Recover": true}
+			]
+		}
+	},
+	"piece_jackopumpkin": {
+		"name": "$piece_jackopumpkin_name",
+		"description": "$piece_jackopumpkin_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "pumpkin", "Amount": 1, "Recover": true},
+				{"Item": "Resin", "Amount": 2, "Recover": true}
+			]
+		}
+	}
+}

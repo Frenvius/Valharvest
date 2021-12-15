@@ -373,7 +373,9 @@ FodyWeavers.xsd
 Environment.props
 
 # not the generated dll for thunderstore
-*/Package/plugins/*
+*/Package/plugins/*.dll
+*/Package/plugins/*.pdb
+*/Package/plugins/*.xml
 
 # Unity files
 *.manifest

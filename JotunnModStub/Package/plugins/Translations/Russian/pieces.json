@@ -1,0 +1,31 @@
+﻿{
+	"bonemeal_name": "Костная мука",
+	"bonemeal_desc": "ㅤ",
+
+	"empty_bottle_name": "Пустая бутылка",
+	"empty_bottle_desc": "Необходим для доения быкоящера",
+
+	"piece_cultivatedGround_name": "Грядка 3x4",
+	"piece_cultivatedGround_desc": "ㅤ",
+
+	"piece_cultivatedGround_small_name": "Грядка 1x4",
+	"piece_cultivatedGround_small_desc": "ㅤ",
+
+	"piece_jackopumpkin_name": "Джек-о-тыква",
+	"piece_jackopumpkin_desc": "ㅤ",
+
+	"piece_tomatoBox_name": "Ящик томатов",
+	"piece_tomatoBox_desc": "ㅤ",
+
+	"water_bucket_name": "Ведро с водой",
+	"water_bucket_desc": "ㅤ",
+
+	"milk_bucket_name": "Ведро с молоком",
+	"milk_bucket_desc": "ㅤ",
+
+	"water_well_name": "Колодец",
+	"water_well_desc": "ㅤ",
+	"water_well_use": "нет воды",
+	"water_well_check": "проверить воду",
+	"water_well_extract": "Извлечь воду"
+}

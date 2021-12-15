@@ -1,0 +1,28 @@
+﻿{
+	"bonemeal_name": "Farinha de osso",
+	"bonemeal_desc": "ㅤ",
+
+	"empty_bottle_name": "Garrafa Vazia",
+	"empty_bottle_desc": "Item necessário para ordenhar Lox",
+
+	"piece_cultivatedGround_name": "Canteiro Elevado 3x4",
+	"piece_cultivatedGround_desc": "ㅤ",
+
+	"piece_cultivatedGround_small_name": "Canteiro Elevado 1x4",
+	"piece_cultivatedGround_small_desc": "ㅤ",
+
+	"piece_jackopumpkin_name": "Jack-o-pumpkin",
+	"piece_jackopumpkin_desc": "ㅤ",
+
+	"piece_tomatoBox_name": "Caixa de Tomate",
+	"piece_tomatoBox_desc": "ㅤ",
+
+	"water_bucket_name": "Balde de Água",
+	"water_bucket_desc": "ㅤ",
+
+	"water_well_name": "Poço de Água",
+	"water_well_desc": "ㅤ",
+	"water_well_use": "sem água",
+	"water_well_check": "verificar água",
+	"water_well_extract": "Extrair água"
+}

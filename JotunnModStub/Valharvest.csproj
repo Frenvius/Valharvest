@@ -125,10 +125,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripts\AddLoxComponent.cs" />
     <Compile Include="Scripts\BoneAppetitBalance.cs" />
+    <Compile Include="Scripts\InteractFertilizer.cs" />
+    <Compile Include="Scripts\Loaders.cs" />
     <Compile Include="Scripts\loxMilk.cs" />
+    <Compile Include="Scripts\MilkLox.cs" />
     <Compile Include="Scripts\RaisedBed.cs" />
     <Compile Include="Scripts\saltDrop.cs" />
+    <Compile Include="Scripts\UseFertilizer.cs" />
     <Compile Include="utils.cs" />
     <Compile Include="Valharvest.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
@@ -148,11 +153,28 @@
     <None Include="Package\manifest.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Package\plugins\Translations\English\foods.json" />
+    <Content Include="Package\plugins\Translations\English\ingredients.json" />
+    <Content Include="Package\plugins\Translations\English\pieces.json" />
+    <Content Include="Package\plugins\Translations\English\plants.json" />
+    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\foods.json" />
+    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\ingredients.json" />
+    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\pieces.json" />
+    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\plants.json" />
     <EmbeddedResource Include="Bundles\valharvest" />
     <EmbeddedResource Include="Bundles\valharvestfoods" />
     <EmbeddedResource Include="Bundles\valharvestpieces" />
     <EmbeddedResource Include="Bundles\valharvestplants" />
     <Content Include="Package\icon.png" />
+    <EmbeddedResource Include="Configs\pieces.json">
+      <LogicalName>pieces.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configs\items.json">
+      <LogicalName>items.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomScripts.dll">
+      <LogicalName>CustomScripts.resources</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Assembly-CSharp.dll">
       <LogicalName>Assembly.resources</LogicalName>
     </EmbeddedResource>
@@ -188,7 +210,8 @@
   <PropertyGroup>
     <PostBuildEvent>
       copy "$(TargetDir)Valharvest.dll" "C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\BepInEx\plugins\Valharvest.dll"
-      copy "$(TargetDir)Valharvest.dll" "C:\Program Files (x86)\Steam\steamapps\common\Valheim dedicated server\BepInEx\plugins\Valharvest.dll"
+      copy "$(TargetDir)Valharvest.dll" "D:\projects\thunderData\Valheim\profiles\Mods Updater\BepInEx\plugins\Frenvius-Valharvest\Valharvest.dll"
+      xcopy "$(ProjectDir)Package\plugins\Translations" "C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\BepInEx\plugins\Translations" /E /Y
     </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureEnvironmentPropsImport" BeforeTargets="PrepareForBuild">

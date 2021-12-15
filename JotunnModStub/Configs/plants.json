@@ -1,7 +1,7 @@
 ﻿{
 	"apple_tree": {
-		"name": "Apple Tree",
-		"description": null,
+		"name": "$apple_tree_name",
+		"description": "$apple_tree_desc",
 		"materials": {
 			"apple_tree_log": {
 				"shader": "Custom/Vegetation",
@@ -43,8 +43,349 @@
 				"pushDistance": 0
 			}
 		},
-		"requirements": [
-			{"Item": "Dandelion", "Amount": 1}
-		]
+		"crafting": null
+	},
+	"Pickable_Pepper": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"pepper_plant": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.3,
+				"height": 1,
+				"swaySpeed": 10,
+				"swayDistance": 0.4,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			}
+		},
+		"crafting": null
+	},
+	"Pickable_garlic_wild": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"garlic_blast": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0,
+				"height": 1,
+				"swaySpeed": 30,
+				"swayDistance": 0.23,
+				"rippleSpeed": 100,
+				"pushDistance": 0.1
+			}
+		},
+		"crafting": null
+	},
+	"Pickable_Rice_wild": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"rice_plant": {
+				"shader": "Custom/Grass",
+				"glossiness": 0,
+				"cutoff": 0,
+				"fadeDistanceMin": 15,
+				"fadeDistanceMax": 20,
+				"height": 2,
+				"swaySpeed": 30,
+				"swayDistance": 0.5,
+				"rippleSpeed": 100,
+				"pushDistance": 0.5
+			}
+		},
+		"crafting": null
+	},
+	"Pickable_garlic": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"garlic_blast": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0,
+				"height": 1,
+				"swaySpeed": 30,
+				"swayDistance": 0.23,
+				"rippleSpeed": 100,
+				"pushDistance": 0.1
+			}
+		},
+		"crafting": null
+	},
+	"Pickable_Rice": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"rice_plant": {
+				"shader": "Custom/Grass",
+				"glossiness": 0,
+				"cutoff": 0,
+				"fadeDistanceMin": 15,
+				"fadeDistanceMax": 20,
+				"height": 2,
+				"swaySpeed": 30,
+				"swayDistance": 0.5,
+				"rippleSpeed": 100,
+				"pushDistance": 0.5
+			}
+		},
+		"crafting": null
+	},
+	"Pickable_Tomato": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"tomato_plant": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.4,
+				"height": 1,
+				"swaySpeed": 10,
+				"swayDistance": 0.4,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			}
+		},
+		"crafting": null
+	},
+	"Pickable_Potato": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"plant_potato": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.3,
+				"height": 1,
+				"swaySpeed": 20,
+				"swayDistance": 0.5,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			}
+		},
+		"crafting": null
+	},
+	"Pickable_Pumpkin": {
+		"name": null,
+		"description": null,
+		"materials": {
+			"Plant_Pumpkin": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.3,
+				"height": 0.2,
+				"swaySpeed": 17,
+				"swayDistance": 0.15,
+				"rippleSpeed": 50,
+				"rippleDistance": 0.1,
+				"pushDistance": 0.1
+			}
+		},
+		"crafting": null
+	},
+	"sapling_pepper": {
+		"name": "$sapling_pepper_name",
+		"description": null,
+		"materials": {
+			"pepper_plant": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.3,
+				"height": 1,
+				"swaySpeed": 10,
+				"swayDistance": 0.4,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			},
+			"pepper_plant_unhealthy": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.3,
+				"height": 1,
+				"swaySpeed": 10,
+				"swayDistance": 0.4,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			}
+		},
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_CultivatorPieceTable",
+			"craftingStation": null,
+			"requirements": [
+				{"Item": "PepperSeeds", "Amount": 1}
+			]
+		}
+	},
+	"sapling_tomato": {
+		"name": "$sapling_tomato_name",
+		"description": null,
+		"materials": {
+			"tomato_plant": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.4,
+				"height": 1,
+				"swaySpeed": 10,
+				"swayDistance": 0.4,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			},
+			"tomato_plant_unhealthy": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.4,
+				"height": 1,
+				"swaySpeed": 10,
+				"swayDistance": 0.4,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			}
+		},
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_CultivatorPieceTable",
+			"craftingStation": null,
+			"requirements": [
+				{"Item": "tomato", "Amount": 1}
+			]
+		}
+	},
+	"sapling_potato": {
+		"name": "$sapling_potato_name",
+		"description": null,
+		"materials": {
+			"plant_potato": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0.3,
+				"height": 0.7,
+				"swaySpeed": 20,
+				"swayDistance": 1.8,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
+			}
+		},
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_CultivatorPieceTable",
+			"craftingStation": null,
+			"requirements": [
+				{"Item": "potato", "Amount": 1}
+			]
+		}
+	},
+	"sapling_garlic": {
+		"name": "$sapling_garlic_name",
+		"description": null,
+		"materials": {
+			"garlic_blast": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0,
+				"height": 1,
+				"swaySpeed": 30,
+				"swayDistance": 0.23,
+				"rippleSpeed": 100,
+				"pushDistance": 0
+			},
+			"garlic_blast-unhealthy": {
+				"shader": "Custom/Vegetation",
+				"glossiness": 0.1,
+				"cutoff": 0,
+				"height": 1,
+				"swaySpeed": 30,
+				"swayDistance": 0.23,
+				"rippleSpeed": 100,
+				"pushDistance": 0
+			}
+		},
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_CultivatorPieceTable",
+			"craftingStation": null,
+			"requirements": [
+				{"Item": "garlic", "Amount": 1}
+			]
+		}
+	},
+	"sapling_rice": {
+		"name": "$sapling_rice_name",
+		"description": null,
+		"materials": {
+			"rice_plant": {
+				"shader": "Custom/Grass",
+				"glossiness": 0,
+				"cutoff": 0,
+				"fadeDistanceMin": 15,
+				"fadeDistanceMax": 20,
+				"height": 2,
+				"swaySpeed": 30,
+				"swayDistance": 0.5,
+				"rippleSpeed": 100,
+				"pushDistance": 0.5
+			},
+			"rice_plant_unhealthy": {
+				"shader": "Custom/Grass",
+				"glossiness": 0,
+				"cutoff": 0,
+				"fadeDistanceMin": 15,
+				"fadeDistanceMax": 20,
+				"height": 2,
+				"swaySpeed": 30,
+				"swayDistance": 0.5,
+				"rippleSpeed": 100,
+				"pushDistance": 0.5
+			}
+		},
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_CultivatorPieceTable",
+			"craftingStation": null,
+			"requirements": [
+				{"Item": "rice", "Amount": 1}
+			]
+		}
+	},
+	"sapling_pumpkin": {
+		"name": "$sapling_pumpkin_name",
+		"description": null,
+		"materials": {
+			"Plant_Pumpkin": {
+				"shader": "Custom/Grass",
+				"glossiness": 0,
+				"cutoff": 0,
+				"fadeDistanceMin": 15,
+				"fadeDistanceMax": 20,
+				"height": 2,
+				"swaySpeed": 30,
+				"swayDistance": 0.5,
+				"rippleSpeed": 100,
+				"pushDistance": 0.5
+			},
+			"Plant_Pumpkin-unhealthy": {
+				"shader": "Custom/Grass",
+				"glossiness": 0,
+				"cutoff": 0,
+				"fadeDistanceMin": 15,
+				"fadeDistanceMax": 20,
+				"height": 2,
+				"swaySpeed": 30,
+				"swayDistance": 0.5,
+				"rippleSpeed": 100,
+				"pushDistance": 0.5
+			}
+		},
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_CultivatorPieceTable",
+			"craftingStation": null,
+			"requirements": [
+				{"Item": "pumpkin", "Amount": 1}
+			]
+		}
 	}
 }

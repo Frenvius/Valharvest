@@ -1,0 +1,61 @@
+﻿{
+	"meatburrito_name": "Burrito de Carne",
+	"meatburrito_desc": "Não há problema que um burrito não consiga resolver.",
+
+	"dragomellete_name": "Omelete de Dragão",
+	"dragomellete_desc": "ㅤ",
+
+	"riceEgg_name": "Arroz com Ovo",
+	"riceEgg_desc": "ㅤ",
+
+	"riceEggMeat_name": "Arroz com Ovo e Carne",
+	"riceEggMeat_desc": "ㅤ",
+
+	"eggMeat_name": "Ovo e Salsicha",
+	"eggMeat_desc": "ㅤ",
+
+	"ramen_name": "Ramen",
+	"ramen_desc": "ㅤ",
+
+	"cheese_name": "Queijo",
+	"cheese_desc": "ㅤ",
+
+	"spaghetti_name": "Espaguete",
+	"spaghetti_desc": "ㅤ",
+
+	"taco_name": "Taco",
+	"taco_desc": "ㅤ",
+
+	"riceBall_name": "Onigiri",
+	"riceBall_desc": "ㅤ",
+
+	"riceBowl_name": "Tigela de arroz",
+	"riceBowl_desc": "ㅤ",
+
+	"sushi_name": "Sushi",
+	"sushi_desc": "ㅤ",
+
+	"mashedPotatos_name": "Purê de Batata",
+	"mashedPotatos_desc": "ㅤ",
+
+	"cheese_sandwich_name": "Sanduiche de Queijo",
+	"cheese_sandwich_desc": "ㅤ",
+
+	"egg_fried_bread_name": "Pão com Ovo Frito",
+	"egg_fried_bread_desc": "ㅤ",
+
+	"potato_slices_name": "Fatias de Batata",
+	"potato_slices_desc": "ㅤ",
+
+	"potatoes_boiled_name": "Batata Cozida",
+	"potatoes_boiled_desc": "ㅤ",
+
+	"ramen_tonkotsu_name": "Tonkotsu Ramen",
+	"ramen_tonkotsu_desc": "ㅤ",
+
+	"spaghetti_meatballs_name": "Espaguete com Almôndegas",
+	"spaghetti_meatballs_desc": "ㅤ",
+
+	"apple_honey_name": "Maçã com mel",
+	"apple_honey_desc": "ㅤ"
+}

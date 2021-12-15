@@ -1,0 +1,61 @@
+﻿{
+	"meatburrito_name": "Буррито",
+	"meatburrito_desc": "Нет проблем которые не может решить буррито",
+
+	"dragomellete_name": "Драконий омлет",
+	"dragomellete_desc": " ",
+
+	"riceEgg_name": "Рис с яйцом",
+	"riceEgg_desc": "ㅤ",
+
+	"riceEggMeat_name": "Рис с яйцом и мясом",
+	"riceEggMeat_desc": "ㅤ",
+
+	"eggMeat_name": "Яйцо с сосиской",
+	"eggMeat_desc": "ㅤ",
+
+	"ramen_name": "Рамен",
+	"ramen_desc": "ㅤ",
+
+	"cheese_name": "Сыр",
+	"cheese_desc": "ㅤ",
+
+	"spaghetti_name": "Спагетти",
+	"spaghetti_desc": "ㅤ",
+
+	"taco_name": "Тако",
+	"taco_desc": "ㅤ",
+
+	"riceBall_name": "Онигири",
+	"riceBall_desc": "ㅤ",
+
+	"riceBowl_name": "Рисовый боул",
+	"riceBowl_desc": "ㅤ",
+
+	"sushi_name": "Суши",
+	"sushi_desc": "ㅤ",
+
+	"mashedPotatos_name": "Картофельное пюре",
+	"mashedPotatos_desc": "ㅤ",
+
+	"cheese_sandwich_name": "Сэндвич с сыром",
+	"cheese_sandwich_desc": "ㅤ",
+
+	"egg_fried_bread_name": "Тост с яйцом",
+	"egg_fried_bread_desc": "ㅤ",
+
+	"potato_slices_name": "Картофельные ломтики",
+	"potato_slices_desc": "ㅤ",
+
+	"potatoes_boiled_name": "Вареная картошка",
+	"potatoes_boiled_desc": "ㅤ",
+
+	"ramen_tonkotsu_name": "Тонкоцу рамен",
+	"ramen_tonkotsu_desc": "ㅤ",
+
+	"spaghetti_meatballs_name": "Спагетти с фрикадельками",
+	"spaghetti_meatballs_desc": "ㅤ",
+
+	"apple_honey_name": "Яблоко с медом",
+	"apple_honey_desc": "ㅤ"
+}

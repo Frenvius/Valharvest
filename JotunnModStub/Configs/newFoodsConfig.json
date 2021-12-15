@@ -1,7 +1,7 @@
 {
 	"meatburrito": {
-		"name": "Meat Burrito",
-		"description": "There is no problem a burrito can't solve.",
+		"name": "$meatburrito_name",
+		"description": "$meatburrito_desc",
 		"weight": 0.3,
 		"variants": null,
 		"food": 40,
@@ -21,8 +21,8 @@
 		]
 	},
 	"dragomellete": {
-		"name": "Dragon Omelette",
-		"description": null,
+		"name": "$dragomellete_name",
+		"description": "$dragomellete_desc",
 		"weight": 1.2,
 		"variants": null,
 		"food": 95,
@@ -42,8 +42,8 @@
 		]
 	},
 	"riceEgg": {
-		"name": "Rice and Egg",
-		"description": null,
+		"name": "$riceEgg_name",
+		"description": "$riceEgg_desc",
 		"weight": 0.6,
 		"variants": null,
 		"food": 45,
@@ -62,8 +62,8 @@
 		]
 	},
 	"riceEggMeat": {
-		"name": "Rice Egg and Meat",
-		"description": null,
+		"name": "$riceEggMeat_name",
+		"description": "$riceEggMeat_desc",
 		"weight": 0.8,
 		"variants": null,
 		"food": 60,
@@ -83,8 +83,8 @@
 		]
 	},
 	"eggMeat": {
-		"name": "Egg and Sausage",
-		"description": null,
+		"name": "$eggMeat_name",
+		"description": "$eggMeat_desc",
 		"weight": 0.4,
 		"variants": null,
 		"food": 40,
@@ -103,8 +103,8 @@
 		]
 	},
 	"ramen": {
-		"name": "Ramen",
-		"description": null,
+		"name": "$ramen_name",
+		"description": "$ramen_desc",
 		"weight": 0.7,
 		"variants": null,
 		"food": 50,
@@ -124,8 +124,8 @@
 		]
 	},
 	"cheese": {
-		"name": "Cheese",
-		"description": null,
+		"name": "$cheese_name",
+		"description": "$cheese_desc",
 		"weight": 0.8,
 		"variants": null,
 		"food": 30,
@@ -142,8 +142,8 @@
 		]
 	},
 	"spaghetti": {
-		"name": "Spaghetti",
-		"description": null,
+		"name": "$spaghetti_name",
+		"description": "$spaghetti_desc",
 		"weight": 0.5,
 		"variants": null,
 		"food": 50,
@@ -162,8 +162,8 @@
 		]
 	},
 	"taco": {
-		"name": "Taco",
-		"description": null,
+		"name": "$taco_name",
+		"description": "$taco_desc",
 		"weight": 0.2,
 		"variants": null,
 		"food": 35,
@@ -183,8 +183,8 @@
 		]
 	},
 	"riceBall": {
-		"name": "Onigiri",
-		"description": null,
+		"name": "$riceBall_name",
+		"description": "$riceBall_desc",
 		"weight": 0.2,
 		"variants": null,
 		"food": 25,
@@ -201,8 +201,8 @@
 		]
 	},
 	"riceBowl": {
-		"name": "Rice Bowl",
-		"description": null,
+		"name": "$riceBowl_name",
+		"description": "$riceBowl_desc",
 		"weight": 0.5,
 		"variants": null,
 		"food": 30,
@@ -219,8 +219,8 @@
 		]
 	},
 	"sushi": {
-		"name": "Sushi",
-		"description": null,
+		"name": "$sushi_name",
+		"description": "$sushi_desc",
 		"weight": 0.3,
 		"variants": null,
 		"food": 50,
@@ -238,8 +238,8 @@
 		]
 	},
 	"mashedPotatos": {
-		"name": "Mashed Potato",
-		"description": null,
+		"name": "$mashedPotatos_name",
+		"description": "$mashedPotatos_desc",
 		"weight": 0.4,
 		"variants": null,
 		"food": 35,
@@ -258,8 +258,8 @@
 		]
 	},
 	"cheese_sandwich": {
-		"name": "Cheese Sandwich",
-		"description": null,
+		"name": "$cheese_sandwich_name",
+		"description": "$cheese_sandwich_desc",
 		"weight": 0.4,
 		"variants": null,
 		"food": 50,
@@ -277,8 +277,8 @@
 		]
 	},
 	"egg_fried_bread": {
-		"name": "Egg Fried Bread",
-		"description": null,
+		"name": "$egg_fried_bread_name",
+		"description": "$egg_fried_bread_desc",
 		"weight": 0.4,
 		"variants": null,
 		"food": 35,
@@ -297,8 +297,8 @@
 		]
 	},
 	"potato_slices": {
-		"name": "Potato Slices",
-		"description": null,
+		"name": "$potato_slices_name",
+		"description": "$potato_slices_desc",
 		"weight": 0.4,
 		"variants": null,
 		"food": 55,
@@ -317,8 +317,8 @@
 		]
 	},
 	"potatoes_boiled": {
-		"name": "Boiled Potatoes",
-		"description": null,
+		"name": "$potatoes_boiled_name",
+		"description": "$potatoes_boiled_desc",
 		"weight": 0.4,
 		"variants": null,
 		"food": 45,
@@ -338,8 +338,8 @@
 		]
 	},
 	"ramen_tonkotsu": {
-		"name": "Tonkotsu Ramen",
-		"description": null,
+		"name": "$ramen_tonkotsu_name",
+		"description": "$ramen_tonkotsu_desc",
 		"weight": 0.8,
 		"variants": null,
 		"food": 65,
@@ -359,8 +359,8 @@
 		]
 	},
 	"spaghetti_meatballs": {
-		"name": "Spaghetti and Meatballs",
-		"description": null,
+		"name": "$spaghetti_meatballs_name",
+		"description": "$spaghetti_meatballs_desc",
 		"weight": 0.6,
 		"variants": null,
 		"food": 65,
@@ -380,8 +380,8 @@
 		]
 	},
 	"apple_honey": {
-		"name": "Spaghetti and Meatballs",
-		"description": null,
+		"name": "$apple_honey_name",
+		"description": "$apple_honey_desc",
 		"weight": 0.6,
 		"variants": null,
 		"food": 65,

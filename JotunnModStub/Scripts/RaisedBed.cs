@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using HarmonyLib;
 using UnityEngine;
 
 namespace Valharvest.Scripts {
@@ -10,17 +11,13 @@ namespace Valharvest.Scripts {
             if (placementGhost != null) {
                 Plant plant = placementGhost.GetComponent<Plant>();
                 if (plant != null) {
-                    var plantPostion = plant.transform.position;
-                    var cultivatedGround = FixPlantHealth.GetCultivatedGround(new Vector3(plantPostion.x, plantPostion.y + 1f, plantPostion.z));
-                    if (cultivatedGround != null) {
-                        var placementPosition = placementGhost.transform.position;
-                        var groundPosition = cultivatedGround.transform.position;
-                        var placementNewPosition = new Vector3(placementPosition.x, groundPosition.y + 0.0444f, placementPosition.z);
-                        placementGhost.transform.position = placementNewPosition;
-                        __instance.m_placementStatus = Player.PlacementStatus.Valid;
-                        __instance.m_placementGhost.SetActive(value: true);
-                        __instance.SetPlacementGhostValid(true);
-                    }
+                    var cultivatedHeight = FixPlantHealth.GetCultivatedGroundHeight(plant);
+                    var placementPosition = placementGhost.transform.position;
+                    var placementNewPosition = new Vector3(placementPosition.x, cultivatedHeight, placementPosition.z);
+                    placementGhost.transform.position = placementNewPosition;
+                    __instance.m_placementStatus = Player.PlacementStatus.Valid;
+                    __instance.m_placementGhost.SetActive(value: true);
+                    __instance.SetPlacementGhostValid(true);
                 }
             }
         }
@@ -37,6 +34,7 @@ namespace Valharvest.Scripts {
     [HarmonyPatch(typeof(Plant), nameof(Plant.UpdateHealth))]
     public static class FixPlantHealth {
         public static void Prefix(Plant __instance, ref bool __runOriginal) {
+
             __runOriginal = false;
             var plantPosition = __instance.transform.position;
             if (CheckIfItemBellowIsCultivatedGround(new Vector3(plantPosition.x, plantPosition.y + 1f, plantPosition.z))) {
@@ -47,7 +45,7 @@ namespace Valharvest.Scripts {
             __runOriginal = true;
         }
 
-        private static bool CheckIfItemBellowIsCultivatedGround(Vector3 position) {
+        public static bool CheckIfItemBellowIsCultivatedGround(Vector3 position) {
             var ray = new Ray(position, Vector3.down);
             var hits = Physics.RaycastAll(ray);
             foreach (var hit in hits) {
@@ -58,15 +56,43 @@ namespace Valharvest.Scripts {
             return false;
         }
         
-        public static GameObject GetCultivatedGround(Vector3 position) {
-            var ray = new Ray(position, Vector3.down);
-            var hits = Physics.RaycastAll(ray);
-            foreach (var hit in hits) {
-                if (hit.collider.gameObject.name == "Cultivated_ground_piece") {
-                    return hit.collider.gameObject;
-                }
+        public static float GetCultivatedGroundHeight(Plant plant) {
+            var transform = plant.transform;
+            ZoneSystem.instance.GetSolidHeight(transform.position, 0, out var height, transform);
+            return height;
+        }
+    }
+    
+    [HarmonyPatch(typeof(Pickable), nameof(Pickable.Awake))]
+    public static class FixPlantPhysics {
+        public static void Prefix(Pickable __instance) {
+            string[] plantsArray = {
+                "Pickable_Barley",
+                "Pickable_Carrot",
+                "Pickable_Dandelion",
+                "Pickable_Flax",
+                "Pickable_Mushroom",
+                "Pickable_Mushroom_blue",
+                "Pickable_Mushroom_yellow",
+                "Pickable_Onion",
+                "Pickable_SeedCarrot",
+                "Pickable_SeedOnion",
+                "Pickable_SeedTurnip",
+                "Pickable_Thistle",
+                "Pickable_Turnip"
+            };
+            
+            if (plantsArray.Any(__instance.name.Contains)) {
+                StaticPhysics staticPhysics = __instance.gameObject.GetComponent<StaticPhysics>();
+                staticPhysics.m_checkSolids = true;
+                
+                // Todo: make this check work with the raised bed
+                // var plantPosition = __instance.gameObject.transform.position;
+                // if (FixPlantHealth.CheckIfItemBellowIsCultivatedGround(new Vector3(plantPosition.x, plantPosition.y + 3f, plantPosition.z))) {
+                //     StaticPhysics staticPhysics = __instance.gameObject.GetComponent<StaticPhysics>();
+                //     staticPhysics.m_checkSolids = true;
+                // }
             }
-            return null;
         }
     }
     }
