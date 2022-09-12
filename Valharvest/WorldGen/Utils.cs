@@ -5,10 +5,9 @@ using Jotunn.Managers;
 using Jotunn.Utils;
 using SimpleJson;
 using UnityEngine;
+using Valharvest.Scripts;
 using static Valharvest.Utils;
 using static SimpleJson.SimpleJson;
-using static Valharvest.Main;
-using static Valharvest.Scripts.Loaders;
 
 namespace Valharvest.WorldGen {
     public static class PlantUtils {
@@ -17,8 +16,10 @@ namespace Valharvest.WorldGen {
             if (jsonContent != null) {
                 var plantJson = DeserializeObject<JsonObject>(jsonContent);
                 foreach (var plant in plantJson) {
-                    var plantPrefab = plantAssets.LoadAsset<GameObject>(plant.Key);
+                    var assetBundle = Loaders.GetAssetBundle();
                     var plantObject = DeserializeObject<JsonObject>(plant.Value.ToString());
+                    var bundle = plantObject["assetBundle"].ToString();
+                    var plantPrefab = assetBundle[bundle].LoadAsset<GameObject>(plant.Key);
                     var plantMaterials = DeserializeObject<JsonObject>(plantObject["materials"].ToString());
                     foreach (var renderer in ShaderHelper.GetRenderers(plantPrefab)) {
                         foreach (var material in renderer.materials) {
@@ -35,8 +36,6 @@ namespace Valharvest.WorldGen {
 
                                     ConfigureMaterial(material, shader, matObject, typeDict, getMatItem);
                                     material.SetTexture(MainTex, texture);
-                            
-                                    // var materialProperties = material.GetMaterialProperties();   
                                 }   
                             }
                         }
@@ -44,7 +43,7 @@ namespace Valharvest.WorldGen {
 
                     try {
                         if (plantObject["crafting"] != null) {
-                            var plantItem = CreatePieceRecipe(plantPrefab, plantObject);
+                            var plantItem = Loaders.CreatePieceRecipe(plantPrefab, plantObject);
                             PieceManager.Instance.AddPiece(plantItem);
                         } else {
                             PrefabManager.Instance.AddPrefab(new CustomPrefab(plantPrefab, true));   

@@ -1,4 +1,18 @@
 ﻿{
+	"piece_cultivatedGround_big": {
+		"name": "$piece_cultivatedGround_big_name",
+		"description": "$piece_cultivatedGround_big_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 20, "Recover": true},
+				{"Item": "Tar", "Amount": 40, "Recover": true}
+			]
+		}
+	},
 	"piece_cultivatedGround": {
 		"name": "$piece_cultivatedGround_name",
 		"description": "$piece_cultivatedGround_desc",
@@ -27,17 +41,17 @@
 			]
 		}
 	},
-	"piece_tomatoBox": {
-		"name": "$piece_tomatoBox_name",
-		"description": "$piece_tomatoBox_desc",
+	"piece_cultivatedGround_small_small": {
+		"name": "$piece_cultivatedGround_small_small_name",
+		"description": "$piece_cultivatedGround_small_small_desc",
 		"assetBundle": "valharvestpieces",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
 			"craftingStation": "piece_workbench",
 			"requirements": [
-				{"Item": "tomato", "Amount": 50, "Recover": true},
-				{"Item": "Wood", "Amount": 1, "Recover": true}
+				{"Item": "Wood", "Amount": 2, "Recover": true},
+				{"Item": "Tar", "Amount": 5, "Recover": true}
 			]
 		}
 	},
@@ -51,7 +65,9 @@
 			"craftingStation": "piece_workbench",
 			"requirements": [
 				{"Item": "Wood", "Amount": 10, "Recover": true},
-				{"Item": "Stone", "Amount": 15, "Recover": true}
+				{"Item": "Stone", "Amount": 15, "Recover": true},
+				{"Item": "Iron", "Amount": 4, "Recover": true},
+				{"Item": "Chain", "Amount": 1, "Recover": true}
 			]
 		}
 	},
@@ -66,6 +82,90 @@
 			"requirements": [
 				{"Item": "pumpkin", "Amount": 1, "Recover": true},
 				{"Item": "Resin", "Amount": 2, "Recover": true}
+			]
+		}
+	},
+	"piece_tomatoBox": {
+		"name": "$piece_tomatoBox_name",
+		"description": "$piece_tomatoBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "tomato", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_garlicBox": {
+		"name": "$piece_garlicBox_name",
+		"description": "$piece_garlicBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "garlic", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_pepperBox": {
+		"name": "$piece_pepperBox_name",
+		"description": "$piece_pepperBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "pepper", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_potatoBox": {
+		"name": "$piece_potatoBox_name",
+		"description": "$piece_potatoBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "potato", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_saltBox": {
+		"name": "$piece_saltBox_name",
+		"description": "$piece_saltBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "salt", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_appleBox": {
+		"name": "$piece_appleBox_name",
+		"description": "$piece_appleBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "apple", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
 			]
 		}
 	}

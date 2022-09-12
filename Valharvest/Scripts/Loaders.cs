@@ -58,7 +58,7 @@ namespace Valharvest.Scripts {
             }
         }
 
-        private static Dictionary<string, AssetBundle> GetAssetBundle() {
+        public static Dictionary<string, AssetBundle> GetAssetBundle() {
             return new Dictionary<string, AssetBundle> {
                 {"valharvest", modAssets},
                 {"valharvestfoods", foodAssets},

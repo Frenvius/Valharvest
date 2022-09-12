@@ -33,19 +33,17 @@ namespace Valharvest.WorldGen {
 
         public static void AddCustomPlants() {
             var jsonContent = ReadEmbeddedFile("plantsLocations.resources");
-            if (jsonContent != null) {
-                var plantJson = DeserializeObject<JsonObject>(jsonContent);
-                foreach (var plant in plantJson) {
-                    var plantPrefab = PrefabManager.Instance.GetPrefab(plant.Key);
-                    var plantObject = DeserializeObject<JsonObject>(plant.Value.ToString());
-                    try {
-                        ZoneManager.Instance.AddCustomVegetation(new CustomVegetation(plantPrefab,
-                            GetVegetationConfig(plantObject)));
-                    } catch (Exception ex) {
-                        Jotunn.Logger.LogError($"Error while loading {plant.Key}: {ex.Message}");
-                    } finally {
-                        ZoneManager.OnVanillaLocationsAvailable -= AddCustomPlants;
-                    }
+            if (jsonContent == null) return;
+            var plantJson = DeserializeObject<JsonObject>(jsonContent);
+            foreach (var plant in plantJson) {
+                var plantPrefab = PrefabManager.Instance.CreateClonedPrefab(plant.Key + "_wild", plant.Key);
+                var plantObject = DeserializeObject<JsonObject>(plant.Value.ToString());
+                try {
+                    ZoneManager.Instance.AddCustomVegetation(new CustomVegetation(plantPrefab, false, GetVegetationConfig(plantObject)));
+                } catch (Exception ex) {
+                    Jotunn.Logger.LogError($"Error while loading {plant.Key}: {ex.Message}");
+                } finally {
+                    ZoneManager.OnVanillaLocationsAvailable -= AddCustomPlants;
                 }
             }
         }

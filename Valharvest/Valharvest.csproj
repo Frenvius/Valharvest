@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\JotunnLib.2.4.0\build\JotunnLib.props" Condition="Exists('..\packages\JotunnLib.2.4.0\build\JotunnLib.props')" />
-  <Import Project="..\packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" />
+  <Import Project="..\packages\JotunnLib.2.7.7\build\JotunnLib.props" Condition="Exists('..\packages\JotunnLib.2.7.7\build\JotunnLib.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -40,76 +39,40 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(VALHEIM_INSTALL)\valheim.exe</StartProgram>
+    <StartArguments>-console</StartArguments>
+    <StartWorkingDirectory>$(VALHEIM_INSTALL)</StartWorkingDirectory>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.7.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\HarmonyX.2.5.7\lib\net45\0Harmony.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="0Harmony, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HarmonyX.2.9.0\lib\net45\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="assembly_googleanalytics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_googleanalytics_publicized.dll</HintPath>
+    <Reference Include="Jotunn, Version=2.7.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JotunnLib.2.7.7\lib\net462\Jotunn.dll</HintPath>
     </Reference>
-    <Reference Include="assembly_guiutils, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_guiutils_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_lux, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_lux_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_postprocessing, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_postprocessing_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_simplemeshcombine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_simplemeshcombine_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_steamworks, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_steamworks_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_sunshafts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_sunshafts_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_utils, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_utils_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_valheim, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\valheim_Data\Managed\publicized_assemblies\assembly_valheim_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx, Version=5.4.16.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\core\BepInEx.dll</HintPath>
-    </Reference>
-    <Reference Include="Jotunn, Version=2.4.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\JotunnLib.2.4.0\lib\net462\Jotunn.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
+    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Cecil.Mdb, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
+    <Reference Include="Mono.Cecil.Mdb, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Cecil.Pdb, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
+    <Reference Include="Mono.Cecil.Pdb, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Cecil.Rocks, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
+    <Reference Include="Mono.Cecil.Rocks, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="MonoMod, Version=21.9.19.1, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="MonoMod, Version=21.9.19.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoMod.21.9.19.1\lib\net40\MonoMod.exe</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="MonoMod.RuntimeDetour, Version=21.10.10.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\MonoMod.RuntimeDetour.21.10.10.1\lib\net40\MonoMod.RuntimeDetour.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MonoMod.RuntimeDetour, Version=22.1.29.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoMod.RuntimeDetour.22.1.29.1\lib\net452\MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
-    <Reference Include="MonoMod.Utils, Version=21.10.10.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\MonoMod.Utils.21.10.10.1\lib\net40\MonoMod.Utils.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MonoMod.Utils, Version=22.1.29.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoMod.Utils.22.1.29.1\lib\net452\MonoMod.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -117,14 +80,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\unstripped_corlib\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\unstripped_corlib\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="Scripts\AddLoxComponent.cs" />
     <Compile Include="Scripts\BoneAppetitBalance.cs" />
     <Compile Include="Scripts\InteractFertilizer.cs" />
@@ -136,7 +94,6 @@
     <Compile Include="Scripts\UseFertilizer.cs" />
     <Compile Include="utils.cs" />
     <Compile Include="Valharvest.cs" />
-    <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorldGen\Plants.cs" />
     <Compile Include="WorldGen\Utils.cs" />
@@ -144,7 +101,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Package\README.md" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Package\plugins\" />
@@ -153,53 +110,56 @@
     <None Include="Package\manifest.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Package\plugins\Translations\Chinese\strings.json" />
+    <Content Include="Package\plugins\Translations\Czech\strings.json" />
+    <Content Include="Package\plugins\Translations\Dutch\strings.json" />
     <Content Include="Package\plugins\Translations\English\foods.json" />
     <Content Include="Package\plugins\Translations\English\ingredients.json" />
     <Content Include="Package\plugins\Translations\English\pieces.json" />
     <Content Include="Package\plugins\Translations\English\plants.json" />
-    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\foods.json" />
-    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\ingredients.json" />
-    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\pieces.json" />
-    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\plants.json" />
+    <Content Include="Package\plugins\Translations\French\strings.json" />
+    <Content Include="Package\plugins\Translations\German\strings.json" />
+    <Content Include="Package\plugins\Translations\Korean\strings.json" />
+    <Content Include="Package\plugins\Translations\Polish\strings.json" />
+    <Content Include="Package\plugins\Translations\Portuguese_Brazilian\strings.json" />
+    <Content Include="Package\plugins\Translations\Russian\strings.json" />
+    <Content Include="Package\plugins\Translations\Spanish\strings.json" />
+    <Content Include="Package\plugins\Translations\Swedish\strings.json" />
+    <Content Include="Package\plugins\Translations\Thai\strings.json" />
+    <Content Include="Package\plugins\Translations\Turkish\strings.json" />
     <EmbeddedResource Include="Bundles\valharvest" />
     <EmbeddedResource Include="Bundles\valharvestfoods" />
     <EmbeddedResource Include="Bundles\valharvestpieces" />
     <EmbeddedResource Include="Bundles\valharvestplants" />
-    <Content Include="Package\icon.png" />
-    <EmbeddedResource Include="Configs\pieces.json">
-      <LogicalName>pieces.resources</LogicalName>
+    <EmbeddedResource Include="Configs\BoneAppetitBalance.json">
+      <LogicalName>BoneAppetitBalance.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Configs\items.json">
       <LogicalName>items.resources</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomScripts.dll">
-      <LogicalName>CustomScripts.resources</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assembly-CSharp.dll">
-      <LogicalName>Assembly.resources</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Configs\BoneAppetitBalance.json">
-      <LogicalName>BoneAppetitBalance.resources</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="Configs\newFoodsConfig.json">
       <LogicalName>newFoodsConfig.resources</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Configs\plantsShaderConfig.json">
-      <LogicalName>plantsShaderConfig.resources</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Configs\plantsLocations.json">
-      <LogicalName>plantsLocations.resources</LogicalName>
+    <EmbeddedResource Include="Configs\pieces.json">
+      <LogicalName>pieces.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Configs\plants.json">
       <LogicalName>plants.resources</LogicalName>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ReferencePathWithRefAssemblies Update="C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\unstripped_corlib\UnityEngine.dll" />
+    <EmbeddedResource Include="Configs\plantsLocations.json">
+      <LogicalName>plantsLocations.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configs\plantsShaderConfig.json">
+      <LogicalName>plantsShaderConfig.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomScripts.dll">
+      <LogicalName>CustomScripts.resources</LogicalName>
+    </EmbeddedResource>
+    <Content Include="Package\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="JotunnPostBuildTaskWin" Condition="'$(OS)' == 'Windows_NT'">
-    <Exec Command="powershell.exe -ExecutionPolicy RemoteSigned -File &quot;$(SolutionDir)publish.ps1&quot; -Target &quot;$(ConfigurationName)&quot; -TargetPath &quot;$(TargetDir.TrimEnd('\'))&quot; -TargetAssembly &quot;$(TargetFileName)&quot; -ValheimPath &quot;$(VALHEIM_INSTALL.TrimEnd('\'))&quot; -ProjectPath &quot;$(ProjectDir.TrimEnd('\'))&quot; " />
+    <Exec Command="powershell.exe -ExecutionPolicy RemoteSigned -File &quot;$(SolutionDir)publish.ps1&quot; -Target &quot;$(ConfigurationName)&quot; -TargetPath &quot;$(TargetDir.TrimEnd('\'))&quot; -TargetAssembly &quot;$(TargetFileName)&quot; -ValheimPath &quot;$(VALHEIM_INSTALL.TrimEnd('\'))&quot; -DeployPath &quot;$(MOD_DEPLOYPATH.TrimEnd('\'))&quot; -ProjectPath &quot;$(ProjectDir.TrimEnd('\'))&quot; " />
   </Target>
   <PropertyGroup>
     <BuildDependsOn>
@@ -209,9 +169,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
-      copy "$(TargetDir)Valharvest.dll" "C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\BepInEx\plugins\Valharvest.dll"
-      copy "$(TargetDir)Valharvest.dll" "D:\projects\thunderData\Valheim\profiles\Mods Updater\BepInEx\plugins\Frenvius-Valharvest\Valharvest.dll"
-      xcopy "$(ProjectDir)Package\plugins\Translations" "C:\Program Files (x86)\Steam\steamapps\common\Valheim_dev\BepInEx\plugins\Translations" /E /Y
+<!--      copy "$(TargetDir)Valharvest.dll" "D:\projects\thunderData\Valheim\profiles\Mods Updater\BepInEx\plugins\Frenvius-Valharvest\Valharvest.dll"-->
+      xcopy "$(ProjectDir)Package\plugins\Translations" "$(VALHEIM_INSTALL.TrimEnd('\'))\BepInEx\plugins\Valharvest\Translations" /E /Y
     </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureEnvironmentPropsImport" BeforeTargets="PrepareForBuild">
@@ -222,9 +181,8 @@
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.41\build\ILMerge.props'))" />
-    <Error Condition="!Exists('..\packages\JotunnLib.2.4.0\build\JotunnLib.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JotunnLib.2.4.0\build\JotunnLib.props'))" />
+    <Error Condition="!Exists('..\packages\JotunnLib.2.7.7\build\JotunnLib.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JotunnLib.2.7.7\build\JotunnLib.props'))" />
   </Target>
 </Project>

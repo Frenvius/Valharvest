@@ -5,6 +5,12 @@
 		"assetBundle": "valharvest",
 		"crafting": null
 	},
+	"baked_apple": {
+		"name": "$baked_apple_name",
+		"description": "$baked_apple_desc",
+		"assetBundle": "valharvestfoods",
+		"crafting": null
+	},
 	"garlic": {
 		"name": "$garlic_name",
 		"description": "$garlic_desc",
@@ -86,6 +92,18 @@
 			"craftingStation": "",
 			"requirements": [
 				{"Item": "pepper", "Amount": 1}
+			]
+		}
+	},
+	"PumpkinSeeds": {
+		"name": "$PumpkinSeeds_name",
+		"description": "$PumpkinSeeds_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"amount": 2,
+			"craftingStation": "",
+			"requirements": [
+				{"Item": "pumpkin", "Amount": 1}
 			]
 		}
 	},

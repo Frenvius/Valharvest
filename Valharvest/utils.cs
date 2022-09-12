@@ -32,6 +32,7 @@ namespace Valharvest {
         private static readonly int AddSnow = Shader.PropertyToID("_AddSnow");
         private static readonly int AddRain = Shader.PropertyToID("_AddRain");
         private static readonly int CamCull = Shader.PropertyToID("_CamCull");
+        private static readonly int Metallic = Shader.PropertyToID("_Metallic");
         private static readonly int SwaySpeed = Shader.PropertyToID("_SwaySpeed");
         private static readonly int MossNormal = Shader.PropertyToID("_MossNormal");
         private static readonly int Glossiness = Shader.PropertyToID("_Glossiness");
@@ -88,6 +89,7 @@ namespace Valharvest {
                 {"addRain", AddRain},
                 {"height", Height},
                 {"swaySpeed", SwaySpeed},
+                {"metallic", Metallic},
                 {"swayDistance", SwayDistance},
                 {"rippleSpeed", RippleSpeed},
                 {"rippleDistance", RippleDistance},

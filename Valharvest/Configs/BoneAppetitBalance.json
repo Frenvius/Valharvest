@@ -145,7 +145,7 @@
 		"weight": 1,
 		"maxStackSize": 10,
 		"variants": null,
-		"food": 85,
+		"food": 100,
 		"foodStamina": 55,
 		"foodBurnTime": 30,
 		"foodRegen": 3,
@@ -155,7 +155,7 @@
 		"consumeStatusEffect": null,
 		"requirements": [
 			{"Item": "tomato", "Amount": 2},
-			{"Item": "BarleyFlour", "Amount": 1},
+			{"Item": "BarleyFlour", "Amount": 2},
 			{"Item": "cheese", "Amount": 1},
 			{"Item": "DeerMeat", "Amount": 2}
 		]

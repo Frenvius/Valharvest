@@ -25,7 +25,7 @@ namespace Valharvest.Scripts {
             private static void Postfix(ref List<GameObject> __result) {
                 if (Environment.StackTrace.Contains("MineRock") || Environment.StackTrace.Contains("DropOnDestroyed") &&
                     _dropTableObject.Contains("Rock"))
-                    if (Random.value < 0.80f) {
+                    if (Random.value < 0.40f) {
                         var go = ZNetScene.instance.GetPrefab("salt");
                         __result.Add(go);
                     }
