@@ -19,29 +19,19 @@ namespace Valharvest.WorldGen {
                     var assetBundle = Loaders.GetAssetBundle();
                     var plantObject = DeserializeObject<JsonObject>(plant.Value.ToString());
                     var bundle = plantObject["assetBundle"].ToString();
+                    var dropString = plantObject["dropConfig"];
+                    var dropConfigs = Configurations.Valharvest.GetDropConfigs();
                     var plantPrefab = assetBundle[bundle].LoadAsset<GameObject>(plant.Key);
-                    var plantMaterials = DeserializeObject<JsonObject>(plantObject["materials"].ToString());
-                    foreach (var renderer in ShaderHelper.GetRenderers(plantPrefab)) {
-                        foreach (var material in renderer.materials) {
-                            const string materialInstance = " (Instance)";
-                            var matName = material.name;
-                            var matRealName = matName.Substring(0, matName.Length - materialInstance.Length);
-                            if (plantMaterials.ContainsKey(matRealName)) {
-                                if (!string.IsNullOrEmpty(plantMaterials[matRealName].ToString())) {
-                                    Dictionary<Type, int> typeDict = GetTypeDict();
-                                    Dictionary<string, int> getMatItem = GetMatItem();
-                                    var matObject = DeserializeObject<JsonObject>(plantMaterials[matRealName].ToString());
-                                    var shader = Shader.Find(matObject["shader"].ToString());
-                                    var texture = material.mainTexture;
-
-                                    ConfigureMaterial(material, shader, matObject, typeDict, getMatItem);
-                                    material.SetTexture(MainTex, texture);
-                                }   
-                            }
-                        }
-                    }
+                    
+                    LoadPlantMaterials(plantPrefab, plantObject);
 
                     try {
+                        if (dropString != null) {
+                            var config = dropConfigs[dropString.ToString()];
+                            var pickable = plantPrefab.GetComponent<Pickable>();
+                            pickable.m_amount = config.Value;
+                        }
+
                         if (plantObject["crafting"] != null) {
                             var plantItem = Loaders.CreatePieceRecipe(plantPrefab, plantObject);
                             PieceManager.Instance.AddPiece(plantItem);
@@ -52,6 +42,29 @@ namespace Valharvest.WorldGen {
                         Jotunn.Logger.LogError($"Error while loading {plant.Key}: {ex.Message}");
                     } finally {
                         PrefabManager.OnVanillaPrefabsAvailable -= AddCustomPlantsPrefab;
+                    }
+                }
+            }
+        }
+
+        private static void LoadPlantMaterials(GameObject plantPrefab, JsonObject plantObject) {
+            var plantMaterials = DeserializeObject<JsonObject>(plantObject["materials"].ToString());
+            foreach (var renderer in ShaderHelper.GetRenderers(plantPrefab)) {
+                foreach (var material in renderer.materials) {
+                    const string materialInstance = " (Instance)";
+                    var matName = material.name;
+                    var matRealName = matName.Substring(0, matName.Length - materialInstance.Length);
+                    if (plantMaterials.ContainsKey(matRealName)) {
+                        if (!string.IsNullOrEmpty(plantMaterials[matRealName].ToString())) {
+                            Dictionary<Type, int> typeDict = GetTypeDict();
+                            Dictionary<string, int> getMatItem = GetMatItem();
+                            var matObject = DeserializeObject<JsonObject>(plantMaterials[matRealName].ToString());
+                            var shader = Shader.Find(matObject["shader"].ToString());
+                            var texture = material.mainTexture;
+
+                            ConfigureMaterial(material, shader, matObject, typeDict, getMatItem);
+                            material.SetTexture(MainTex, texture);
+                        }   
                     }
                 }
             }

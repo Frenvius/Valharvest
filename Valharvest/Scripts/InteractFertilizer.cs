@@ -4,6 +4,8 @@ using static Valharvest.Main;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
+namespace Valharvest.Scripts; 
+
 public class InteractFertilizer : MonoBehaviour, Interactable {
     private ZNetView _nview;
 
@@ -16,25 +18,34 @@ public class InteractFertilizer : MonoBehaviour, Interactable {
     }
 
     public bool UseItem(Humanoid user, ItemDrop.ItemData item) {
-        var isBoneMeal = item.m_dropPrefab.name == "bonemeal";
-        var isBucket = item.m_dropPrefab.name == "water_bucket";
         var inventory = Player.m_localPlayer.GetInventory();
-        if (!isBoneMeal && !isBucket) return false;
-
-        var baseRot = Quaternion.Euler(0.0f, Random.Range(0.0f, 360f), 0.0f);
         var plant = gameObject.GetComponent<Plant>();
-        double growTime = plant.m_growTime;
-        var num = Random.Range((float) (plant.m_minScale * 0.5), (float) (plant.m_maxScale * 0.5));
-
-        var divisor = isBoneMeal ? 5 : 2;
-        var dateTime = new DateTime(_nview.GetZDO().GetLong("plantTime", ZNet.instance.GetTime().Ticks));
-        var newTime = dateTime.AddSeconds(growTime / divisor * -1);
-        _nview.GetZDO().Set("plantTime", newTime.Ticks);
+        var isPlanted = SetPlantTime(plant, item);
+        if (!isPlanted) return false;
         inventory.RemoveOneItem(item);
-
-        boneMealVfx.Create(plant.transform.position, baseRot, scale: num);
         GrowPlant(plant);
         return true;
+    }
+    
+    private bool SetPlantTime(Plant plant, ItemDrop.ItemData item) {
+        var isBoneMeal = item.m_dropPrefab.name == "bonemeal";
+        var isBucket = item.m_dropPrefab.name == "water_bucket";
+        double growTime = plant.m_growTime;
+        var divisor = isBoneMeal ? 5 : 2;
+        if (!isBoneMeal && !isBucket) return false;
+        var currentPlantTicks = _nview.GetZDO().GetLong("plantTime", ZNet.instance.GetTime().Ticks);
+        var fertilizerAmountTicks = (long) (growTime * TimeSpan.TicksPerSecond / divisor);
+        var newPlantTicks = currentPlantTicks - fertilizerAmountTicks;
+        if (newPlantTicks < 0) newPlantTicks = 0;
+        _nview.GetZDO().Set("plantTime", newPlantTicks);
+        SendPlantEffect(plant);
+        return true;
+    }
+
+    private static void SendPlantEffect(Plant plant) {
+        var num = Random.Range((float) (plant.m_minScale * 0.5), (float) (plant.m_maxScale * 0.5));
+        var baseRot = Quaternion.Euler(0.0f, Random.Range(0.0f, 360f), 0.0f);
+        boneMealVfx.Create(plant.transform.position, baseRot, scale: num);
     }
 
     public void GrowPlant(Plant plant) {

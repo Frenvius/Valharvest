@@ -1,11 +1,11 @@
 {
   "name": "Valharvest",
-  "version_number": "2.0.1",
+  "version_number": "3.0.4",
   "website_url": "https://discord.gg/JyWawnNDMv",
-  "description": "New plants and foods!",
+  "description": "New vegetables to plant and harvest, like potatoes, rice, tomatoes, pumpkins, etc, and new ingredients to prepare new foods!",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.1100",
-    "ValheimModding-Jotunn-2.3.7",
+    "ValheimModding-Jotunn-2.7.0",
     "RockerKitten-BoneAppetit-3.0.2"
   ]
 }

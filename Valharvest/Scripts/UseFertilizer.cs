@@ -1,13 +1,12 @@
 ﻿using HarmonyLib;
-using UnityEngine;
 
-namespace Valharvest.Scripts {
-    public class UseFertilizer {
-        [HarmonyPatch(typeof(Plant), nameof(Plant.Awake))]
-        public static class FixPlantHealth {
-            public static void Prefix(Plant __instance) {
-                __instance.gameObject.AddComponent<InteractFertilizer>();
-            }
-        }
+namespace Valharvest.Scripts;
+
+[HarmonyPatch]
+public class UseFertilizer {
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Plant), nameof(Plant.Awake))]
+    public static void FixPlantHealth(Plant __instance) {
+        __instance.gameObject.AddComponent<InteractFertilizer>();
     }
 }

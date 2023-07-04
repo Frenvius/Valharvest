@@ -18,7 +18,6 @@ namespace Valharvest {
         private const string Weight = "weight";
         private const string Variants = "variants";
         private const string FoodRegen = "foodRegen";
-        private const string FoodColor = "foodColor";
         private const string FoodStamina = "foodStamina";
         private const string Description = "description";
         private const string MaxStackSize = "maxStackSize";
@@ -174,23 +173,22 @@ namespace Valharvest {
             }
         }
 
-        public static void ChangeFoodDrop(
+        private static void ChangeFoodDrop(
             CustomItem item,
             string configObject
         ) {
             using var stream = Assembly.GetExecutingAssembly()
                 .GetManifestResourceStream("newFoodsConfig.resources");
-            if (stream != null) {
-                var fileContents = new StreamReader(stream).ReadToEnd();
-                var json = DeserializeObject<JsonObject>(fileContents);
-                var content = DeserializeObject<JsonObject>(json[configObject].ToString());
-                var itemDrop = item.ItemDrop.m_itemData.m_shared;
+            if (stream == null) return;
+            var fileContents = new StreamReader(stream).ReadToEnd();
+            var json = DeserializeObject<JsonObject>(fileContents);
+            var content = DeserializeObject<JsonObject>(json[configObject].ToString());
+            var itemDrop = item.ItemDrop.m_itemData.m_shared;
 
-                SetItemDropFromContent(content, itemDrop);
-            }
+            SetItemDropFromContent(content, itemDrop);
         }
 
-        public static void SetItemDropFromContent(JsonObject content, ItemDrop.ItemData.SharedData itemDrop) {
+        private static void SetItemDropFromContent(JsonObject content, ItemDrop.ItemData.SharedData itemDrop) {
             if (content[Name] != null) itemDrop.m_name = content[Name].ToString();
             if (content[Description] != null) itemDrop.m_description = content[Description].ToString();
             if (content[Weight] != null) itemDrop.m_weight = float.Parse(content[Weight].ToString());
@@ -206,14 +204,9 @@ namespace Valharvest {
                 var statusEffect = modAssets.LoadAsset<StatusEffect>(content[ConsumeStatusEffect].ToString());
                 itemDrop.m_consumeStatusEffect = statusEffect;
             }
-
-            if (content[FoodColor] != null) {
-                ColorUtility.TryParseHtmlString(content[FoodColor].ToString(), out var rgbColor);
-                itemDrop.m_foodColor = rgbColor;
-            }
         }
 
-        public static void RegisterFood(string name, string prefab, int amount, string craftingStation,
+        private static void RegisterFood(string name, string prefab, int amount, string craftingStation,
             RequirementConfig[] requirements) {
             var itemPrefab = ItemManager.Instance.GetItem(prefab);
             ItemManager.Instance.RemoveRecipe("Recipe_" + prefab);

@@ -96,6 +96,17 @@
 	"pasta_tomato_sauce_desc": "ㅤ",
 	
 	"baked_apple_name": "Baked Apple",
-	"baked_apple_desc": "Direct heat has softened and sweetened this apple."
+	"baked_apple_desc": "Direct heat has softened and sweetened this apple.",
 	
+	"spicy_meat_skewer_name": "Spicy Skewer",
+	"spicy_meat_skewer_desc": "ㅤ",
+	
+	"meat_skewer_name": "Meat Skewer",
+	"meat_skewer_desc": "ㅤ",
+	
+	"grilled_meat_name": "Grilled Meat",
+	"grilled_meat_desc": "ㅤ",
+	
+	"item_frost_resistance": "Frost Resistance"
+
 }

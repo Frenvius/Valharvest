@@ -168,5 +168,18 @@
 				{"Item": "Wood", "Amount": 1, "Recover": true}
 			]
 		}
+	},
+	"piece_cooking_pot": {
+		"name": "$piece_appleBox_name",
+		"description": "$piece_appleBox_desc",
+		"assetBundle": "valharvestpieces",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Stone", "Amount": 1, "Recover": true}
+			]
+		}
 	}
 }

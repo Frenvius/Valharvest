@@ -53,5 +53,10 @@
 	"piece_appleBox_desc": "ㅤ",
 
 	"piece_milk_can_name": "Milk Can",
-	"piece_milk_can_desc": "ㅤ"
+	"piece_milk_can_desc": "ㅤ",
+	
+	"FieldSmall_name": "Planting Field",
+	"FieldSmall_desc": "ㅤ",
+
+	"msg_TurnMassPlantingOff": "Turn off mass planting mode, press the "
 }

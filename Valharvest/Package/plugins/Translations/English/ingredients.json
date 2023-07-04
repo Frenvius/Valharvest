@@ -15,7 +15,7 @@
 	"PepperSeeds_desc": "ㅤ",
 	
 	"PumpkinSeeds_name": "Pumpkin Seeds",
-	"PumpkinSeeds_desc": "ㅤ",	
+	"PumpkinSeeds_desc": "ㅤ",
 
 	"potato_name": "Potato",
 	"potato_desc": "ㅤ",
@@ -36,5 +36,14 @@
 	"salt_desc": "ㅤ",
 
 	"tomato_name": "Tomato",
-	"tomato_desc": "ㅤ"
+	"tomato_desc": "ㅤ",
+
+	"AppleSeeds_name": "Apple Seeds",
+	"AppleSeeds_desc": "ㅤ",
+	
+	"WatermelonSeeds_name": "Watermelon Seeds",
+	"WatermelonSeeds_desc": "ㅤ",
+
+	"raw_seagull_name": "Raw Seagull Meat",
+	"raw_seagull_desc": "ㅤ"
 }

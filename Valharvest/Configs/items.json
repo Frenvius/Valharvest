@@ -59,6 +59,12 @@
 		"assetBundle": "valharvest",
 		"crafting": null
 	},
+	"raw_seagull": {
+		"name": "$raw_seagull_name",
+		"description": "$raw_seagull_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
 	"bonemeal": {
 		"name": "$bonemeal_name",
 		"description": "$bonemeal_desc",
@@ -67,7 +73,7 @@
 			"amount": 1,
 			"craftingStation": "piece_workbench",
 			"requirements": [
-				{"Item": "BoneFragments", "Amount": 2}
+				{"Item": "BoneFragments", "Amount": 1}
 			]
 		}
 	},
@@ -130,6 +136,29 @@
 			"craftingStation": "piece_workbench",
 			"requirements": [
 				{"Item": "Crystal", "Amount": 1}
+			]
+		}
+	},
+	"AppleSeeds": {
+		"name": "$AppleSeeds_name",
+		"description": "$AppleSeeds_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"amount": 2,
+			"craftingStation": "",
+			"requirements": [
+				{"Item": "apple", "Amount": 1}
+			]
+		}
+	},
+	"WatermelonSeeds": {
+		"name": "$WatermelonSeeds_name",
+		"description": "$WatermelonSeeds_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"amount": 2,
+			"craftingStation": "",
+			"requirements": [
 			]
 		}
 	}
