@@ -20,7 +20,9 @@ public class RaisedBed {
         "Pickable_SeedOnion",
         "Pickable_SeedTurnip",
         "Pickable_Thistle",
-        "Pickable_Turnip"
+        "Pickable_Turnip",
+        "Pickable_Mushroom_Magecap",
+        "Pickable_Mushroom_JotunPuffs"
     };
 
     private static readonly Collider[] pieceColliders = new Collider[2000];
@@ -31,7 +33,7 @@ public class RaisedBed {
 
     [HarmonyPostfix]
     [HarmonyPriority(Priority.Last)]
-    [HarmonyAfter("mod.valheim_plus", "org.bepinex.plugins.farming", "com.odinplusqol.mod", "BepIn.Sarcen.FarmGrid",
+    [HarmonyAfter("mod.valheim_plus", "org.bepinex.plugins.farming", "com.odinplusqol.mod", "BepIn.Sarcen.Fa    rmGrid",
         "Harmony.Sarcen.FarmGrid", "infinity_hammer", "org.bepinex.plugins.conversionsizespeed")]
     [HarmonyPatch(typeof(Player), nameof(Player.UpdatePlacementGhost))]
     private static void UpdatePlacementGrid(Player __instance, bool flashGuardStone) {
@@ -48,7 +50,7 @@ public class RaisedBed {
         }
         
         if (!IsPlantPlantable(plant)) return;
-        var cultivatedHeight = GetCultivatedGroundHeight(plant, __instance);
+        float cultivatedHeight = GetCultivatedGroundHeight(plant, __instance);
         var placementPosition = placementGhost.transform.position;
         piece.SetInvalidPlacementHeightlight(false);
         __instance.m_placementStatus = Player.PlacementStatus.Valid;
@@ -58,7 +60,7 @@ public class RaisedBed {
             if (massPlanting) {
                 piece.SetInvalidPlacementHeightlight(true);
                 __instance.m_placementStatus = Player.PlacementStatus.Invalid;
-                var message = Localization.instance.Localize("$msg_TurnMassPlantingOff");
+                string message = Localization.instance.Localize("$msg_TurnMassPlantingOff");
                 __instance.Message(MessageHud.MessageType.Center, $"{message}{massPlantingKey.ToString()} key", 0, (Sprite) null);
             }
         }
@@ -83,12 +85,12 @@ public class RaisedBed {
         m_tempSnapPoints2.Clear();
         m_tempPieces.Clear();
         GetSnapPoints(ghost.transform.position, 10f, m_tempSnapPoints2, m_tempPieces);
-        var num = 9999999f;
+        float num = 9999999f;
         a = null;
         b = null;
         foreach (var item in m_tempSnapPoints1) {
             if (!player.FindClosestSnappoint(item.position, m_tempSnapPoints2, maxSnapDistance, out var closest,
-                    out var distance) || !(distance < num)) continue;
+                    out float distance) || !(distance < num)) continue;
             num = distance;
             a = item;
             b = closest;
@@ -100,9 +102,9 @@ public class RaisedBed {
     private static bool IsPlantOverlapping(Component plant) {
         var plantCollider = plant.GetComponent<Collider>();
         var bounds = plantCollider.bounds;
-        var num = Physics.OverlapSphereNonAlloc(bounds.center, 0.2f, pieceColliders);
+        int num = Physics.OverlapSphereNonAlloc(bounds.center, 0.2f, pieceColliders);
         
-        for (var i = 0; i < num; i++) {
+        for (int i = 0; i < num; i++) {
             var collider = pieceColliders[i];
             if (collider == null) continue;
             // if (!collider.name.Contains("Clone")) continue;
@@ -117,8 +119,8 @@ public class RaisedBed {
     private static void GetSnapPoints(Vector3 point, float radius, ICollection<Transform> points,
         ICollection<Piece> pieces) {
         if (Piece.s_pieceRayMask == 0) Piece.s_pieceRayMask = LayerMask.GetMask("piece", "piece_nonsolid");
-        var num = Physics.OverlapSphereNonAlloc(point, radius, pieceColliders, Piece.s_pieceRayMask);
-        for (var i = 0; i < num; i++) {
+        int num = Physics.OverlapSphereNonAlloc(point, radius, pieceColliders, Piece.s_pieceRayMask);
+        for (int i = 0; i < num; i++) {
             var componentInParent = pieceColliders[i].GetComponentInParent<Piece>();
             if (componentInParent == null) continue;
             if (!componentInParent.name.Contains("cultivatedGround")) continue;
@@ -128,7 +130,7 @@ public class RaisedBed {
     }
 
     private static void GetSnapPoints(ICollection<Transform> points, Component piece) {
-        for (var index = 0; index < piece.transform.childCount; ++index) {
+        for (int index = 0; index < piece.transform.childCount; ++index) {
             var child = piece.transform.GetChild(index);
             if (child.name.Contains("_snapplant"))
                 points.Add(child);
@@ -167,7 +169,7 @@ public class RaisedBed {
     private static bool PatchIsCultivated(bool __result, Vector3 worldPos) {
         Plant.m_roofMask = 0;
         Plant.m_spaceMask = 0;
-        var isCultivated = CheckIfItemBellowIsCultivatedGround(worldPos);
+        bool isCultivated = CheckIfItemBellowIsCultivatedGround(worldPos);
         if (!isCultivated) return __result;
         Plant.m_roofMask = LayerMask.GetMask("");
         Plant.m_spaceMask = LayerMask.GetMask("Default", "piece_nonsolid");
@@ -181,7 +183,7 @@ public class RaisedBed {
     }
 
     public static bool CheckIfItemBellowIsCultivatedGround(Vector3 position) {
-        var layerMask = LayerMask.GetMask("piece");
+        int layerMask = LayerMask.GetMask("piece");
         var positionAbove = new Vector3(position.x, position.y + 100f, position.z);
         var ray = new Ray(positionAbove, Vector3.down);
         var hits = Physics.RaycastAll(ray, 1000f, layerMask);

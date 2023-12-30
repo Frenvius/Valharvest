@@ -2,7 +2,7 @@
 	"piece_cultivatedGround_big": {
 		"name": "$piece_cultivatedGround_big_name",
 		"description": "$piece_cultivatedGround_big_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -16,7 +16,7 @@
 	"piece_cultivatedGround": {
 		"name": "$piece_cultivatedGround_name",
 		"description": "$piece_cultivatedGround_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -30,7 +30,7 @@
 	"piece_cultivatedGround_small": {
 		"name": "$piece_cultivatedGround_small_name",
 		"description": "$piece_cultivatedGround_small_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -44,7 +44,7 @@
 	"piece_cultivatedGround_small_small": {
 		"name": "$piece_cultivatedGround_small_small_name",
 		"description": "$piece_cultivatedGround_small_small_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -58,7 +58,7 @@
 	"water_well": {
 		"name": "$water_well_name",
 		"description": "$water_well_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -74,7 +74,7 @@
 	"piece_jackopumpkin": {
 		"name": "$piece_jackopumpkin_name",
 		"description": "$piece_jackopumpkin_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -88,7 +88,7 @@
 	"piece_tomatoBox": {
 		"name": "$piece_tomatoBox_name",
 		"description": "$piece_tomatoBox_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -102,7 +102,7 @@
 	"piece_garlicBox": {
 		"name": "$piece_garlicBox_name",
 		"description": "$piece_garlicBox_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -116,7 +116,7 @@
 	"piece_pepperBox": {
 		"name": "$piece_pepperBox_name",
 		"description": "$piece_pepperBox_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -130,7 +130,7 @@
 	"piece_potatoBox": {
 		"name": "$piece_potatoBox_name",
 		"description": "$piece_potatoBox_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -144,7 +144,7 @@
 	"piece_saltBox": {
 		"name": "$piece_saltBox_name",
 		"description": "$piece_saltBox_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -158,7 +158,7 @@
 	"piece_appleBox": {
 		"name": "$piece_appleBox_name",
 		"description": "$piece_appleBox_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,
 			"pieceTable": "_HammerPieceTable",
@@ -170,15 +170,30 @@
 		}
 	},
 	"piece_cooking_pot": {
-		"name": "$piece_appleBox_name",
-		"description": "$piece_appleBox_desc",
-		"assetBundle": "valharvestpieces",
+		"name": "$cooking_pot_name",
+		"description": "$cooking_pot_desc",
+		"assetBundle": "valharvest",
 		"crafting": {
-			"allowedInDungeons": false,
+			"allowedInDungeons": true,
 			"pieceTable": "_HammerPieceTable",
 			"craftingStation": "piece_workbench",
 			"requirements": [
-				{"Item": "Stone", "Amount": 1, "Recover": true}
+				{"Item": "Stone", "Amount": 10, "Recover": true}
+			]
+		}
+	},
+	"piece_prep_table": {
+		"name": "$cooking_pot_name",
+		"description": "$cooking_pot_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "forge",
+			"requirements": [
+				{"Item": "Stone", "Amount": 8, "Recover": true},
+				{"Item": "Wood", "Amount": 5, "Recover": true},
+				{"Item": "Tin", "Amount": 3, "Recover": true}
 			]
 		}
 	}

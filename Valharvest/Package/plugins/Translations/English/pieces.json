@@ -58,5 +58,10 @@
 	"FieldSmall_name": "Planting Field",
 	"FieldSmall_desc": "ㅤ",
 
-	"msg_TurnMassPlantingOff": "Turn off mass planting mode, press the "
+	"msg_TurnMassPlantingOff": "Turn off mass planting mode, press the ",
+	
+	"cooking_pot_name": "Cooking Pot",
+	"cooking_pot_desc": "This is a cooking pot. You can cook food here.",
+	
+	"enough_empty_bottle": "You don't have enough empty bottles"
 }

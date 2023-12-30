@@ -121,37 +121,36 @@ namespace Valharvest {
 
         public static void LoadNewFood() {
             using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("newFoodsConfig.resources");
-            if (stream != null) {
-                TextReader tr = new StreamReader(stream);
-                var fileContents = tr.ReadToEnd();
-                var foodJson = DeserializeObject<JsonObject>(fileContents);
-                foreach (var food in foodJson) {
-                    var foodName = food.Key;
-                    var foodObject = DeserializeObject<JsonObject>(food.Value.ToString());
-                    var requirementsArr = DeserializeObject<RequirementConfig[]>(foodObject["requirements"].ToString());
-                    CustomItem foodItem = null;
-                    try {
-                        var foodFab = foodAssets.LoadAsset<GameObject>(foodName);
-                        foodItem = new CustomItem(foodFab, true,
-                            new ItemConfig {
-                                Name = foodObject["name"].ToString(),
-                                Enabled = true,
-                                Amount = Convert.ToInt32(foodObject["amount"].ToString()),
-                                CraftingStation = foodObject["craftingStation"].ToString(),
-                                Requirements = requirementsArr
-                            });
-
-                        ChangeFoodDrop(foodItem, foodName);
-                    } catch (Exception ex) {
-                        Logger.LogError($"Error while loading {foodName}: {ex.Message}");
-                    } finally {
-                        // Jotunn.Logger.LogInfo($"{foodName} Loaded.");
-                        ItemManager.Instance.AddItem(foodItem);
-                    }
+            if (stream == null) return;
+            TextReader tr = new StreamReader(stream);
+            var fileContents = tr.ReadToEnd();
+            var foodJson = DeserializeObject<JsonObject>(fileContents);
+            foreach (var food in foodJson) {
+                var foodName = food.Key;
+                var foodObject = DeserializeObject<JsonObject>(food.Value.ToString());
+                var requirementsArr = DeserializeObject<RequirementConfig[]>(foodObject["requirements"].ToString());
+                CustomItem foodItem = null;
+                try {
+                    var foodFab = modAssets.LoadAsset<GameObject>(foodName);
+                    foodItem = new CustomItem(foodFab, true,
+                        new ItemConfig {
+                            Name = foodObject["name"].ToString(),
+                            Enabled = true,
+                            Amount = Convert.ToInt32(foodObject["amount"].ToString()),
+                            CraftingStation = foodObject["craftingStation"].ToString(),
+                            Requirements = requirementsArr
+                        });
+                    
+                    ChangeFoodDrop(foodItem, foodName);
+                } catch (Exception ex) {
+                    Logger.LogError($"Error while loading {foodName}: {ex.Message}");
+                } finally {
+                    // Jotunn.Logger.LogInfo($"{foodName} Loaded.");
+                    ItemManager.Instance.AddItem(foodItem);
                 }
-
-                PrefabManager.OnVanillaPrefabsAvailable -= LoadNewFood;
             }
+
+            PrefabManager.OnVanillaPrefabsAvailable -= LoadNewFood;
         }
 
         public static void LoadBalancedFood() {

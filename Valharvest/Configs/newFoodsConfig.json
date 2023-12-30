@@ -122,16 +122,16 @@
 		"description": "$cheese_desc",
 		"weight": 0.8,
 		"variants": null,
-		"food": 30,
-		"foodStamina": 40,
-		"foodBurnTime": 28,
+		"food": 25,
+		"foodStamina": 32,
+		"foodBurnTime": 22,
 		"foodRegen": 3,
 		"maxStackSize": 10,
 		"amount": 1,
 		"consumeStatusEffect": null,
 		"craftingStation": "rk_prep",
 		"requirements": [
-			{"Item": "milk_bottle", "Amount": 4}
+			{"Item": "milk_bottle", "Amount": 2}
 		]
 	},
 	"spaghetti": {
@@ -286,9 +286,9 @@
 		"description": "$potato_slices_desc",
 		"weight": 0.4,
 		"variants": null,
-		"food": 55,
-		"foodStamina": 65,
-		"foodBurnTime": 20,
+		"food": 35,
+		"foodStamina": 55,
+		"foodBurnTime": 18,
 		"foodRegen": 3,
 		"maxStackSize": 20,
 		"amount": 1,
@@ -296,8 +296,8 @@
 		"craftingStation": "rk_prep",
 		"requirements": [
 			{"Item": "potato", "Amount": 4},
-			{"Item": "Thistle", "Amount": 3},
-			{"Item": "salt", "Amount": 2}
+			{"Item": "garlic", "Amount": 2},
+			{"Item": "salt", "Amount": 1}
 		]
 	},
 	"potatoes_boiled": {
@@ -439,16 +439,16 @@
 		"weight": 0.6,
 		"variants": null,
 		"food": 85,
-		"foodStamina": 60,
-		"foodBurnTime": 30,
-		"foodRegen": 4,
+		"foodStamina": 55,
+		"foodBurnTime": 25,
+		"foodRegen": 3,
 		"maxStackSize": 10,
 		"amount": 1,
 		"consumeStatusEffect": null,
 		"craftingStation": "rk_prep",
 		"requirements": [
 			{"Item": "potato", "Amount": 2},
-			{"Item": "RawMeat", "Amount": 2},
+			{"Item": "LoxMeat", "Amount": 3},
 			{"Item": "cheese", "Amount": 1},
 			{"Item": "Thistle", "Amount": 1}
 		]
@@ -486,8 +486,9 @@
 		"consumeStatusEffect": null,
 		"craftingStation": "rk_prep",
 		"requirements": [
-			{"Item": "pumpkin", "Amount": 3}
-		]
+			{"Item": "pumpkin", "Amount": 3},
+      {"Item": "salt", "Amount": 2}
+    ]
 	},
 	"pumpkin_soup_meat": {
 		"name": "$pumpkin_soup_meat_name",
@@ -504,8 +505,9 @@
 		"craftingStation": "rk_prep",
 		"requirements": [
 			{"Item": "pumpkin", "Amount": 2},
-			{"Item": "RawMeat", "Amount": 1}
-		]
+			{"Item": "LoxMeat", "Amount": 3},
+      {"Item": "salt", "Amount": 2}
+    ]
 	},
 	"tomato_sandwich": {
 		"name": "$tomato_sandwich_name",
@@ -533,13 +535,15 @@
 		"food": 23,
 		"foodStamina": 55,
 		"foodBurnTime": 20,
-		"foodRegen": 5,
+		"foodRegen": 3,
 		"maxStackSize": 10,
-		"amount": 1,
+		"amount": 2,
 		"consumeStatusEffect": null,
 		"craftingStation": "rk_prep",
 		"requirements": [
-			{"Item": "tomato", "Amount": 4}
+			{"Item": "tomato", "Amount": 5},
+			{"Item": "salt", "Amount": 2},
+			{"Item": "garlic", "Amount": 2}
 		]
 	},
 	"yogurt": {
@@ -547,16 +551,16 @@
 		"description": "$yogurt_desc",
 		"weight": 0.6,
 		"variants": null,
-		"food": 45,
-		"foodStamina": 30,
-		"foodBurnTime": 30,
+		"food": 30,
+		"foodStamina": 25,
+		"foodBurnTime": 20,
 		"foodRegen": 3,
 		"maxStackSize": 10,
 		"amount": 1,
 		"consumeStatusEffect": null,
 		"craftingStation": "rk_prep",
 		"requirements": [
-			{"Item": "milk_bottle", "Amount": 3}
+			{"Item": "milk_bottle", "Amount": 1}
 		]
 	},
 	"buoyant_breeze": {
@@ -620,10 +624,10 @@
 		"description": "$meat_skewer_desc",
 		"weight": 0.2,
 		"variants": null,
-		"food": 32,
-		"foodStamina": 13,
-		"foodBurnTime": 25,
-		"foodRegen": 2,
+		"food": 22,
+		"foodStamina": 8,
+		"foodBurnTime": 10,
+		"foodRegen": 1,
 		"maxStackSize": 10,
 		"amount": 1,
 		"consumeStatusEffect": null,
@@ -632,13 +636,13 @@
 			{"Item": "rk_pork", "Amount": 1}
 		]
 	},
-	"grilled_meat": {
-		"name": "$grilled_meat_name",
-		"description": "$grilled_meat_desc",
-		"weight": 0.4,
+	"kafta": {
+		"name": "$kafta_name",
+		"description": "$kafta_desc",
+		"weight": 0.2,
 		"variants": null,
-		"food": 40,
-		"foodStamina": 25,
+		"food": 28,
+		"foodStamina": 13,
 		"foodBurnTime": 15,
 		"foodRegen": 2,
 		"maxStackSize": 10,
@@ -646,8 +650,60 @@
 		"consumeStatusEffect": null,
 		"craftingStation": "rk_griddle",
 		"requirements": [
-			{"Item": "rk_pork", "Amount": 2},
+			{"Item": "RawMeat", "Amount": 1}
+		]
+	},
+	"meatball_skewers": {
+		"name": "$meatball_skewers_name",
+		"description": "$meatball_skewers_desc",
+		"weight": 0.2,
+		"variants": null,
+		"food": 33,
+		"foodStamina": 15,
+		"foodBurnTime": 20,
+		"foodRegen": 2,
+		"maxStackSize": 10,
+		"amount": 1,
+		"consumeStatusEffect": null,
+		"craftingStation": "rk_griddle",
+		"requirements": [
+			{"Item": "DeerMeat", "Amount": 1}
+		]
+	},
+	"grilled_meat": {
+		"name": "$grilled_meat_name",
+		"description": "$grilled_meat_desc",
+		"weight": 0.4,
+		"variants": null,
+		"food": 40,
+		"foodStamina": 30,
+		"foodBurnTime": 20,
+		"foodRegen": 2,
+		"maxStackSize": 10,
+		"amount": 1,
+		"consumeStatusEffect": null,
+		"craftingStation": "rk_griddle",
+		"requirements": [
+			{"Item": "rk_pork", "Amount": 1},
+			{"Item": "RawMeat", "Amount": 1},
 			{"Item": "salt", "Amount": 1}
+		]
+	},
+	"boiled_corn": {
+		"name": "$boiled_corn_name",
+		"description": "$boiled_corn_desc",
+		"weight": 0.4,
+		"variants": null,
+		"food": 25,
+		"foodStamina": 40,
+		"foodBurnTime": 35,
+		"foodRegen": 3,
+		"maxStackSize": 10,
+		"amount": 1,
+		"consumeStatusEffect": null,
+		"craftingStation": "rk_prep",
+		"requirements": [
+			{"Item": "corn", "Amount": 2}
 		]
 	}
 }

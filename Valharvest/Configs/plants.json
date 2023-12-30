@@ -2,7 +2,7 @@
 	"apple_tree": {
 		"name": "$apple_tree_name",
 		"description": "$apple_tree_desc",
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": "AppleDropAmount",
 		"materials": {},
 		"crafting": null
@@ -10,7 +10,7 @@
 	"test_tree": {
 		"name": "$apple_tree_name",
 		"description": "$apple_tree_desc",
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"beech_bark_small": {
@@ -58,7 +58,7 @@
 	"apple_tree_1": {
 		"name": "$apple_tree_name",
 		"description": "$apple_tree_desc",
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"apple_tree_log": {
@@ -106,7 +106,7 @@
 	"orange_tree": {
 		"name": "$apple_tree_name",
 		"description": "$apple_tree_desc",
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"apple_tree_log": {
@@ -154,7 +154,7 @@
 	"Pickable_Pepper": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"pepper_plant": {
@@ -173,7 +173,7 @@
 	"Pickable_Bell_Pepper": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"pepper_plant": {
@@ -192,7 +192,7 @@
 	"Pickable_Cucumber_wild": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"pepper_plant": {
@@ -211,7 +211,7 @@
 	"Pickable_garlic_wild": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"garlic_blast": {
@@ -230,7 +230,7 @@
 	"Pickable_Rice_wild": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"rice_plant": {
@@ -251,7 +251,7 @@
 	"Pickable_Sugar_Cane_wild": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"rice_plant": {
@@ -272,7 +272,7 @@
 	"Pickable_garlic": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"garlic_blast": {
@@ -291,7 +291,7 @@
 	"Pickable_Rice": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"rice_plant": {
@@ -312,7 +312,7 @@
 	"Pickable_Tomato": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"tomato_plant": {
@@ -331,7 +331,7 @@
 	"Pickable_Cabbage": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"tomato_plant": {
@@ -350,7 +350,7 @@
 	"Pickable_Potato": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"plant_potato": {
@@ -369,7 +369,7 @@
 	"Pickable_Broccoli": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"plant_potato": {
@@ -388,7 +388,7 @@
 	"Pickable_Pumpkin": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"Plant_Pumpkin": {
@@ -408,7 +408,7 @@
 	"Pickable_Watermelon": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {},
 		"crafting": null
@@ -416,19 +416,18 @@
 	"Pickable_Corn": {
 		"name": null,
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
-			"Plant_Pumpkin": {
+			"corn_plant": {
 				"shader": "Custom/Vegetation",
 				"glossiness": 0.1,
-				"cutoff": 0.3,
-				"height": 0.2,
-				"swaySpeed": 17,
-				"swayDistance": 0.15,
-				"rippleSpeed": 50,
-				"rippleDistance": 0.1,
-				"pushDistance": 0.1
+				"cutoff": 0.4,
+				"height": 1,
+				"swaySpeed": 10,
+				"swayDistance": 0.4,
+				"rippleSpeed": 100,
+				"pushDistance": 0.3
 			}
 		},
 		"crafting": null
@@ -436,7 +435,7 @@
 	"sapling_pepper": {
 		"name": "$sapling_pepper_name",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"pepper_plant": {
@@ -475,7 +474,7 @@
 	"sapling_tomato": {
 		"name": "$sapling_tomato_name",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"tomato_plant": {
@@ -514,7 +513,7 @@
 	"sapling_potato": {
 		"name": "$sapling_potato_name",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"plant_potato": {
@@ -543,7 +542,7 @@
 	"sapling_garlic": {
 		"name": "$sapling_garlic_name",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"garlic_blast": {
@@ -582,7 +581,7 @@
 	"sapling_rice": {
 		"name": "$sapling_rice_name",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"rice_plant": {
@@ -625,7 +624,7 @@
 	"sapling_pumpkin": {
 		"name": "$sapling_pumpkin_name",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"Plant_Pumpkin": {
@@ -668,7 +667,7 @@
 	"sapling_watermelon": {
 		"name": "$sapling_watermelon_name",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {},
 		"crafting": {
@@ -686,7 +685,7 @@
 	"milk_can": {
 		"name": "$piece_milk_can_name",
 		"description": "$piece_milk_can_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {
 			"metalwall": {
@@ -716,7 +715,7 @@
 	"sapling_apple_tree": {
 		"name": "$sapling_apple_tree",
 		"description": null,
-		"assetBundle": "valharvestplants",
+		"assetBundle": "valharvest",
 		"dropConfig": null,
 		"materials": {},
 		"crafting": {
@@ -727,6 +726,24 @@
 				{
 					"Item": "AppleSeeds",
 					"Amount": 1
+				}
+			]
+		}
+	},
+	"sapling_corn": {
+		"name": "$sapling_corn_name",
+		"description": null,
+		"assetBundle": "valharvest",
+		"dropConfig": null,
+		"materials": {},
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_CultivatorPieceTable",
+			"craftingStation": null,
+			"requirements": [
+				{
+					"Item": "CornSeeds",
+					"Amount": 3
 				}
 			]
 		}

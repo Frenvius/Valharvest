@@ -20,13 +20,12 @@ public class MilkLox : MonoBehaviour {
     private void Awake() {
         nview = GetComponent<ZNetView>();
         loxPoint = transform;
-        if (nview.GetZDO() != null) {
-            if (nview.IsOwner() && nview.GetZDO().GetLong("lastMilkTime") == 0L)
-                nview.GetZDO().Set("lastMilkTime", ZNet.instance.GetTime().Ticks);
-            nview.Register("ExtractMilk", RPC_ExtractMilk);
-            nview.Register<int>("ResetLevel", RPC_ResetLevel);
-            InvokeRepeating(nameof(UpdateMilk), 0f, 10f);
-        }
+        if (nview.GetZDO() == null) return;
+        if (nview.IsOwner() && nview.GetZDO().GetLong("lastMilkTime") == 0L)
+            nview.GetZDO().Set("lastMilkTime", ZNet.instance.GetTime().Ticks);
+        nview.Register("ExtractMilk", RPC_ExtractMilk);
+        nview.Register<int>("ResetLevel", RPC_ResetLevel);
+        InvokeRepeating(nameof(UpdateMilk), 0f, 10f);
     }
 
     private void RPC_ExtractMilk(long caller) {
@@ -38,7 +37,7 @@ public class MilkLox : MonoBehaviour {
 
     private void RPC_ResetLevel(long caller, int level) {
         if (!nview.IsOwner()) return;
-        var milkLevel = GetMilkLevel();
+        int milkLevel = GetMilkLevel();
         nview.GetZDO().Set("milkLevel", milkLevel - level);
     }
 
@@ -47,13 +46,13 @@ public class MilkLox : MonoBehaviour {
         var time = ZNet.instance.GetTime();
         var timeSpan = time - dateTime;
         nview.GetZDO().Set("lastMilkTime", time.Ticks);
-        var num = timeSpan.TotalSeconds;
+        double num = timeSpan.TotalSeconds;
         if (num < 0.0) num = 0.0;
         return (float)num;
     }
 
     private void IncreaseLevel(int i) {
-        var milkLevel = GetMilkLevel();
+        int milkLevel = GetMilkLevel();
         milkLevel += i;
         milkLevel = Mathf.Clamp(milkLevel, 0, MaxMilk);
         nview.GetZDO().Set("milkLevel", milkLevel);
@@ -65,11 +64,11 @@ public class MilkLox : MonoBehaviour {
 
     public void UpdateMilk() {
         if (!nview.IsOwner()) return;
-        var timeSinceLastUpdate = GetTimeSinceLastUpdate();
-        var @float = nview.GetZDO().GetFloat("product");
+        float timeSinceLastUpdate = GetTimeSinceLastUpdate();
+        float @float = nview.GetZDO().GetFloat("product");
         @float += timeSinceLastUpdate;
         if (@float > SecPerUnit) {
-            var i = (int)(@float / SecPerUnit);
+            int i = (int) (@float / SecPerUnit);
             IncreaseLevel(i);
             @float = 0f;
         }

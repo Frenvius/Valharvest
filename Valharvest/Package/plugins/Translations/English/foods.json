@@ -107,6 +107,14 @@
 	"grilled_meat_name": "Grilled Meat",
 	"grilled_meat_desc": "ㅤ",
 	
-	"item_frost_resistance": "Frost Resistance"
-
+	"kafta_name": "Kafta",
+	"kafta_desc": "ㅤ",
+	
+	"meatball_skewers_name": "Meatball Skewers",
+	"meatball_skewers_desc": "ㅤ",
+	
+	"item_frost_resistance": "Frost Resistance",
+	
+	"boiled_corn_name": "Boiled Corn",
+	"boiled_corn_desc": "ㅤ"
 }

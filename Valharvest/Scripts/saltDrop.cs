@@ -9,14 +9,14 @@ namespace Valharvest.Scripts;
 [HarmonyPatch]
 public static class SaltDrop {
     private static string _dropTableObject = "";
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DropTable), "GetDropList", new Type[] { })]
     public static void DropTableGetDropList_Patch(ref List<GameObject> __result) {
         if (!Environment.StackTrace.Contains("MineRock") &&
             (!Environment.StackTrace.Contains("DropOnDestroyed") ||
              !_dropTableObject.Contains("Rock"))) return;
-        if (!(Random.value < 0.40f)) return;
+        if (!(Random.value < 0.35f)) return;
         var go = ZNetScene.instance.GetPrefab("salt");
         __result.Add(go);
     }

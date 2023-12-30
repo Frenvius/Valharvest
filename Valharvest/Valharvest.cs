@@ -15,6 +15,7 @@ using static Valharvest.Scripts.Loaders;
 using static Valharvest.WorldGen.Plants;
 using static Valharvest.WorldGen.PlantUtils;
 using static Valharvest.Scripts.BoneAppetitBalance;
+using static Valharvest.Scripts.ConsumableItemExtractor;
 
 namespace Valharvest;
 
@@ -25,12 +26,9 @@ namespace Valharvest;
 public class Main : BaseUnityPlugin {
     public const string ModGuid = "com.frenvius.Valharvest";
     public const string ModName = "Valharvest";
-    public const string Version = "3.0.4";
+    public const string Version = "3.0.7";
 
     public static AssetBundle modAssets;
-    public static AssetBundle foodAssets;
-    public static AssetBundle plantAssets;
-    public static AssetBundle pieceAssets;
 
     public static EffectList loxMilkSfx;
     public static EffectList boneMealVfx;
@@ -65,7 +63,9 @@ public class Main : BaseUnityPlugin {
         ItemManager.OnItemsRegisteredFejd += LoadBalance;
         PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlants;
         PrefabManager.OnVanillaPrefabsAvailable += CustomDrops;
+        PrefabManager.OnVanillaPrefabsAvailable += CustomFeed;
         PrefabManager.OnVanillaPrefabsAvailable += CheckIfFarmingModInstalled;
+        PrefabManager.OnPrefabsRegistered += GenerateConsumableItemList;
 
         if (Configurations.Valharvest.DropEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += NewDrops;
 
@@ -80,7 +80,7 @@ public class Main : BaseUnityPlugin {
 
     private static void CheckIfFarmingModInstalled() {
         Chainloader.Start();
-        
+
         var plugins = Chainloader.PluginInfos;
         foreach (var plugin in plugins.Where(plugin => plugin.Value.Metadata.GUID == "org.bepinex.plugins.farming")) {
             IsFarmingModInstalled = true;
@@ -121,9 +121,6 @@ public class Main : BaseUnityPlugin {
 
     public void AssetLoad() {
         modAssets = AssetUtils.LoadAssetBundleFromResources("valharvest", Assembly.GetExecutingAssembly());
-        foodAssets = AssetUtils.LoadAssetBundleFromResources("valharvestfoods", Assembly.GetExecutingAssembly());
-        plantAssets = AssetUtils.LoadAssetBundleFromResources("valharvestplants", Assembly.GetExecutingAssembly());
-        pieceAssets = AssetUtils.LoadAssetBundleFromResources("valharvestpieces", Assembly.GetExecutingAssembly());
         newEggTexture = modAssets.LoadAsset<Texture2D>("egg");
         newEggSprite = modAssets.LoadAsset<Sprite>("eggsprite");
         pizzaPlateTexture = modAssets.LoadAsset<Texture2D>("pizza_plate");
@@ -143,12 +140,23 @@ public class Main : BaseUnityPlugin {
         PrefabManager.Instance.AddPrefab(new CustomPrefab(boneMealSpark, true));
         loxMilkSfx = new EffectList {
             m_effectPrefabs = new[] {
-                new EffectList.EffectData {m_prefab = loxPetMilk, m_enabled = true},
-                new() {m_prefab = poursMilk, m_enabled = true}
+                new EffectList.EffectData {
+                    m_prefab = loxPetMilk,
+                    m_enabled = true
+                },
+                new() {
+                    m_prefab = poursMilk,
+                    m_enabled = true
+                }
             }
         };
         boneMealVfx = new EffectList {
-            m_effectPrefabs = new[] {new EffectList.EffectData {m_prefab = boneMealSpark, m_enabled = true}}
+            m_effectPrefabs = new[] {
+                new EffectList.EffectData {
+                    m_prefab = boneMealSpark,
+                    m_enabled = true
+                }
+            }
         };
 
         PrefabManager.OnVanillaPrefabsAvailable -= LoadSounds;
@@ -247,5 +255,30 @@ public class Main : BaseUnityPlugin {
         // });
 
         PrefabManager.OnVanillaPrefabsAvailable -= CustomDrops;
+    }
+
+    public void AddConsumableItemsToCreature(string[] items, string creature) {
+        var boarAI = PrefabManager.Instance.GetPrefab(creature).GetComponent<MonsterAI>();
+
+        foreach (string item in items) {
+            var itemFab = PrefabManager.Instance.GetPrefab(item);
+            boarAI.m_consumeItems.Add(itemFab.GetComponent<ItemDrop>());
+        }
+    }
+
+    public void CustomFeed() {
+        string[] consumableItemsBoar = new string[] {
+            "apple",
+            "tomato",
+            "potato"
+        };
+        AddConsumableItemsToCreature(consumableItemsBoar, "Boar");
+
+        string[] consumableItemsWolf = new[] {
+	        "rk_pork",
+        };
+        AddConsumableItemsToCreature(consumableItemsWolf, "Wolf");
+
+        PrefabManager.OnVanillaPrefabsAvailable -= CustomFeed;
     }
 }

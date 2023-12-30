@@ -14,7 +14,7 @@ public static class InteractPatch {
         if (!__instance.m_nview.IsValid())
             return false;
         var loxComponent = __instance.gameObject.GetComponent<MilkLox>();
-        var milkLevel = loxComponent.GetMilkLevel();
+        int milkLevel = loxComponent.GetMilkLevel();
         if (milkLevel <= 0) return __runOriginal = true;
         CheckAbleToAddItem(loxComponent, loxComponent.loxPoint);
         return true;
@@ -22,7 +22,7 @@ public static class InteractPatch {
 
     private static void CheckAbleToAddItem(MilkLox loxComponent, Transform loxPoint) {
         var inventory = Player.m_localPlayer.m_inventory;
-        var milkLevel = loxComponent.GetMilkLevel();
+        int milkLevel = loxComponent.GetMilkLevel();
         if (milkLevel <= 0) return;
         if (inventory.HaveEmptySlot()) {
             if (GetItemOnInventory("$empty_bottle_name") != null) {
@@ -38,7 +38,7 @@ public static class InteractPatch {
         }
     }
 
-    private static ItemDrop.ItemData GetItemOnInventory(string name) {
+    public static ItemDrop.ItemData GetItemOnInventory(string name) {
         var inventory = Player.m_localPlayer.m_inventory;
         return inventory.m_inventory.FirstOrDefault(item => item.m_shared.m_name == name);
     }
@@ -46,8 +46,8 @@ public static class InteractPatch {
     private static void AddItemToPlayer(MilkLox loxComponent, int milkLevel) {
         var inventory = Player.m_localPlayer.m_inventory;
         var bottle = GetItemOnInventory("$empty_bottle_name");
-        var count = 0;
-        for (var i = 0; i < milkLevel; i++)
+        int count = 0;
+        for (int i = 0; i < milkLevel; i++)
             if (inventory.HaveEmptySlot()) {
                 if (bottle != null) {
                     if (!inventory.RemoveOneItem(bottle)) continue;
@@ -73,7 +73,7 @@ public static class HoverTextPatch {
         if (!__instance.gameObject.GetComponent<Humanoid>().IsTamed()) return;
         if (!((__instance.gameObject.name == "Lox(Clone)") | __instance.gameObject.name.Contains("Lox"))) return;
         var loxComponent = __instance.gameObject.GetComponent<MilkLox>();
-        var milkLevel = loxComponent.GetMilkLevel();
+        int milkLevel = loxComponent.GetMilkLevel();
 
         if (milkLevel > 0)
             __result += Localization.instance.Localize("\n\nLox Milk" + " ( $milk_bottle_name x " +

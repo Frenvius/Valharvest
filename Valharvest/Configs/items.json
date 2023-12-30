@@ -8,7 +8,7 @@
 	"baked_apple": {
 		"name": "$baked_apple_name",
 		"description": "$baked_apple_desc",
-		"assetBundle": "valharvestfoods",
+		"assetBundle": "valharvest",
 		"crafting": null
 	},
 	"garlic": {
@@ -68,25 +68,25 @@
 	"bonemeal": {
 		"name": "$bonemeal_name",
 		"description": "$bonemeal_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
-			"amount": 1,
+			"amount": 10,
 			"craftingStation": "piece_workbench",
 			"requirements": [
-				{"Item": "BoneFragments", "Amount": 1}
+				{"Item": "BoneFragments", "Amount": 10}
 			]
 		}
 	},
 	"water_bucket": {
 		"name": "$water_bucket_name",
 		"description": "$water_bucket_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": null
 	},
 	"milk_bucket": {
 		"name": "$milk_bucket_name",
 		"description": "$milk_bucket_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": null
 	},
 	"PepperSeeds": {
@@ -106,7 +106,7 @@
 		"description": "$PumpkinSeeds_desc",
 		"assetBundle": "valharvest",
 		"crafting": {
-			"amount": 2,
+			"amount": 5,
 			"craftingStation": "",
 			"requirements": [
 				{"Item": "pumpkin", "Amount": 1}
@@ -130,7 +130,7 @@
 	"empty_bottle": {
 		"name": "$empty_bottle_name",
 		"description": "$empty_bottle_desc",
-		"assetBundle": "valharvestpieces",
+		"assetBundle": "valharvest",
 		"crafting": {
 			"amount": 2,
 			"craftingStation": "piece_workbench",
@@ -161,5 +161,23 @@
 			"requirements": [
 			]
 		}
+	},
+	"CornSeeds": {
+		"name": "$CornSeeds_name",
+		"description": "$CornSeeds_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"amount": 8,
+			"craftingStation": "",
+			"requirements": [
+				{"Item": "corn", "Amount": 1}
+			]
+		}
+	},
+	"corn": {
+		"name": "$corn_name",
+		"description": "$corn_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
 	}
 }

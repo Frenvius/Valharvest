@@ -38,46 +38,42 @@ namespace Valharvest.Scripts {
         // Todo: refactor this method to be more reusable
         public static void LoadPieces() {
             var jsonContent = ReadEmbeddedFile("pieces.resources");
-            if (jsonContent != null) {
-                var pieceJson = DeserializeObject<JsonObject>(jsonContent);
-                foreach (var piece in pieceJson) {
-                    var getAssetBundle = GetAssetBundle();
-                    var pieceObject = DeserializeObject<JsonObject>(piece.Value.ToString());
-                    var piecePrefab = getAssetBundle[pieceObject["assetBundle"].ToString()].LoadAsset<GameObject>(piece.Key);
+            if (jsonContent == null) return;
+            var pieceJson = DeserializeObject<JsonObject>(jsonContent);
+            foreach (var piece in pieceJson) {
+                var getAssetBundle = GetAssetBundle();
+                var pieceObject = DeserializeObject<JsonObject>(piece.Value.ToString());
+                var piecePrefab = getAssetBundle[pieceObject["assetBundle"].ToString()].LoadAsset<GameObject>(piece.Key);
                     
-                    try {
-                        var customPiece = CreatePieceRecipe(piecePrefab, pieceObject);
-                        
-                        var pieceInfo = customPiece.Piece;
-                        SetPieceInfo(pieceObject, pieceInfo);
-                        PieceManager.Instance.AddPiece(customPiece);
-                    } catch (Exception ex) {
-                        Jotunn.Logger.LogError($"Error while loading {piece.Key}: {ex.Message}");
-                    }
+                try {
+                    var customPiece = CreatePieceRecipe(piecePrefab, pieceObject);
+                    var pieceInfo = customPiece.Piece;
+                    SetPieceInfo(pieceObject, pieceInfo);
+                    PieceManager.Instance.AddPiece(customPiece);
+                } catch (Exception ex) {
+                    Jotunn.Logger.LogError($"Error while loading {piece.Key}: {ex.Message}");
                 }
             }
+            Jotunn.Logger.LogInfo("Loaded pieces");
         }
 
         public static Dictionary<string, AssetBundle> GetAssetBundle() {
             return new Dictionary<string, AssetBundle> {
-                {"valharvest", modAssets},
-                {"valharvestfoods", foodAssets},
-                {"valharvestplants", plantAssets},
-                {"valharvestpieces", pieceAssets}
+                {"valharvest", modAssets}
             };
         }
         
-        private static void SetItemDrop(JsonObject content, ItemDrop.ItemData.SharedData itemDrop) {
+        public static void SetItemDrop(JsonObject content, ItemDrop.ItemData.SharedData itemDrop) {
             if (content["name"] != null) itemDrop.m_name = content["name"].ToString();
             if (content["description"] != null) itemDrop.m_description = content["description"].ToString();
         }
 
-        private static void SetPieceInfo(JsonObject content, Piece piece) {
+        public static void SetPieceInfo(JsonObject content, Piece piece) {
             if (content["name"] != null) piece.m_name = content["name"].ToString();
             if (content["description"] != null) piece.m_description = content["description"].ToString();
         }
 
-        private static CustomItem CreateItemRecipe(GameObject itemPrefab, JsonObject itemObject) {
+        public static CustomItem CreateItemRecipe(GameObject itemPrefab, JsonObject itemObject) {
             var itemCraftObject = DeserializeObject<JsonObject>(itemObject["crafting"].ToString());
             var requirementsArr = DeserializeObject<RequirementConfig[]>(itemCraftObject["requirements"].ToString());
             var itemRecipe = new CustomItem(itemPrefab, true,
