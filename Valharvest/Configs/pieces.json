@@ -183,8 +183,8 @@
 		}
 	},
 	"piece_prep_table": {
-		"name": "$cooking_pot_name",
-		"description": "$cooking_pot_desc",
+		"name": "$preparation_table_name",
+		"description": "$preparation_table_desc",
 		"assetBundle": "valharvest",
 		"crafting": {
 			"allowedInDungeons": false,

@@ -10,6 +10,7 @@ using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using UnityEngine;
+using Valharvest.Scripts;
 using static Valharvest.Utils;
 using static Valharvest.Scripts.Loaders;
 using static Valharvest.WorldGen.Plants;
@@ -26,7 +27,7 @@ namespace Valharvest;
 public class Main : BaseUnityPlugin {
     public const string ModGuid = "com.frenvius.Valharvest";
     public const string ModName = "Valharvest";
-    public const string Version = "3.0.7";
+    public const string Version = "3.1.3";
 
     public static AssetBundle modAssets;
 
@@ -50,7 +51,6 @@ public class Main : BaseUnityPlugin {
     private Harmony _h;
 
     public void Awake() {
-        LoadEmbeddedAssembly("CustomScripts.resources");
         CreateConfigValues();
         AssetLoad();
         LoadItems();
@@ -61,10 +61,12 @@ public class Main : BaseUnityPlugin {
         PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlantsPrefab;
         ItemManager.OnItemsRegisteredFejd += LoadBalancedFood;
         ItemManager.OnItemsRegisteredFejd += LoadBalance;
+        ItemManager.OnItemsRegisteredFejd += LoadCookingStations;
         PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlants;
         PrefabManager.OnVanillaPrefabsAvailable += CustomDrops;
-        PrefabManager.OnVanillaPrefabsAvailable += CustomFeed;
         PrefabManager.OnVanillaPrefabsAvailable += CheckIfFarmingModInstalled;
+        PrefabManager.OnVanillaPrefabsAvailable += HandlePrefabComponent.ZNetViewAwakePatch;
+        PrefabManager.OnPrefabsRegistered += CustomFeed;
         PrefabManager.OnPrefabsRegistered += GenerateConsumableItemList;
 
         if (Configurations.Valharvest.DropEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += NewDrops;

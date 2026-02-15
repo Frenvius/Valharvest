@@ -207,8 +207,7 @@ public class RaisedBed {
 
     [HarmonyPrefix]
     [HarmonyPriority(Priority.Last)]
-    [HarmonyAfter("mod.valheim_plus", "org.bepinex.plugins.farming", "com.odinplusqol.mod", "BepIn.Sarcen.FarmGrid",
-        "Harmony.Sarcen.FarmGrid")]
+    [HarmonyAfter("mod.valheim_plus", "org.bepinex.plugins.farming", "com.odinplusqol.mod", "BepIn.Sarcen.FarmGrid", "Harmony.Sarcen.FarmGrid")]
     [HarmonyPatch(typeof(Plant), nameof(Plant.Awake))]
     public static void FixPlantHealth(Plant __instance) {
         __instance.gameObject.AddComponent<FixPlantHealth>();

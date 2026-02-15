@@ -60,8 +60,11 @@
 
 	"msg_TurnMassPlantingOff": "Turn off mass planting mode, press the ",
 	
-	"cooking_pot_name": "Cooking Pot",
-	"cooking_pot_desc": "This is a cooking pot. You can cook food here.",
+	"cooking_pot_name": "Stone Grill",
+	"cooking_pot_desc": "This is a stone grill. You can cook food here.",
+
+	"preparation_table_name": "Preparation Table",
+	"preparation_table_desc": "This is a preparation table. You can prepare food here.",
 	
 	"enough_empty_bottle": "You don't have enough empty bottles"
 }

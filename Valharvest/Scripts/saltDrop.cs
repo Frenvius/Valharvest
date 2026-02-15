@@ -16,7 +16,7 @@ public static class SaltDrop {
         if (!Environment.StackTrace.Contains("MineRock") &&
             (!Environment.StackTrace.Contains("DropOnDestroyed") ||
              !_dropTableObject.Contains("Rock"))) return;
-        if (!(Random.value < 0.35f)) return;
+        if (!(Random.value < Configurations.Valharvest.SaltDropPercentage.Value / 100.0)) return;
         var go = ZNetScene.instance.GetPrefab("salt");
         __result.Add(go);
     }

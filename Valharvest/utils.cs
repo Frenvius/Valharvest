@@ -136,9 +136,9 @@ namespace Valharvest {
                         new ItemConfig {
                             Name = foodObject["name"].ToString(),
                             Enabled = true,
-                            Amount = Convert.ToInt32(foodObject["amount"].ToString()),
-                            CraftingStation = foodObject["craftingStation"].ToString(),
-                            Requirements = requirementsArr
+                            Requirements = requirementsArr,
+                            CraftingStation = GetCookingStation(foodObject),
+                            Amount = Convert.ToInt32(foodObject["amount"].ToString())
                         });
                     
                     ChangeFoodDrop(foodItem, foodName);
@@ -152,6 +152,20 @@ namespace Valharvest {
 
             PrefabManager.OnVanillaPrefabsAvailable -= LoadNewFood;
         }
+        
+        private static string GetCookingStation(JsonObject foodObject) {
+	        var craftingStation = foodObject["craftingStation"].ToString();
+                    
+	        if (!Configurations.Valharvest.UseBoneAppetitCookingStations.Value) {
+		        if (craftingStation == "rk_prep") {
+			        craftingStation = "piece_prep_table";
+		        } else if (craftingStation == "rk_griddle") {
+			        craftingStation = "piece_cooking_pot";
+		        }
+	        }
+	        
+	        return craftingStation;
+				}
 
         public static void LoadBalancedFood() {
             using var stream = Assembly.GetExecutingAssembly()
@@ -165,7 +179,7 @@ namespace Valharvest {
                     var foodObject = DeserializeObject<JsonObject>(food.Value.ToString());
                     var requirementsArr = DeserializeObject<RequirementConfig[]>(foodObject["requirements"].ToString());
                     RegisterFood(foodName, foodName, Convert.ToInt32(foodObject["amount"].ToString()),
-                        foodObject["craftingStation"].ToString(), requirementsArr);
+	                    GetCookingStation(foodObject), requirementsArr);
                 }
 
                 ItemManager.OnItemsRegisteredFejd -= LoadBalancedFood;
@@ -226,20 +240,6 @@ namespace Valharvest {
             TextReader tr = new StreamReader(stream);
             var fileContents = tr.ReadToEnd();
             return fileContents;
-        }
-
-        public static void LoadEmbeddedAssembly(string assemblyName) {
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(assemblyName);
-            if (stream == null) {
-                Logger.LogError($"Could not load embedded assembly: {assemblyName}");
-                return;
-            }
-
-            using (stream) {
-                var data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                Assembly.Load(data);
-            }
         }
     }
 }

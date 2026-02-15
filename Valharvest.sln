@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Valharvest", "Valharvest\Valharvest.csproj", "{DEAF4438-8089-40ED-8175-398E1261D45B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomScripts", "CustomScripts\CustomScripts.csproj", "{02EF88B5-8939-4661-9DCC-1D497357FE62}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{DEAF4438-8089-40ED-8175-398E1261D45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEAF4438-8089-40ED-8175-398E1261D45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEAF4438-8089-40ED-8175-398E1261D45B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02EF88B5-8939-4661-9DCC-1D497357FE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02EF88B5-8939-4661-9DCC-1D497357FE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02EF88B5-8939-4661-9DCC-1D497357FE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02EF88B5-8939-4661-9DCC-1D497357FE62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

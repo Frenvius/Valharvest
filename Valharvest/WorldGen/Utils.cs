@@ -20,7 +20,9 @@ namespace Valharvest.WorldGen {
                     var plantObject = DeserializeObject<JsonObject>(plant.Value.ToString());
                     var bundle = plantObject["assetBundle"].ToString();
                     var dropString = plantObject["dropConfig"];
+                    var respawnConfig = plantObject["respawnConfig"];
                     var dropConfigs = Configurations.Valharvest.GetDropConfigs();
+                    var respawnConfigs = Configurations.Valharvest.GetRespawnTimeConfigs();
                     var plantPrefab = assetBundle[bundle].LoadAsset<GameObject>(plant.Key);
                     
                     LoadPlantMaterials(plantPrefab, plantObject);
@@ -30,6 +32,12 @@ namespace Valharvest.WorldGen {
                             var config = dropConfigs[dropString.ToString()];
                             var pickable = plantPrefab.GetComponent<Pickable>();
                             pickable.m_amount = config.Value;
+                        }
+                        
+                        if (respawnConfig != null) {
+							var config = respawnConfigs[respawnConfig.ToString()];
+							var pickable = plantPrefab.GetComponent<Pickable>();
+							pickable.m_respawnTimeMinutes = config.Value * 60;
                         }
 
                         if (plantObject["crafting"] != null) {
@@ -59,7 +67,7 @@ namespace Valharvest.WorldGen {
                             Dictionary<Type, int> typeDict = GetTypeDict();
                             Dictionary<string, int> getMatItem = GetMatItem();
                             var matObject = DeserializeObject<JsonObject>(plantMaterials[matRealName].ToString());
-                            var shader = Shader.Find(matObject["shader"].ToString());
+                            var shader = PrefabManager.Cache.GetPrefab<Shader>(matObject["shader"].ToString());
                             var texture = material.mainTexture;
 
                             ConfigureMaterial(material, shader, matObject, typeDict, getMatItem);
