@@ -41,6 +41,12 @@
 		"assetBundle": "valharvest",
 		"crafting": null
 	},
+	"vh_egg": {
+		"name": "$vh_egg_name",
+		"description": "$vh_egg_desc",
+		"assetBundle": "valharvest",
+		"crafting": null
+	},
 	"tomato": {
 		"name": "$tomato_name",
 		"description": "$tomato_desc",

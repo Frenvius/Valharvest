@@ -22,7 +22,7 @@ namespace Valharvest;
 
 [BepInPlugin(ModGuid, ModName, Version)]
 [BepInDependency(Jotunn.Main.ModGuid, "2.7.0")]
-[BepInDependency("com.rockerkitten.boneappetit", "3.0.2")]
+[BepInDependency("com.rockerkitten.boneappetit", BepInDependency.DependencyFlags.SoftDependency)]
 [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 public class Main : BaseUnityPlugin {
     public const string ModGuid = "com.frenvius.Valharvest";
@@ -59,8 +59,13 @@ public class Main : BaseUnityPlugin {
         PrefabManager.OnVanillaPrefabsAvailable += LoadNewFood;
         PrefabManager.OnVanillaPrefabsAvailable += LoadSounds;
         PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlantsPrefab;
-        ItemManager.OnItemsRegisteredFejd += LoadBalancedFood;
-        ItemManager.OnItemsRegisteredFejd += LoadBalance;
+
+        // BoneAppetit-specific features - only register if BA is installed
+        if (BoneAppetitCompat.IsInstalled) {
+            ItemManager.OnItemsRegisteredFejd += LoadBalancedFood;
+            ItemManager.OnItemsRegisteredFejd += LoadBalance;
+        }
+
         ItemManager.OnItemsRegisteredFejd += LoadCookingStations;
         PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlants;
         PrefabManager.OnVanillaPrefabsAvailable += CustomDrops;
@@ -68,6 +73,7 @@ public class Main : BaseUnityPlugin {
         PrefabManager.OnVanillaPrefabsAvailable += HandlePrefabComponent.ZNetViewAwakePatch;
         PrefabManager.OnPrefabsRegistered += CustomFeed;
         PrefabManager.OnPrefabsRegistered += GenerateConsumableItemList;
+        PrefabManager.OnPrefabsRegistered += PrepTableRecipeCopier.CopyVanillaPrepTableRecipes;
 
         if (Configurations.Valharvest.DropEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += NewDrops;
 
@@ -109,6 +115,11 @@ public class Main : BaseUnityPlugin {
     }
 
     public void LoadBalance() {
+        if (!BoneAppetitCompat.IsInstalled) {
+            ItemManager.OnItemsRegistered -= LoadBalance;
+            return;
+        }
+
         try {
             SeagullEgg();
             Kabob();
@@ -245,6 +256,30 @@ public class Main : BaseUnityPlugin {
     }
 
     public void CustomDrops() {
+        if (!BoneAppetitCompat.IsInstalled) {
+            try {
+                var seagullFab = PrefabManager.Instance.GetPrefab("Seagal");
+                if (seagullFab != null) {
+                    var eggPrefab = PrefabManager.Instance.GetPrefab(BoneAppetitCompat.GetEggItem());
+                    if (eggPrefab != null) {
+                        var dropComponent = seagullFab.GetComponent<DropOnDestroyed>();
+                        if (dropComponent != null) {
+                            dropComponent.m_dropWhenDestroyed.m_drops.Add(new DropTable.DropData {
+                                m_item = eggPrefab,
+                                m_stackMin = 1,
+                                m_stackMax = 2,
+                                m_weight = 0.75f
+                            });
+                            Jotunn.Logger.LogInfo($"Added vh_egg drop to seagulls (BoneAppetit not installed)");
+                        }
+                    }
+                }
+            } catch (System.Exception ex) {
+                Jotunn.Logger.LogWarning($"Failed to add egg drops to seagulls: {ex.Message}");
+            }
+        }
+
+        // Keep raw_seagull commented out
         // seagullFab = PrefabManager.Instance.GetPrefab("Seagal");
         // var seagullFabDrop = PrefabManager.Instance.GetPrefab("raw_seagull");
         //
@@ -277,7 +312,7 @@ public class Main : BaseUnityPlugin {
         AddConsumableItemsToCreature(consumableItemsBoar, "Boar");
 
         string[] consumableItemsWolf = new[] {
-	        "rk_pork",
+	        BoneAppetitCompat.GetPorkItem(),
         };
         AddConsumableItemsToCreature(consumableItemsWolf, "Wolf");
 

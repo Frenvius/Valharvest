@@ -20,7 +20,7 @@ public class EggAndFeatherDrop {
         if (!isPrefabInArray) return;
         if (!(Random.value < 0.15f)) return;
         var feather = ZNetScene.instance.GetPrefab("Feathers");
-        var egg = ZNetScene.instance.GetPrefab("rk_egg");
+        var egg = ZNetScene.instance.GetPrefab(BoneAppetitCompat.GetEggItem());
         int numFeathers = Random.Range(1, 8);
         int numEggs = Random.Range(1, 3);
         for (int i = 0; i < numFeathers; i++) {

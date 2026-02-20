@@ -65,6 +65,9 @@
 
 	"preparation_table_name": "Preparation Table",
 	"preparation_table_desc": "This is a preparation table. You can prepare food here.",
-	
+
+	"preserving_shelf_name": "Preserving Shelf",
+	"preserving_shelf_desc": "Herbs, pots, and baskets to prepare feasts worthy of Odin.",
+
 	"enough_empty_bottle": "You don't have enough empty bottles"
 }

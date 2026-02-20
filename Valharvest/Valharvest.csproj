@@ -96,6 +96,7 @@
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="Scripts\HandlePrefabComponent.cs" />
     <Compile Include="Scripts\BoneAppetitBalance.cs" />
+    <Compile Include="Scripts\BoneAppetitCompat.cs" />
     <Compile Include="Scripts\ConsumableItemExtractor.cs" />
     <Compile Include="Scripts\CustomBeehive.cs" />
     <Compile Include="Scripts\CustomHeightmap.cs" />

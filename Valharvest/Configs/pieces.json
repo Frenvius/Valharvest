@@ -196,5 +196,21 @@
 				{"Item": "Tin", "Amount": 3, "Recover": true}
 			]
 		}
+	},
+	"vh_piece_prep_table_ext1": {
+		"name": "$preserving_shelf_name",
+		"description": "$preserving_shelf_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "forge",
+			"extendStation": "piece_prep_table",
+			"requirements": [
+				{"Item": "Iron", "Amount": 2, "Recover": true},
+				{"Item": "FineWood", "Amount": 8, "Recover": true},
+				{"Item": "LeatherScraps", "Amount": 4, "Recover": true}
+			]
+		}
 	}
 }

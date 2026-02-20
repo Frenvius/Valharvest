@@ -129,6 +129,7 @@ namespace Valharvest {
                 var foodName = food.Key;
                 var foodObject = DeserializeObject<JsonObject>(food.Value.ToString());
                 var requirementsArr = DeserializeObject<RequirementConfig[]>(foodObject["requirements"].ToString());
+                BoneAppetitCompat.RemapIngredients(requirementsArr);
                 CustomItem foodItem = null;
                 try {
                     var foodFab = modAssets.LoadAsset<GameObject>(foodName);
@@ -155,19 +156,16 @@ namespace Valharvest {
         
         private static string GetCookingStation(JsonObject foodObject) {
 	        var craftingStation = foodObject["craftingStation"].ToString();
-                    
-	        if (!Configurations.Valharvest.UseBoneAppetitCookingStations.Value) {
-		        if (craftingStation == "rk_prep") {
-			        craftingStation = "piece_prep_table";
-		        } else if (craftingStation == "rk_griddle") {
-			        craftingStation = "piece_cooking_pot";
-		        }
-	        }
-	        
-	        return craftingStation;
+	        return BoneAppetitCompat.GetCookingStation(craftingStation,
+	            Configurations.Valharvest.UseBoneAppetitCookingStations.Value);
 				}
 
         public static void LoadBalancedFood() {
+            if (!BoneAppetitCompat.IsInstalled) {
+                ItemManager.OnItemsRegisteredFejd -= LoadBalancedFood;
+                return;
+            }
+
             using var stream = Assembly.GetExecutingAssembly()
                 .GetManifestResourceStream("BoneAppetitBalance.resources");
             if (stream != null) {
@@ -178,6 +176,7 @@ namespace Valharvest {
                     var foodName = food.Key;
                     var foodObject = DeserializeObject<JsonObject>(food.Value.ToString());
                     var requirementsArr = DeserializeObject<RequirementConfig[]>(foodObject["requirements"].ToString());
+                    BoneAppetitCompat.RemapIngredients(requirementsArr);
                     RegisterFood(foodName, foodName, Convert.ToInt32(foodObject["amount"].ToString()),
 	                    GetCookingStation(foodObject), requirementsArr);
                 }

@@ -44,8 +44,12 @@ public static class Loaders {
 		if (jsonContent == null) return;
 		var pieceJson = DeserializeObject<JsonObject>(jsonContent);
 		foreach (KeyValuePair<string, object> piece in pieceJson) {
-			if (Configurations.Valharvest.UseBoneAppetitCookingStations.Value)
+			if (BoneAppetitCompat.IsInstalled && Configurations.Valharvest.UseBoneAppetitCookingStations.Value)
 				if (piece.Key is "piece_cooking_pot" or "piece_prep_table")
+					continue;
+
+			if (Configurations.Valharvest.UseVanillaPrepTable.Value)
+				if (piece.Key is "piece_prep_table" or "vh_piece_prep_table_ext1")
 					continue;
 
 			Dictionary<string, AssetBundle> getAssetBundle = GetAssetBundle();
@@ -67,9 +71,14 @@ public static class Loaders {
 	}
 
 	public static void LoadCookingStations() {
+		if (!BoneAppetitCompat.IsInstalled) {
+			return;
+		}
+
 		if (!Configurations.Valharvest.UseBoneAppetitCookingStations.Value) {
 			PieceManager.Instance.RemovePiece("rk_prep");
 			PieceManager.Instance.RemovePiece("rk_griddle");
+			PieceManager.Instance.RemovePiece("rk_grill");
 		}
 	}
 
@@ -92,12 +101,15 @@ public static class Loaders {
 	public static CustomItem CreateItemRecipe(GameObject itemPrefab, JsonObject itemObject) {
 		var itemCraftObject = DeserializeObject<JsonObject>(itemObject["crafting"].ToString());
 		RequirementConfig[] requirementsArr = DeserializeObject<RequirementConfig[]>(itemCraftObject["requirements"].ToString());
+		BoneAppetitCompat.RemapIngredients(requirementsArr);
+		var craftingStation = itemCraftObject["craftingStation"].ToString();
 		var itemRecipe = new CustomItem(itemPrefab, true,
 			new ItemConfig {
 				Name = itemObject["name"].ToString(),
 				Enabled = true,
 				Amount = Convert.ToInt32(itemCraftObject["amount"].ToString()),
-				CraftingStation = itemCraftObject["craftingStation"].ToString(),
+				CraftingStation = BoneAppetitCompat.GetCookingStation(craftingStation,
+					Configurations.Valharvest.UseBoneAppetitCookingStations.Value),
 				Requirements = requirementsArr
 			});
 
@@ -107,15 +119,20 @@ public static class Loaders {
 	public static CustomPiece CreatePieceRecipe(GameObject piecePrefab, JsonObject pieceObject) {
 		var itemCraftObject = DeserializeObject<JsonObject>(pieceObject["crafting"].ToString());
 		RequirementConfig[] requirementsArr = DeserializeObject<RequirementConfig[]>(itemCraftObject["requirements"].ToString());
-		var pieceRecipe = new CustomPiece(piecePrefab, true,
-			new PieceConfig {
-				Name = pieceObject["name"].ToString(),
-				Enabled = true,
-				AllowedInDungeons = (bool)itemCraftObject["allowedInDungeons"],
-				PieceTable = itemCraftObject["pieceTable"].ToString(),
-				CraftingStation = itemCraftObject["craftingStation"]?.ToString(),
-				Requirements = requirementsArr
-			});
+		var pieceConfig = new PieceConfig {
+			Name = pieceObject["name"].ToString(),
+			Enabled = true,
+			AllowedInDungeons = (bool)itemCraftObject["allowedInDungeons"],
+			PieceTable = itemCraftObject["pieceTable"].ToString(),
+			CraftingStation = itemCraftObject["craftingStation"]?.ToString(),
+			Requirements = requirementsArr
+		};
+
+		if (itemCraftObject.ContainsKey("extendStation")) {
+			pieceConfig.ExtendStation = itemCraftObject["extendStation"].ToString();
+		}
+
+		var pieceRecipe = new CustomPiece(piecePrefab, true, pieceConfig);
 
 		return pieceRecipe;
 	}

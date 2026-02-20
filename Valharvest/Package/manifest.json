@@ -5,7 +5,6 @@
   "description": "New vegetables to plant and harvest, like potatoes, rice, tomatoes, pumpkins, etc, and new ingredients to prepare new foods!",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.1100",
-    "ValheimModding-Jotunn-2.7.0",
-    "RockerKitten-BoneAppetit-3.0.2"
+    "ValheimModding-Jotunn-2.7.0"
   ]
 }
