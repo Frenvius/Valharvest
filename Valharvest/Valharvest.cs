@@ -27,7 +27,7 @@ namespace Valharvest;
 public class Main : BaseUnityPlugin {
     public const string ModGuid = "com.frenvius.Valharvest";
     public const string ModName = "Valharvest";
-    public const string Version = "3.1.3";
+    public const string Version = "3.2.0";
 
     public static AssetBundle modAssets;
 
