@@ -61,7 +61,7 @@ public class RaisedBed {
                 piece.SetInvalidPlacementHeightlight(true);
                 __instance.m_placementStatus = Player.PlacementStatus.Invalid;
                 string message = Localization.instance.Localize("$msg_TurnMassPlantingOff");
-                __instance.Message(MessageHud.MessageType.Center, $"{message}{massPlantingKey.ToString()} key", 0, (Sprite) null);
+                __instance.Message(MessageHud.MessageType.Center, $"{message}{massPlantingKey.ToString()} key");
             }
         }
 
