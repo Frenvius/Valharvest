@@ -81,6 +81,7 @@
     <Compile Include="Scripts\BoneAppetitBalance.cs" />
     <Compile Include="Scripts\BoneAppetitCompat.cs" />
     <Compile Include="Scripts\ConsumableItemExtractor.cs" />
+    <Compile Include="Scripts\ExportItemsCommand.cs" />
     <Compile Include="Scripts\CustomBeehive.cs" />
     <Compile Include="Scripts\CustomHeightmap.cs" />
     <Compile Include="Scripts\eggAndFeatherDrop.cs" />

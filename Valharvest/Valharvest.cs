@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using BepInEx;
@@ -16,7 +16,6 @@ using static Valharvest.Scripts.Loaders;
 using static Valharvest.WorldGen.Plants;
 using static Valharvest.WorldGen.PlantUtils;
 using static Valharvest.Scripts.BoneAppetitBalance;
-using static Valharvest.Scripts.ConsumableItemExtractor;
 
 namespace Valharvest;
 
@@ -72,8 +71,10 @@ public class Main : BaseUnityPlugin {
         PrefabManager.OnVanillaPrefabsAvailable += CheckIfFarmingModInstalled;
         PrefabManager.OnVanillaPrefabsAvailable += HandlePrefabComponent.ZNetViewAwakePatch;
         PrefabManager.OnPrefabsRegistered += CustomFeed;
-        PrefabManager.OnPrefabsRegistered += GenerateConsumableItemList;
         PrefabManager.OnPrefabsRegistered += PrepTableRecipeCopier.CopyVanillaPrepTableRecipes;
+
+        // Register console command for item extraction
+        CommandManager.Instance.AddConsoleCommand(new ExportItemsCommand());
 
         if (Configurations.Valharvest.DropEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += NewDrops;
 
