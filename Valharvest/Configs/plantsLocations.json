@@ -153,20 +153,6 @@
 		"forestThresholdMin": null,
 		"forestThresholdMax": null
 	},
-	"Pickable_Watermelon": {
-		"min": 0,
-		"max": 0.5,
-		"groupSizeMin": 1,
-		"groupSizeMax": 2,
-		"groupRadius": 5,
-		"minAltitude": 2,
-		"maxAltitude": 50,
-		"biome": "plains",
-		"biomeArea": "median",
-		"inForest": null,
-		"forestThresholdMin": null,
-		"forestThresholdMax": null
-	},
 	"Pickable_Corn": {
 		"min": 0,
 		"max": 0.5,

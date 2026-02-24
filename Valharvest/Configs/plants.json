@@ -422,15 +422,6 @@
     },
     "crafting": null
   },
-  "Pickable_Watermelon": {
-    "name": null,
-    "description": null,
-    "assetBundle": "valharvest",
-    "dropConfig": null,
-    "respawnConfig": null,
-    "materials": {},
-    "crafting": null
-  },
   "Pickable_Corn": {
     "name": null,
     "description": null,
@@ -684,25 +675,6 @@
       "requirements": [
         {
           "Item": "PumpkinSeeds",
-          "Amount": 1
-        }
-      ]
-    }
-  },
-  "sapling_watermelon": {
-    "name": "$sapling_watermelon_name",
-    "description": null,
-    "assetBundle": "valharvest",
-    "dropConfig": null,
-    "respawnConfig": null,
-    "materials": {},
-    "crafting": {
-      "allowedInDungeons": false,
-      "pieceTable": "_CultivatorPieceTable",
-      "craftingStation": null,
-      "requirements": [
-        {
-          "Item": "WatermelonSeeds",
           "Amount": 1
         }
       ]

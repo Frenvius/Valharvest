@@ -157,17 +157,6 @@
 			]
 		}
 	},
-	"WatermelonSeeds": {
-		"name": "$WatermelonSeeds_name",
-		"description": "$WatermelonSeeds_desc",
-		"assetBundle": "valharvest",
-		"crafting": {
-			"amount": 2,
-			"craftingStation": "",
-			"requirements": [
-			]
-		}
-	},
 	"CornSeeds": {
 		"name": "$CornSeeds_name",
 		"description": "$CornSeeds_desc",
