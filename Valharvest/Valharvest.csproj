@@ -163,7 +163,7 @@
 <!--      copy "$(TargetDir)Valharvest.dll" "D:\projects\thunderData\Valheim\profiles\Mods Updater\BepInEx\plugins\Frenvius-Valharvest\Valharvest.dll"-->
       copy "$(TargetDir)Valharvest.dll" "$(VALHEIM_INSTALL)\BepInEx\plugins\Frenvius-Valharvest\Valharvest.dll"
       copy "$(TargetDir)Valharvest.dll" "C:\Users\frenv\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Disneyland\BepInEx\plugins\Frenvius-Valharvest\Valharvest.dll"
-      xcopy "$(ProjectDir)Package\plugins\Translations" "$(VALHEIM_INSTALL.TrimEnd('\'))\BepInEx\plugins\Frenvius-Valharvest\Translations" /E /Y
+      xcopy "$(ProjectDir)Package\plugins\Translations\*" "$(VALHEIM_INSTALL.TrimEnd('\'))\BepInEx\plugins\Frenvius-Valharvest\Translations\" /E /Y /I
     </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureEnvironmentPropsImport" BeforeTargets="PrepareForBuild">

@@ -26,7 +26,7 @@ namespace Valharvest;
 public class Main : BaseUnityPlugin {
     public const string ModGuid = "com.frenvius.Valharvest";
     public const string ModName = "Valharvest";
-    public const string Version = "3.2.0";
+    public const string Version = "3.2.1";
 
     public static AssetBundle modAssets;
 
@@ -59,7 +59,6 @@ public class Main : BaseUnityPlugin {
         PrefabManager.OnVanillaPrefabsAvailable += LoadSounds;
         PrefabManager.OnVanillaPrefabsAvailable += AddCustomPlantsPrefab;
 
-        // BoneAppetit-specific features - only register if BA is installed
         if (BoneAppetitCompat.IsInstalled) {
             ItemManager.OnItemsRegisteredFejd += LoadBalancedFood;
             ItemManager.OnItemsRegisteredFejd += LoadBalance;
@@ -70,10 +69,10 @@ public class Main : BaseUnityPlugin {
         PrefabManager.OnVanillaPrefabsAvailable += CustomDrops;
         PrefabManager.OnVanillaPrefabsAvailable += CheckIfFarmingModInstalled;
         PrefabManager.OnVanillaPrefabsAvailable += HandlePrefabComponent.ZNetViewAwakePatch;
+        PrefabManager.OnPrefabsRegistered += HandlePrefabComponent.PrepTableSmokePatch;
         PrefabManager.OnPrefabsRegistered += CustomFeed;
         PrefabManager.OnPrefabsRegistered += PrepTableRecipeCopier.CopyVanillaPrepTableRecipes;
 
-        // Register console command for item extraction
         CommandManager.Instance.AddConsoleCommand(new ExportItemsCommand());
 
         if (Configurations.Valharvest.DropEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += NewDrops;

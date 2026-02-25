@@ -16,7 +16,7 @@ public static class HandlePrefabComponent {
 	    if (waterWell) {
 		    var water = waterWell.gameObject.transform.Find("water");
 		    var spawnPoint = waterWell.gameObject.transform.Find("spawnpoint");
-		    
+
 		    if (water != null && spawnPoint != null) {
 			    var customBeehive = waterWell.gameObject.AddComponent<CustomBeehive>();
 			    customBeehive.m_hideWhenPicked = water.gameObject;
@@ -33,5 +33,17 @@ public static class HandlePrefabComponent {
 			    customBeehive.m_spawnEffect = spawnEffect;
 		    }
 	    }
+    }
+
+    public static void PrepTableSmokePatch() {
+        if (Configurations.Valharvest.PrepTableSmokeEnabled.Value) return;
+
+        var prepTable = PrefabManager.Instance.GetPrefab("piece_prep_table");
+        if (prepTable == null) return;
+
+        var smokeSpawner = prepTable.transform.Find("connectionEffectPoint/prep/SmokeSpawner");
+        if (smokeSpawner != null) {
+            smokeSpawner.gameObject.SetActive(false);
+        }
     }
 }

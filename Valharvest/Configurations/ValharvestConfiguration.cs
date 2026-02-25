@@ -13,6 +13,7 @@ public class Valharvest {
 	public static ConfigEntry<bool> PickableProgressEnabled;
 	public static ConfigEntry<bool> UseBoneAppetitCookingStations;
 	public static ConfigEntry<bool> UseVanillaPrepTable;
+	public static ConfigEntry<bool> PrepTableSmokeEnabled;
 
 	public static Dictionary<string, ConfigEntry<int>> GetDropConfigs() {
 		return new Dictionary<string, ConfigEntry<int>> {
@@ -40,6 +41,7 @@ public class Valharvest {
 		SaltDropPercentage = config.Bind("Salt", "Enable", 35, new ConfigDescription("Chance of drop Salt", null, new ConfigurationManagerAttributes { IsAdminOnly = true }));
 		UseBoneAppetitCookingStations = config.Bind("Bone Appetit", "UseCookingStations", false, new ConfigDescription("When BoneAppetit is installed, use its cooking stations instead of Valharvest's. Has no effect if BoneAppetit is not installed.", null, new ConfigurationManagerAttributes { IsAdminOnly = true }));
 		UseVanillaPrepTable = config.Bind("Cooking Stations", "UseVanillaPrepTable", false, new ConfigDescription("Use vanilla prep table (piece_preptable) instead of Valharvest's custom table. When enabled, all Valharvest recipes will be added to the vanilla prep table and the custom prep table will not be available.", null, new ConfigurationManagerAttributes { IsAdminOnly = true }));
+		PrepTableSmokeEnabled = config.Bind("Cooking Stations", "PrepTableSmoke", true, new ConfigDescription("Enable smoke effects on the preparation table", null, new ConfigurationManagerAttributes { IsAdminOnly = true }));
 		// pepperChance = Config.Bind("Pepper", "Enable", 40, new ConfigDescription("Chance of drop Spicy Pepper", null, new ConfigurationManagerAttributes {IsAdminOnly = true}));
 		// garlicChange = Config.Bind("Garlic", "Enable", 40, new ConfigDescription("Chance of drop Garlic", null, new ConfigurationManagerAttributes {IsAdminOnly = true}));
 		// riceChange = Config.Bind("Rice", "Enable", 40, new ConfigDescription("Chance of drop Rice", null, new ConfigurationManagerAttributes {IsAdminOnly = true}));
