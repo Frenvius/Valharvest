@@ -70,7 +70,7 @@ public static class InteractPatch {
 [HarmonyPatch(typeof(Tameable), nameof(Tameable.GetHoverText))]
 public static class HoverTextPatch {
     public static void Postfix(ref string __result, Tameable __instance) {
-        if (!__instance.gameObject.GetComponent<Humanoid>().IsTamed()) return;
+        if (__instance.m_character == null || !__instance.m_character.IsTamed()) return;
         if (!((__instance.gameObject.name == "Lox(Clone)") | __instance.gameObject.name.Contains("Lox"))) return;
         var loxComponent = __instance.gameObject.GetComponent<MilkLox>();
         int milkLevel = loxComponent.GetMilkLevel();
