@@ -58,21 +58,20 @@ namespace Valharvest.WorldGen {
         private static void LoadPlantMaterials(GameObject plantPrefab, JsonObject plantObject) {
             var plantMaterials = DeserializeObject<JsonObject>(plantObject["materials"].ToString());
             foreach (var renderer in ShaderHelper.GetRenderers(plantPrefab)) {
-                foreach (var material in renderer.materials) {
-                    const string materialInstance = " (Instance)";
+                foreach (var material in renderer.sharedMaterials) {
+                    if (material == null) continue;
                     var matName = material.name;
-                    var matRealName = matName.Substring(0, matName.Length - materialInstance.Length);
-                    if (plantMaterials.ContainsKey(matRealName)) {
-                        if (!string.IsNullOrEmpty(plantMaterials[matRealName].ToString())) {
+                    if (plantMaterials.ContainsKey(matName)) {
+                        if (!string.IsNullOrEmpty(plantMaterials[matName].ToString())) {
                             Dictionary<Type, int> typeDict = GetTypeDict();
                             Dictionary<string, int> getMatItem = GetMatItem();
-                            var matObject = DeserializeObject<JsonObject>(plantMaterials[matRealName].ToString());
+                            var matObject = DeserializeObject<JsonObject>(plantMaterials[matName].ToString());
                             var shader = PrefabManager.Cache.GetPrefab<Shader>(matObject["shader"].ToString());
                             var texture = material.mainTexture;
 
                             ConfigureMaterial(material, shader, matObject, typeDict, getMatItem);
                             material.SetTexture(MainTex, texture);
-                        }   
+                        }
                     }
                 }
             }
