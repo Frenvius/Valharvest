@@ -70,6 +70,7 @@ public class Main : BaseUnityPlugin {
         PrefabManager.OnVanillaPrefabsAvailable += CheckIfFarmingModInstalled;
         PrefabManager.OnVanillaPrefabsAvailable += HandlePrefabComponent.ZNetViewAwakePatch;
         PrefabManager.OnPrefabsRegistered += HandlePrefabComponent.PrepTableSmokePatch;
+        PrefabManager.OnPrefabsRegistered += HandlePrefabComponent.FoodCrateEffectsPatch;
         PrefabManager.OnPrefabsRegistered += CustomFeed;
         PrefabManager.OnPrefabsRegistered += PrepTableRecipeCopier.CopyVanillaPrepTableRecipes;
 

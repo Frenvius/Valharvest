@@ -85,6 +85,19 @@
 			]
 		}
 	},
+	"vh_piece_food_crate": {
+		"name": "$vh_piece_food_crate_name",
+		"description": "$vh_piece_food_crate_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 10, "Recover": true}
+			]
+		}
+	},
 	"piece_tomatoBox": {
 		"name": "$piece_tomatoBox_name",
 		"description": "$piece_tomatoBox_desc",

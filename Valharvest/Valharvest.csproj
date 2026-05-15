@@ -77,7 +77,6 @@
   <ItemGroup>
     <Compile Include="Configurations\ValharvestConfiguration.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
-    <Compile Include="Scripts\HandlePrefabComponent.cs" />
     <Compile Include="Scripts\BoneAppetitBalance.cs" />
     <Compile Include="Scripts\BoneAppetitCompat.cs" />
     <Compile Include="Scripts\ConsumableItemExtractor.cs" />
@@ -86,8 +85,10 @@
     <Compile Include="Scripts\CustomHeightmap.cs" />
     <Compile Include="Scripts\eggAndFeatherDrop.cs" />
     <Compile Include="Scripts\FixPlantHealth.cs" />
+    <Compile Include="Scripts\FoodCrate.cs" />
     <Compile Include="Scripts\HandlePrefabComponent.cs" />
     <Compile Include="Scripts\InteractFertilizer.cs" />
+    <Compile Include="Scripts\LegacyBoxMigrator.cs" />
     <Compile Include="Scripts\Loaders.cs" />
     <Compile Include="Scripts\loxMilk.cs" />
     <Compile Include="Scripts\MilkLox.cs" />

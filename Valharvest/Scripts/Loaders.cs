@@ -13,6 +13,11 @@ using Logger = Jotunn.Logger;
 namespace Valharvest.Scripts;
 
 public static class Loaders {
+	private static readonly string[] LegacyBoxes = {
+		"piece_appleBox", "piece_pepperBox", "piece_garlicBox",
+		"piece_potatoBox", "piece_saltBox", "piece_tomatoBox"
+	};
+
 	public static void LoadItems() {
 		string jsonContent = ReadEmbeddedFile("items.resources");
 		if (jsonContent != null) {
@@ -56,8 +61,15 @@ public static class Loaders {
 			var pieceObject = DeserializeObject<JsonObject>(piece.Value.ToString());
 			var piecePrefab = getAssetBundle[pieceObject["assetBundle"].ToString()].LoadAsset<GameObject>(piece.Key);
 
+			if (piece.Key == "vh_piece_food_crate" && piecePrefab.GetComponent<FoodCrate>() == null)
+				piecePrefab.AddComponent<FoodCrate>();
+
+			bool isLegacyBox = Array.IndexOf(LegacyBoxes, piece.Key) >= 0;
+			if (isLegacyBox && piecePrefab.GetComponent<LegacyBoxMigrator>() == null)
+				piecePrefab.AddComponent<LegacyBoxMigrator>();
+
 			try {
-				CustomPiece customPiece = CreatePieceRecipe(piecePrefab, pieceObject);
+				CustomPiece customPiece = CreatePieceRecipe(piecePrefab, pieceObject, !isLegacyBox);
 				Piece pieceInfo = customPiece.Piece;
 				SetPieceInfo(pieceObject, pieceInfo);
 				PieceManager.Instance.AddPiece(customPiece);
@@ -116,12 +128,12 @@ public static class Loaders {
 		return itemRecipe;
 	}
 
-	public static CustomPiece CreatePieceRecipe(GameObject piecePrefab, JsonObject pieceObject) {
+	public static CustomPiece CreatePieceRecipe(GameObject piecePrefab, JsonObject pieceObject, bool enabled = true) {
 		var itemCraftObject = DeserializeObject<JsonObject>(pieceObject["crafting"].ToString());
 		RequirementConfig[] requirementsArr = DeserializeObject<RequirementConfig[]>(itemCraftObject["requirements"].ToString());
 		var pieceConfig = new PieceConfig {
 			Name = pieceObject["name"].ToString(),
-			Enabled = true,
+			Enabled = enabled,
 			AllowedInDungeons = (bool)itemCraftObject["allowedInDungeons"],
 			PieceTable = itemCraftObject["pieceTable"].ToString(),
 			CraftingStation = itemCraftObject["craftingStation"]?.ToString(),

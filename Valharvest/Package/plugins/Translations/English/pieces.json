@@ -34,6 +34,9 @@
 	
 	"lox_milk_extract": "Milk Lox",
 
+	"vh_piece_food_crate_name": "Food Crate",
+	"vh_piece_food_crate_desc": "A wooden crate for storing food. Holds the first item's appearance until emptied.",
+
 	"piece_tomatoBox_name": "Tomato Box",
 	"piece_tomatoBox_desc": "ㅤ",
 

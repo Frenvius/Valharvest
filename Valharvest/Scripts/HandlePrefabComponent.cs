@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Jotunn.Managers;
+using UnityEngine;
 
 namespace Valharvest.Scripts;
 
@@ -45,5 +46,37 @@ public static class HandlePrefabComponent {
         if (smokeSpawner != null) {
             smokeSpawner.gameObject.SetActive(false);
         }
+    }
+
+    public static void FoodCrateEffectsPatch() {
+        var crate = PrefabManager.Instance.GetPrefab("vh_piece_food_crate");
+        if (crate == null) return;
+
+        var placeFx = PrefabManager.Instance.GetPrefab("vfx_Place_wood_pole");
+        var placeSfx = PrefabManager.Instance.GetPrefab("sfx_build_hammer_wood");
+        var hitFx    = PrefabManager.Instance.GetPrefab("vfx_SawDust");
+        var hitSfx   = PrefabManager.Instance.GetPrefab("sfx_wood_hit");
+        var destroyFx = PrefabManager.Instance.GetPrefab("vfx_SawDust");
+        var destroySfx = PrefabManager.Instance.GetPrefab("sfx_wood_destroyed");
+
+        var piece = crate.GetComponent<Piece>();
+        if (piece != null) {
+            piece.m_placeEffect = BuildEffectList(placeFx, placeSfx);
+        }
+
+        var wnt = crate.GetComponent<WearNTear>();
+        if (wnt != null) {
+            wnt.m_hitEffect       = BuildEffectList(hitFx, hitSfx);
+            wnt.m_destroyedEffect = BuildEffectList(destroyFx, destroySfx);
+        }
+    }
+
+    private static EffectList BuildEffectList(params GameObject[] effects) {
+        var datas = new System.Collections.Generic.List<EffectList.EffectData>();
+        foreach (var fx in effects) {
+            if (fx == null) continue;
+            datas.Add(new EffectList.EffectData { m_prefab = fx, m_enabled = true });
+        }
+        return new EffectList { m_effectPrefabs = datas.ToArray() };
     }
 }
