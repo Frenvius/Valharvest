@@ -72,5 +72,8 @@
 	"preserving_shelf_name": "Preserving Shelf",
 	"preserving_shelf_desc": "Herbs, pots, and baskets to prepare feasts worthy of Odin.",
 
-	"enough_empty_bottle": "You don't have enough empty bottles"
+	"enough_empty_bottle": "You don't have enough empty bottles",
+
+	"valharvest_ba_notice_title": "Valharvest Cooking Stations",
+	"valharvest_ba_notice_body": "Valharvest now ships with its own cooking stations. If you'd rather keep using BoneAppetit's, you can re-enable them in the Valharvest config under 'UseBoneAppetitCookingStations'."
 }

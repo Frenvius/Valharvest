@@ -1,4 +1,4 @@
-﻿{
+{
   "meatburrito_name": "Burrito de Carne",
   "meatburrito_desc": "Não há problema que um burrito não consiga resolver.",
   "dragomellete_name": "Omelete de Dragão",
@@ -79,5 +79,7 @@
   "sapling_potato_name": "Batata",
   "sapling_pumpkin_name": "Abóbora",
   "sapling_rice_name": "Arroz",
-  "sapling_tomato_name": "Tomate"
+  "sapling_tomato_name": "Tomate",
+  "valharvest_ba_notice_title": "Estações de Cozinha do Valharvest",
+  "valharvest_ba_notice_body": "O Valharvest agora tem suas próprias bancadas de cozinha. Se quiser continuar usando as do BoneAppetit, pode reativá-las na configuração do Valharvest em 'UseBoneAppetitCookingStations'."
 }

@@ -79,6 +79,7 @@
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="Scripts\BoneAppetitBalance.cs" />
     <Compile Include="Scripts\BoneAppetitCompat.cs" />
+    <Compile Include="Scripts\BoneAppetitNotice.cs" />
     <Compile Include="Scripts\ConsumableItemExtractor.cs" />
     <Compile Include="Scripts\ExportItemsCommand.cs" />
     <Compile Include="Scripts\CustomBeehive.cs" />
