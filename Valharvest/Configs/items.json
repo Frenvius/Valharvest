@@ -162,7 +162,7 @@
 		"description": "$CornSeeds_desc",
 		"assetBundle": "valharvest",
 		"crafting": {
-			"amount": 8,
+			"amount": 6,
 			"craftingStation": "",
 			"requirements": [
 				{"Item": "corn", "Amount": 1}
