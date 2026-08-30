@@ -1,0 +1,229 @@
+﻿{
+	"piece_cultivatedGround_big": {
+		"name": "$piece_cultivatedGround_big_name",
+		"description": "$piece_cultivatedGround_big_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 20, "Recover": true},
+				{"Item": "Tar", "Amount": 40, "Recover": true}
+			]
+		}
+	},
+	"piece_cultivatedGround": {
+		"name": "$piece_cultivatedGround_name",
+		"description": "$piece_cultivatedGround_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 10, "Recover": true},
+				{"Item": "Tar", "Amount": 20, "Recover": true}
+			]
+		}
+	},
+	"piece_cultivatedGround_small": {
+		"name": "$piece_cultivatedGround_small_name",
+		"description": "$piece_cultivatedGround_small_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 5, "Recover": true},
+				{"Item": "Tar", "Amount": 10, "Recover": true}
+			]
+		}
+	},
+	"piece_cultivatedGround_small_small": {
+		"name": "$piece_cultivatedGround_small_small_name",
+		"description": "$piece_cultivatedGround_small_small_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 2, "Recover": true},
+				{"Item": "Tar", "Amount": 5, "Recover": true}
+			]
+		}
+	},
+	"water_well": {
+		"name": "$water_well_name",
+		"description": "$water_well_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 10, "Recover": true},
+				{"Item": "Stone", "Amount": 15, "Recover": true},
+				{"Item": "Iron", "Amount": 4, "Recover": true},
+				{"Item": "Chain", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_jackopumpkin": {
+		"name": "$piece_jackopumpkin_name",
+		"description": "$piece_jackopumpkin_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "pumpkin", "Amount": 1, "Recover": true},
+				{"Item": "Resin", "Amount": 2, "Recover": true}
+			]
+		}
+	},
+	"vh_piece_food_crate": {
+		"name": "$vh_piece_food_crate_name",
+		"description": "$vh_piece_food_crate_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Wood", "Amount": 10, "Recover": true}
+			]
+		}
+	},
+	"piece_tomatoBox": {
+		"name": "$piece_tomatoBox_name",
+		"description": "$piece_tomatoBox_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "tomato", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_garlicBox": {
+		"name": "$piece_garlicBox_name",
+		"description": "$piece_garlicBox_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "garlic", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_pepperBox": {
+		"name": "$piece_pepperBox_name",
+		"description": "$piece_pepperBox_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "pepper", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_potatoBox": {
+		"name": "$piece_potatoBox_name",
+		"description": "$piece_potatoBox_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "potato", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_saltBox": {
+		"name": "$piece_saltBox_name",
+		"description": "$piece_saltBox_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "salt", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_appleBox": {
+		"name": "$piece_appleBox_name",
+		"description": "$piece_appleBox_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "apple", "Amount": 50, "Recover": true},
+				{"Item": "Wood", "Amount": 1, "Recover": true}
+			]
+		}
+	},
+	"piece_cooking_pot": {
+		"name": "$cooking_pot_name",
+		"description": "$cooking_pot_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": true,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "piece_workbench",
+			"requirements": [
+				{"Item": "Stone", "Amount": 10, "Recover": true}
+			]
+		}
+	},
+	"piece_prep_table": {
+		"name": "$preparation_table_name",
+		"description": "$preparation_table_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "forge",
+			"requirements": [
+				{"Item": "Stone", "Amount": 8, "Recover": true},
+				{"Item": "Wood", "Amount": 5, "Recover": true},
+				{"Item": "Tin", "Amount": 3, "Recover": true}
+			]
+		}
+	},
+	"vh_piece_prep_table_ext1": {
+		"name": "$preserving_shelf_name",
+		"description": "$preserving_shelf_desc",
+		"assetBundle": "valharvest",
+		"crafting": {
+			"allowedInDungeons": false,
+			"pieceTable": "_HammerPieceTable",
+			"craftingStation": "forge",
+			"extendStation": "piece_prep_table",
+			"requirements": [
+				{"Item": "Iron", "Amount": 2, "Recover": true},
+				{"Item": "FineWood", "Amount": 8, "Recover": true},
+				{"Item": "LeatherScraps", "Amount": 4, "Recover": true}
+			]
+		}
+	}
+}

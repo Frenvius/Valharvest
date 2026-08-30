@@ -1,0 +1,79 @@
+﻿{
+	"bonemeal_name": "Bone Meal",
+	"bonemeal_desc": "ㅤ",
+
+	"empty_bottle_name": "Empty Bottle",
+	"empty_bottle_desc": "Item needed for milking lox",
+
+	"piece_cultivatedGround_big_name": "Raised Bed 4x4",
+	"piece_cultivatedGround_big_desc": "ㅤ",
+	
+	"piece_cultivatedGround_name": "Raised Bed 3x4",
+	"piece_cultivatedGround_desc": "ㅤ",
+
+	"piece_cultivatedGround_small_name": "Raised Bed 1x4",
+	"piece_cultivatedGround_small_desc": "ㅤ",
+
+	"piece_cultivatedGround_small_small_name": "Raised Bed 1x1",
+	"piece_cultivatedGround_small_small_desc": "ㅤ",
+
+	"piece_jackopumpkin_name": "Jack-o-pumpkin",
+	"piece_jackopumpkin_desc": "ㅤ",
+
+	"water_bucket_name": "Water Bucket",
+	"water_bucket_desc": "ㅤ",
+
+	"milk_bucket_name": "Milk Bucket",
+	"milk_bucket_desc": "ㅤ",
+
+	"water_well_name": "Water Well",
+	"water_well_desc": "ㅤ",
+	"water_well_use": "no water",
+	"water_well_check": "check water",
+	"water_well_extract": "Extract water",
+	
+	"lox_milk_extract": "Milk Lox",
+
+	"vh_piece_food_crate_name": "Food Crate",
+	"vh_piece_food_crate_desc": "A wooden crate for storing food. Holds the first item's appearance until emptied.",
+
+	"piece_tomatoBox_name": "Tomato Box",
+	"piece_tomatoBox_desc": "ㅤ",
+
+	"piece_garlicBox_name": "Garlic Box",
+	"piece_garlicBox_desc": "ㅤ",
+
+	"piece_pepperBox_name": "Pepper Box",
+	"piece_pepperBox_desc": "ㅤ",
+
+	"piece_potatoBox_name": "Potato Box",
+	"piece_potatoBox_desc": "ㅤ",
+
+	"piece_saltBox_name": "Salt Box",
+	"piece_saltBox_desc": "ㅤ",
+
+	"piece_appleBox_name": "Apple Box",
+	"piece_appleBox_desc": "ㅤ",
+
+	"piece_milk_can_name": "Milk Can",
+	"piece_milk_can_desc": "ㅤ",
+	
+	"FieldSmall_name": "Planting Field",
+	"FieldSmall_desc": "ㅤ",
+
+	"msg_TurnMassPlantingOff": "Turn off mass planting mode, press the ",
+	
+	"cooking_pot_name": "Stone Grill",
+	"cooking_pot_desc": "This is a stone grill. You can cook food here.",
+
+	"preparation_table_name": "Preparation Table",
+	"preparation_table_desc": "This is a preparation table. You can prepare food here.",
+
+	"preserving_shelf_name": "Preserving Shelf",
+	"preserving_shelf_desc": "Herbs, pots, and baskets to prepare feasts worthy of Odin.",
+
+	"enough_empty_bottle": "You don't have enough empty bottles",
+
+	"valharvest_ba_notice_title": "Valharvest Cooking Stations",
+	"valharvest_ba_notice_body": "Valharvest now ships with its own cooking stations. If you'd rather keep using BoneAppetit's, you can re-enable them in the Valharvest config under 'UseBoneAppetitCookingStations'."
+}

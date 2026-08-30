@@ -1,0 +1,11 @@
+
+[*]
+
+# Microsoft .NET properties
+csharp_new_line_before_members_in_object_initializers = false
+csharp_preferred_modifier_order = public, private, protected, internal, file, new, static, abstract, virtual, sealed, readonly, override, extern, unsafe, volatile, async, required:suggestion
+
+# ReSharper properties
+resharper_csharp_blank_lines_around_field = 0
+resharper_csharp_remove_blank_lines_near_braces_in_declarations = false
+resharper_wrap_array_initializer_style = chop_if_long
